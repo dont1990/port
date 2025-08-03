@@ -1,34 +1,29 @@
 "use client";
 
-import useSWR from "swr";
-import { useState } from "react";
 import { Button } from "@/app/components/ui/button";
 import { Input } from "@/app/components/ui/input";
+import { Textarea } from "@/app/components/ui/textarea";
 import {
   Card,
   CardHeader,
   CardTitle,
   CardContent,
 } from "@/app/components/ui/card";
-import { updateProjects } from "./actions/updateProjects";
 import ProjectsEditorSkeleton from "./skeleton";
-import { Textarea } from "@/app/components/ui/textarea";
 import { useKeyPressHandler } from "@/app/hooks/useKeyPressHandler";
-import toast from "react-hot-toast";
-import { fetcher } from "@/app/lib/utils/swr/fetcher";
-import { Project } from "@/app/types/shared/project/project";
+import { useProjectsEditor } from "./hooks/useProjectsEditor";
 
 export default function ProjectsEditor() {
-  const { data, error, isLoading, mutate } = useSWR<Project[]>(
-    `${process.env.NEXT_PUBLIC_API_URL}/projects`,
-    fetcher
-  );
-
-  const [projects, setProjects] = useState<Project[] | null>(null);
-
-  const [isSaving, setIsSaving] = useState(false);
-
-  if (!projects && data) setProjects(data);
+  const {
+    projects,
+    error,
+    isLoading,
+    isSaving,
+    handleChange,
+    handleSave,
+    addProject,
+    removeProject,
+  } = useProjectsEditor();
 
   useKeyPressHandler({
     key: "Enter",
@@ -37,52 +32,6 @@ export default function ProjectsEditor() {
       handleSave();
     },
   });
-
-  const handleChange = <K extends keyof Project>(
-    index: number,
-    key: K,
-    value: Project[K]
-  ) => {
-    if (!projects) return;
-    const updated = [...projects];
-    updated[index][key] = value;
-    setProjects(updated);
-  };
-
-  const addProject = () => {
-    setProjects((prev) => [
-      ...(prev || []),
-      {
-        title: "New Project",
-        description: "",
-        image: "",
-        technologies: [],
-        liveUrl: "",
-        githubUrl: "",
-      },
-    ]);
-  };
-
-  const removeProject = (index: number) => {
-    if (!projects) return;
-    const updated = [...projects];
-    updated.splice(index, 1);
-    setProjects(updated);
-  };
-
-  const handleSave = async () => {
-    if (!projects) return;
-    setIsSaving(true);
-    try {
-      await updateProjects(projects);
-      mutate();
-      toast.success("Projects info updated.");
-    } catch (error) {
-      toast.error("Failed to update projects info.");
-    } finally {
-      setIsSaving(false);
-    }
-  };
 
   if (isLoading || !projects) return <ProjectsEditorSkeleton />;
   if (error) return <p>Error loading projects</p>;
