@@ -1,0 +1,85 @@
+[
+  {
+    "title": "E-Commerce Dashboard",
+    "description": "A comprehensive admin dashboard for managing online stores with real-time analytics, inventory management, and order processing.",
+    "image": "/placeholder.svg?height=300&width=500",
+    "technologies": [
+      "React",
+      "Next.js",
+      "TypeScript",
+      "Tailwind CSS",
+      "Chart.js"
+    ],
+    "liveUrl": "#",
+    "githubUrl": "#"
+  },
+  {
+    "title": "Task Management App",
+    "description": "A collaborative project management tool with drag-and-drop functionality, real-time updates, and team collaboration features.",
+    "image": "/placeholder.svg?height=300&width=500",
+    "technologies": [
+      "React",
+      "Redux",
+      "Node.js",
+      "Socket.io",
+      "MongoDB"
+    ],
+    "liveUrl": "#",
+    "githubUrl": "#"
+  },
+  {
+    "title": "Weather Forecast App",
+    "description": "A beautiful weather application with location-based forecasts, interactive maps, and detailed weather analytics.",
+    "image": "/placeholder.svg?height=300&width=500",
+    "technologies": [
+      "React",
+      "TypeScript",
+      "OpenWeather API",
+      "Mapbox",
+      "Framer Motion"
+    ],
+    "liveUrl": "#",
+    "githubUrl": "#"
+  },
+  {
+    "title": "Portfolio Website",
+    "description": "A responsive portfolio website showcasing projects and skills with smooth animations and modern design principles.",
+    "image": "/placeholder.svg?height=300&width=500",
+    "technologies": [
+      "Next.js",
+      "Tailwind CSS",
+      "Framer Motion",
+      "MDX"
+    ],
+    "liveUrl": "#",
+    "githubUrl": "#"
+  },
+  {
+    "title": "Social Media Dashboard",
+    "description": "A unified dashboard for managing multiple social media accounts with analytics, scheduling, and engagement tracking.",
+    "image": "/placeholder.svg?height=300&width=500",
+    "technologies": [
+      "React",
+      "Next.js",
+      "Prisma",
+      "PostgreSQL",
+      "Recharts",
+      "Socket.io"
+    ],
+    "liveUrl": "#",
+    "githubUrl": "#"
+  },
+  {
+    "title": "Recipe Finder App ",
+    "description": "A recipe discovery app with advanced search filters, meal planning, and shopping list generation features.",
+    "image": "/placeholder.svg?height=300&width=500",
+    "technologies": [
+      "React",
+      "TypeScript",
+      "Spoonacular API",
+      "Local Storage"
+    ],
+    "liveUrl": "#",
+    "githubUrl": "#"
+  }
+]

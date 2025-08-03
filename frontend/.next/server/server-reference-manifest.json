@@ -1,0 +1,28 @@
+{
+  "node": {
+    "60c76cf29d07237d04859dc6e950d17de1a8f45e6e": {
+      "workers": {
+        "app/(pages)/admin/contact-info/page": {
+          "moduleId": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22C%3A%5C%5Cdon%5C%5Cportfolio_3%5C%5Cfrontend%5C%5Capp%5C%5Ccomponents%5C%5Cadmin%5C%5Ccontact-info%5C%5Cactions%5C%5CcontactInfoActions.ts%22%2C%5B%7B%22id%22%3A%2260c76cf29d07237d04859dc6e950d17de1a8f45e6e%22%2C%22exportedName%22%3A%22updateContactInfo%22%7D%5D%5D%5D&__client_imported__=true!",
+          "async": false
+        }
+      },
+      "layer": {
+        "app/(pages)/admin/contact-info/page": "action-browser"
+      }
+    },
+    "40988c3861b0d757f0ca90ea317b8324044d022e19": {
+      "workers": {
+        "app/(pages)/(user)/page": {
+          "moduleId": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22C%3A%5C%5Cdon%5C%5Cportfolio_3%5C%5Cfrontend%5C%5Capp%5C%5Ccomponents%5C%5Chome%5C%5Ccontact%5C%5Cactions%5C%5CsubmitContactForm.ts%22%2C%5B%7B%22id%22%3A%2240988c3861b0d757f0ca90ea317b8324044d022e19%22%2C%22exportedName%22%3A%22submitContactForm%22%7D%5D%5D%5D&__client_imported__=true!",
+          "async": false
+        }
+      },
+      "layer": {
+        "app/(pages)/(user)/page": "action-browser"
+      }
+    }
+  },
+  "edge": {},
+  "encryptionKey": "3O1hsgSwxTAC0ynDvvtYGUaHDg/cv3q1cTnN9rIaFko="
+}
