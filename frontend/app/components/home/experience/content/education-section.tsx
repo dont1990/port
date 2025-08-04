@@ -1,8 +1,15 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/app/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+} from "@/app/components/ui/card";
 import { Badge } from "@/app/components/ui/badge";
+import { useTranslation } from "react-i18next";
 
 interface Education {
   degree: string;
@@ -16,6 +23,8 @@ interface EducationSectionProps {
 }
 
 export function EducationSection({ education }: EducationSectionProps) {
+  const { t } = useTranslation("experience");
+
   return (
     <motion.div
       initial={{ x: 50, opacity: 0 }}
@@ -23,7 +32,7 @@ export function EducationSection({ education }: EducationSectionProps) {
       viewport={{ once: true, margin: "-100px" }}
       transition={{ duration: 0.8, delay: 0.4 }}
     >
-      <h3 className="text-2xl font-semibold mb-8">Education</h3>
+      <h3 className="text-2xl font-semibold mb-8">{t("sections.education")}</h3>
       <div className="space-y-6">
         {education?.map((edu, index) => (
           <Card key={index} className="hover:shadow-lg transition-shadow">

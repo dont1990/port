@@ -1,9 +1,12 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import './font.css';
 
 @layer base {
   :root {
+    --font-en: "Inter", sans-serif;
+    --font-fa: "Vazirmatn", sans-serif;
     --background: 0 0% 100%;
     --foreground: 222.2 84% 4.9%;
     --card: 0 0% 100%;
@@ -138,4 +141,13 @@
     padding-top: 2rem;
     padding-bottom: 2rem;
   }
+}
+/* Default font for LTR (English) */
+html[dir="ltr"] {
+  font-family: "Roboto", sans-serif;
+}
+
+/* Font for RTL (Persian) */
+html[dir="rtl"] {
+  font-family: "iran-sans";
 }

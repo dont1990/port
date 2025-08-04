@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { Card, CardContent } from "@/app/components/ui/card";
 import { Badge } from "@/app/components/ui/badge";
+import { useTranslation } from "react-i18next";
 
 interface Certification {
   name: string;
@@ -14,7 +15,11 @@ interface CertificationsSectionProps {
   certifications?: Certification[];
 }
 
-export function CertificationsSection({ certifications }: CertificationsSectionProps) {
+export function CertificationsSection({
+  certifications,
+}: CertificationsSectionProps) {
+  const { t } = useTranslation("experience");
+
   return (
     <motion.div
       className="mt-12"
@@ -23,7 +28,9 @@ export function CertificationsSection({ certifications }: CertificationsSectionP
       viewport={{ once: true, margin: "-100px" }}
       transition={{ duration: 0.6, delay: 0.8 }}
     >
-      <h4 className="text-xl font-semibold mb-6">Certifications</h4>
+      <h4 className="text-xl font-semibold mb-6">
+        {t("sections.certifications")}
+      </h4>
       <div className="space-y-4">
         {certifications?.map((cert, index) => (
           <Card key={index}>

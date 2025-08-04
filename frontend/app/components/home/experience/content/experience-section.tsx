@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/app/components/ui/card";
 import { Badge } from "@/app/components/ui/badge";
+import { useTranslation } from "react-i18next";
 
 interface Experience {
   title: string;
@@ -17,6 +18,8 @@ interface ExperienceSectionProps {
 }
 
 export function ExperienceSection({ experiences }: ExperienceSectionProps) {
+    const { t } = useTranslation("experience");
+  
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -47,7 +50,7 @@ export function ExperienceSection({ experiences }: ExperienceSectionProps) {
       whileInView="visible"
       viewport={{ once: true, margin: "-100px" }}
     >
-      <h3 className="text-2xl font-semibold mb-8">Work Experience</h3>
+      <h3 className="text-2xl font-semibold mb-8">{t("sections.experience")}</h3>
       <div className="space-y-6">
         {experiences?.map((exp, index) => (
           <motion.div key={index} variants={cardVariants as any}>

@@ -13,6 +13,7 @@ import { ExternalLink, Github } from "lucide-react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { Project } from "@/app/types/shared/project/project";
+import { useTranslation } from "react-i18next";
 
 type ProjectCardProps = {
   project: Project;
@@ -21,6 +22,8 @@ type ProjectCardProps = {
 };
 
 export function ProjectCard({ project, index, isInView }: ProjectCardProps) {
+  const { t } = useTranslation('projects');
+
   const cardVariants = {
     hidden: { y: 50, opacity: 0 },
     visible: {
@@ -51,8 +54,15 @@ export function ProjectCard({ project, index, isInView }: ProjectCardProps) {
           >
             <div className="flex gap-2">
               {project.liveUrl && (
-                <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
-                  <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
+                <motion.div
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.9 }}
+                >
+                  <a
+                    href={project.liveUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
                     <Button size="sm" variant="secondary">
                       <ExternalLink className="h-4 w-4" />
                     </Button>
@@ -60,8 +70,15 @@ export function ProjectCard({ project, index, isInView }: ProjectCardProps) {
                 </motion.div>
               )}
               {project.githubUrl && (
-                <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
-                  <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
+                <motion.div
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.9 }}
+                >
+                  <a
+                    href={project.githubUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
                     <Button size="sm" variant="secondary">
                       <Github className="h-4 w-4" />
                     </Button>
@@ -109,17 +126,28 @@ export function ProjectCard({ project, index, isInView }: ProjectCardProps) {
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                 >
-                  <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
+                  <a
+                    href={project.liveUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
                     <Button size="sm" className="w-full">
                       <ExternalLink className="mr-2 h-4 w-4" />
-                      Live Demo
+                      {t("buttons.liveDemo")}
                     </Button>
                   </a>
                 </motion.div>
               )}
               {project.githubUrl && (
-                <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
-                  <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
+                <motion.div
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.9 }}
+                >
+                  <a
+                    href={project.githubUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
                     <Button size="sm" variant="outline">
                       <Github className="h-4 w-4" />
                     </Button>
