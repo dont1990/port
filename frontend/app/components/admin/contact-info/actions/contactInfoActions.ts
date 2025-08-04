@@ -5,7 +5,6 @@ import { Lang } from "@/app/types/shared/lang/lang";
 import { revalidateTag } from "next/cache";
 
 export async function updateContactInfo(data: ContactInfo, lang: Lang) {
-  console.log(lang)
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_API_URL}/contact-info?lang=${lang}`,
     {

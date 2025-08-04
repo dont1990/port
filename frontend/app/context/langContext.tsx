@@ -2,6 +2,7 @@
 import { createContext, useContext, useState, useEffect } from "react";
 import i18n from "../lib/language/i18n";
 import { useRouter } from "next/navigation";
+import { Lang } from "../types/shared/lang/lang";
 
 // TypeScript interface for context value
 interface LangContextType {
@@ -19,7 +20,7 @@ const LangContext = createContext<LangContextType>({
 export const useLang = () => useContext(LangContext);
 
 export const LangProvider = ({ children }: { children: React.ReactNode }) => {
-  const [lang, _setLang] = useState<"en" | "fa">("en");
+  const [lang, _setLang] = useState<Lang>("en");
   const router = useRouter();
 
   useEffect(() => {

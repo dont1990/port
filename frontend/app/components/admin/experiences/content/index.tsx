@@ -1,78 +1,27 @@
 "use client";
 
-import useSWR from "swr";
-import { useState } from "react";
 import { Input } from "@/app/components/ui/input";
 import { Textarea } from "@/app/components/ui/textarea";
 import { Button } from "@/app/components/ui/button";
 import {
   Card,
-  CardHeader,
-  CardTitle,
   CardContent,
 } from "@/app/components/ui/card";
-import { fetcher } from "@/app/lib/utils/swr/fetcher";
-import toast from "react-hot-toast";
-import { ExperienceData } from "@/app/types/shared/experience/experience";
-import { updateExperiences } from "./actions/updateExperiences";
-import ExperienceEditorSkeleton from "./skeleton";
+import { useExperienceForm } from "../hooks/useExperienceForm";
+import ExperienceEditorSkeleton from "../skeleton";
+import AdminSectionHeader from "../../section-header";
+
 
 export default function ExperienceEditor() {
-  const { data, error, isLoading, mutate } = useSWR<ExperienceData>(
-    `${process.env.NEXT_PUBLIC_API_URL}/experiences`,
-    fetcher
-  );
-
-  const [formData, setFormData] = useState<ExperienceData | null>(null);
-  const [isSaving, setIsSaving] = useState(false);
-
-  if (!formData && data) setFormData(data);
-
-  const handleChange = <K extends keyof ExperienceData>(
-    key: K,
-    index: number,
-    field: keyof ExperienceData[K][0],
-    value: any
-  ) => {
-    if (!formData) return;
-    const updated = { ...formData };
-    (updated[key] as any)[index][field] = value;
-    setFormData(updated);
-  };
-
-  const handleAddItem = <K extends keyof ExperienceData>(
-    key: K,
-    newItem: ExperienceData[K][0]
-  ) => {
-    if (!formData) return;
-    const updated = { ...formData };
-    (updated[key] as any).push(newItem);
-    setFormData(updated);
-  };
-
-  const handleRemoveItem = <K extends keyof ExperienceData>(
-    key: K,
-    index: number
-  ) => {
-    if (!formData) return;
-    const updated = { ...formData };
-    (updated[key] as any).splice(index, 1);
-    setFormData(updated);
-  };
-
-  const handleSave = async () => {
-    if (!formData) return;
-    setIsSaving(true);
-    try {
-      await updateExperiences(formData);
-      mutate();
-      toast.success("Experience data updated.");
-    } catch {
-      toast.error("Failed to update experience data.");
-    } finally {
-      setIsSaving(false);
-    }
-  };
+  const {
+    formData,
+    isLoading,
+    error,
+    handleChange,
+    handleAddItem,
+    handleRemoveItem,
+    handleSave,
+  } = useExperienceForm();
 
   if (isLoading || !formData) return <ExperienceEditorSkeleton />;
   if (error) return <p>Error loading experience data</p>;
@@ -80,9 +29,7 @@ export default function ExperienceEditor() {
   return (
     <section className="section-container py-10">
       <Card>
-        <CardHeader>
-          <CardTitle>Experience & Education Editor</CardTitle>
-        </CardHeader>
+       <AdminSectionHeader title="Experience & Education Editor"/>
         <CardContent className="space-y-10">
           {/* Experience */}
           <div className="space-y-4">
@@ -267,8 +214,8 @@ export default function ExperienceEditor() {
             </Button>
           </div>
 
-          <Button onClick={handleSave} isLoading={isSaving}>
-            {!isSaving && "Save Changes"}
+          <Button onClick={handleSave} isLoading={isLoading}>
+            {!isLoading && "Save Changes"}
           </Button>
         </CardContent>
       </Card>

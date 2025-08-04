@@ -6,9 +6,10 @@ import { AboutData, Feature } from "@/app/types/shared/about/aboutData";
 import { fetchAboutDataClient } from "@/app/lib/fetch/fetchAbout";
 import { Lang } from "@/app/types/shared/lang/lang";
 import { updateAboutData } from "../actions/aboutActions";
+import { useLang } from "@/app/context/langContext";
 
 export function useAboutForm() {
-  const [lang, setLang] = useState<Lang>("en");
+  const { lang } = useLang();
 
   const { data, error, isLoading, mutate } = useSWR<AboutData>(
     () => `/about?lang=${lang}`,
@@ -90,7 +91,7 @@ export function useAboutForm() {
     if (!form) return;
     startTransition(async () => {
       try {
-        await updateAboutData(form, lang);
+        await updateAboutData(form, lang as Lang);
         toast.success("About info updated.");
         mutate();
       } catch {
@@ -104,7 +105,6 @@ export function useAboutForm() {
     isLoading,
     error,
     isPending,
-    lang,
     updateArrayItem,
     addArrayItem,
     removeArrayItem,
@@ -112,6 +112,5 @@ export function useAboutForm() {
     addFeature,
     removeFeature,
     handleSave,
-    setLang,
   };
 }

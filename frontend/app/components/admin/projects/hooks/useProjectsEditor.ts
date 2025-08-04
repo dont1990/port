@@ -1,23 +1,28 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import useSWR from "swr";
 import toast from "react-hot-toast";
 import { Project } from "@/app/types/shared/project/project";
-import { fetcher } from "@/app/lib/utils/swr/fetcher";
 import { updateProjects } from "../actions/updateProjects";
+import { fetchProjectsClient } from "@/app/lib/fetch/fetchProjects";
+import { useLang } from "@/app/context/langContext";
+import { Lang } from "@/app/types/shared/lang/lang";
 
 export function useProjectsEditor() {
+  const { lang } = useLang();
+
   const { data, error, isLoading, mutate } = useSWR<Project[]>(
-    `${process.env.NEXT_PUBLIC_API_URL}/projects`,
-    fetcher
+    () => `/projects?lang=${lang}`,
+    () => fetchProjectsClient(lang as Lang)
   );
 
   const [projects, setProjects] = useState<Project[] | null>(null);
-  const [isSaving, setIsSaving] = useState(false);
 
-  // sync local state when data is loaded
-  if (!projects && data) setProjects(data);
+  // Sync SWR data to local state
+  useEffect(() => {
+    if (data) setProjects(data);
+  }, [data]);
 
   const handleChange = <K extends keyof Project>(
     index: number,
@@ -53,15 +58,12 @@ export function useProjectsEditor() {
 
   const handleSave = async () => {
     if (!projects) return;
-    setIsSaving(true);
     try {
-      await updateProjects(projects);
+      await updateProjects(projects, lang as Lang);
       mutate();
       toast.success("Projects info updated.");
     } catch (error) {
       toast.error("Failed to update projects info.");
-    } finally {
-      setIsSaving(false);
     }
   };
 
@@ -69,7 +71,6 @@ export function useProjectsEditor() {
     projects,
     error,
     isLoading,
-    isSaving,
     handleChange,
     handleSave,
     addProject,

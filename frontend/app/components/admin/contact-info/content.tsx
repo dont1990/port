@@ -1,31 +1,21 @@
 "use client";
 
-import { useLang } from "@/app/context/langContext";
-import { Lang } from "@/app/types/shared/lang/lang";
 import { useKeyPressHandler } from "@/app/hooks/useKeyPressHandler";
 import ContactInfoSkeleton from "./skeleton";
 import {
   Card,
-  CardHeader,
-  CardTitle,
   CardContent,
 } from "@/app/components/ui/card";
 import { Input } from "@/app/components/ui/input";
 import { Label } from "@/app/components/ui/label";
 import { Button } from "@/app/components/ui/button";
 import { useContactInfoEditor } from "./hooks/useContactInfoEditor";
+import AdminSectionHeader from "../section-header";
 
 export default function ContactEditor() {
-  const { lang, setLang } = useLang();
 
-  const {
-    formData,
-    error,
-    isLoading,
-    isPending,
-    handleChange,
-    handleSave,
-  } = useContactInfoEditor(lang as Lang);
+  const { formData, error, isLoading, isPending, handleChange, handleSave } =
+    useContactInfoEditor();
 
   useKeyPressHandler({
     key: "Enter",
@@ -41,18 +31,7 @@ export default function ContactEditor() {
   return (
     <section className="section-container">
       <Card className="max-w-3xl mx-auto">
-        <CardHeader className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4">
-          <CardTitle>Edit Contact Information</CardTitle>
-          <select
-            value={lang}
-            onChange={(e) => setLang(e.target.value as "en" | "fa")}
-            className="border rounded px-2 py-1 text-sm"
-          >
-            <option value="en">English</option>
-            <option value="fa">Persian</option>
-          </select>
-        </CardHeader>
-
+        <AdminSectionHeader title="Edit Contact Information" />
         <CardContent className="space-y-6">
           <div className="space-y-2">
             <Label htmlFor="email">Email</Label>
@@ -114,7 +93,11 @@ export default function ContactEditor() {
           </div>
 
           <div className="pt-4">
-            <Button onClick={handleSave} className="w-full" isLoading={isPending}>
+            <Button
+              onClick={handleSave}
+              className="w-full"
+              isLoading={isPending}
+            >
               {!isPending && "Save Changes"}
             </Button>
           </div>

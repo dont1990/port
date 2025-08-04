@@ -7,8 +7,11 @@ import { ContactInfo } from "@/app/types/shared/contact/contactInfo";
 import { fetchContactInfoClient } from "@/app/lib/fetch/admin/fetchContactInfo";
 import { Lang } from "@/app/types/shared/lang/lang";
 import { updateContactInfo } from "../actions/contactInfoActions";
+import { useLang } from "@/app/context/langContext";
 
-export function useContactInfoEditor(lang: Lang | null | undefined) {
+export function useContactInfoEditor() {
+  const { lang } = useLang();
+
   const { data, error, mutate, isLoading } = useSWR<ContactInfo>(
     () => (lang ? `/contact-info?lang=${lang}` : null),
     () => fetchContactInfoClient(lang as Lang)
@@ -52,7 +55,7 @@ export function useContactInfoEditor(lang: Lang | null | undefined) {
 
     startTransition(async () => {
       try {
-        await updateContactInfo(formData, lang);
+        await updateContactInfo(formData, lang as Lang);
         toast.success("Contact info updated.");
         mutate();
       } catch (err) {

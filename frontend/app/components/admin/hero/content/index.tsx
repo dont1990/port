@@ -2,8 +2,6 @@
 
 import {
   Card,
-  CardHeader,
-  CardTitle,
   CardContent,
 } from "@/app/components/ui/card";
 import { useKeyPressHandler } from "@/app/hooks/useKeyPressHandler";
@@ -12,9 +10,9 @@ import { useResumeUploader } from "../hooks/useResumeUploader";
 import HeroForm from "./form";
 import ResumeUploader from "./resume-uploader";
 import HeroEditorSkeleton from "../skeleton";
-import { useLang } from "@/app/context/langContext";
+import AdminSectionHeader from "../../section-header";
+import { Lang } from "@/app/types/shared/lang/lang";
 
-type Lang = "en" | "fa";
 
 export default function HeroEditor() {
   const {
@@ -30,7 +28,6 @@ export default function HeroEditor() {
   const { resumeFiles, setResumeFile, handleResumeUpload, uploadProgress } =
     useResumeUploader();
 
-  const { lang, setLang } = useLang();
 
   const langs: Lang[] = ["en", "fa"];
 
@@ -48,18 +45,7 @@ export default function HeroEditor() {
   return (
     <section className="section-container">
       <Card className="max-w-3xl mx-auto">
-        <CardHeader className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4">
-          <CardTitle>Edit Hero Info</CardTitle>
-          <select
-            value={lang}
-            onChange={(e) => setLang(e.target.value as "en" | "fa")}
-            className="border rounded px-2 py-1 text-sm"
-          >
-            <option value="en">English</option>
-            <option value="fa">Persian</option>
-          </select>
-        </CardHeader>
-
+        <AdminSectionHeader title="Edit Hero Info" />
         <CardContent className="space-y-8">
           <HeroForm
             form={form}

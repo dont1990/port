@@ -3,8 +3,6 @@
 import {
   Card,
   CardContent,
-  CardHeader,
-  CardTitle,
 } from "@/app/components/ui/card";
 import { Input } from "@/app/components/ui/input";
 import { Button } from "@/app/components/ui/button";
@@ -12,7 +10,7 @@ import { Label } from "@/app/components/ui/label";
 import { useKeyPressHandler } from "@/app/hooks/useKeyPressHandler";
 import AboutEditorSkeleton from "./skeleton";
 import { useAboutForm } from "./hooks/useAboutForm";
-
+import AdminSectionHeader from "../section-header";
 
 export default function AboutEditor() {
   const {
@@ -20,7 +18,6 @@ export default function AboutEditor() {
     isLoading,
     error,
     isPending,
-    lang,
     updateArrayItem,
     addArrayItem,
     removeArrayItem,
@@ -28,7 +25,6 @@ export default function AboutEditor() {
     addFeature,
     removeFeature,
     handleSave,
-    setLang,
   } = useAboutForm();
 
   useKeyPressHandler({
@@ -45,17 +41,7 @@ export default function AboutEditor() {
   return (
     <section className="section-container">
       <Card className="mx-auto space-y-6">
-        <CardHeader className="flex flex-row justify-between items-center">
-          <CardTitle>Edit About Info</CardTitle>
-          <select
-            value={lang}
-            onChange={(e) => setLang(e.target.value as "en" | "fa")}
-            className="border rounded px-2 py-1 text-sm"
-          >
-            <option value="en">English</option>
-            <option value="fa">Persian</option>
-          </select>
-        </CardHeader>
+        <AdminSectionHeader title="Edit About Info" />
         <CardContent className="space-y-6">
           {/* Descriptions */}
           <div className="space-y-2">

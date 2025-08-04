@@ -3,22 +3,17 @@
 import { Button } from "@/app/components/ui/button";
 import { Input } from "@/app/components/ui/input";
 import { Textarea } from "@/app/components/ui/textarea";
-import {
-  Card,
-  CardHeader,
-  CardTitle,
-  CardContent,
-} from "@/app/components/ui/card";
+import { Card, CardContent } from "@/app/components/ui/card";
 import ProjectsEditorSkeleton from "./skeleton";
 import { useKeyPressHandler } from "@/app/hooks/useKeyPressHandler";
 import { useProjectsEditor } from "./hooks/useProjectsEditor";
+import AdminSectionHeader from "../section-header";
 
 export default function ProjectsEditor() {
   const {
     projects,
     error,
     isLoading,
-    isSaving,
     handleChange,
     handleSave,
     addProject,
@@ -39,9 +34,7 @@ export default function ProjectsEditor() {
   return (
     <section className="section-container py-10">
       <Card>
-        <CardHeader>
-          <CardTitle>Projects Editor</CardTitle>
-        </CardHeader>
+        <AdminSectionHeader title="Projects Editor" />
         <CardContent className="space-y-8">
           {projects.map((project, idx) => (
             <div key={idx} className="border p-4 rounded-md space-y-4">
@@ -96,8 +89,8 @@ export default function ProjectsEditor() {
 
           <div className="flex gap-4 pt-6">
             <Button onClick={addProject}>+ Add Project</Button>
-            <Button onClick={handleSave} isLoading={isSaving}>
-              {!isSaving && "Save Changes"}
+            <Button onClick={handleSave} isLoading={isLoading}>
+              {!isLoading && "Save Changes"}
             </Button>
           </div>
         </CardContent>
