@@ -2,11 +2,13 @@
 
 import React, { useRef } from "react";
 import { motion, useInView } from "framer-motion";
+import { useTranslation } from "react-i18next";
 
 const Footer = () => {
   const ref = useRef(null);
 
   const isInView = useInView(ref, { once: true, margin: "-50px" });
+  const { t } = useTranslation("footer");
 
   return (
     <section className="section-container">
@@ -17,7 +19,7 @@ const Footer = () => {
         animate={isInView ? { opacity: 1 } : { opacity: 0 }}
         transition={{ duration: 0.6, delay: 0.4 }}
       >
-        <p>&copy; 2025 Alex Johnson. All rights reserved.</p>
+        <p>{t("copyright")}</p>{" "}
       </motion.footer>
     </section>
   );

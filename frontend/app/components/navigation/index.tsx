@@ -28,7 +28,7 @@ export function Navigation() {
 
   const { t } = useTranslation("navigation");
   const navItems = [
-    { id: "home", label: t("home") },
+    { id: "home", label: t("hero") },
     { id: "about", label: t("about") },
     { id: "skills", label: t("skills") },
     { id: "projects", label: t("projects") },

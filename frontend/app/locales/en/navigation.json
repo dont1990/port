@@ -1,8 +1,12 @@
 {
-  "home": "Home",
+  "dashboard": "Dashboard",
+  "submission": "Submission",
+  "contactInfo": "Contact Info",
+  "contact": "Contact",
+  "hero": "Hero",
   "about": "About",
   "skills": "Skills",
   "projects": "Projects",
-  "contact": "Contact",
+  "experiences": "Experiences",
   "name": "Alex Johnson"
 }

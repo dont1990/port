@@ -1,8 +1,12 @@
 {
-  "home": "خانه",
+  "dashboard": "داشبورد",
+  "submission": "ارسال‌ها",
+  "contactInfo": "اطلاعات تماس",
+  "contact": "ارتباط",
+  "hero": "خانه",
   "about": "درباره من",
   "skills": "مهارت‌ها",
   "projects": "پروژه‌ها",
-  "contact": "ارتباط",
+  "experiences": "تجربه‌ها",
   "name": "الکس جانسون"
 }

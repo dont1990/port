@@ -20,22 +20,23 @@ import { Button } from "../../ui/button";
 import { AdminLogoutButton } from "../logout";
 import { cn } from "@/app/lib/utils/cn/cn";
 import LanguageSwitcher from "../../language/language-toggle";
-
-const adminLinks = [
-  { href: "/admin", label: "Dashboard", icon: LayoutDashboard },
-  { href: "/admin/submissions", label: "Submission", icon: FileText },
-  { href: "/admin/contact-info", label: "Contact Info", icon: Mail },
-  { href: "/admin/hero", label: "Hero", icon: User },
-  { href: "/admin/about", label: "About", icon: Info },
-  { href: "/admin/skills", label: "Skills", icon: Layers }, // Changed from Info
-  { href: "/admin/projects", label: "Projects", icon: BookOpen }, // Changed from Info
-  { href: "/admin/experiences", label: "Experiences", icon: Briefcase }, // Changed from Info
-];
+import { useTranslation } from "react-i18next";
 
 export function AdminNavigation() {
+    const { t } = useTranslation("navigation");
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
 
+  const adminLinks = [
+    { href: "/admin", label: t("dashboard"), icon: LayoutDashboard },
+    { href: "/admin/submissions", label: t("submission"), icon: FileText },
+    { href: "/admin/contact-info", label: t("contactInfo"), icon: Mail },
+    { href: "/admin/hero", label: t("hero"), icon: User },
+    { href: "/admin/about", label: t("about"), icon: Info },
+    { href: "/admin/skills", label: t("skills"), icon: Layers },
+    { href: "/admin/projects", label: t("projects"), icon: BookOpen },
+    { href: "/admin/experiences", label: t("experiences"), icon: Briefcase },
+  ];
   const NavLinks = () => (
     <nav className="space-y-2">
       {adminLinks.map(({ href, label, icon: Icon }) => (
