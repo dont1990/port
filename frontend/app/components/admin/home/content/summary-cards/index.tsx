@@ -1,16 +1,41 @@
 "use client";
 
 import { SummaryCard } from "@/app/components/summary-card";
-import { Code, NotebookPen, Briefcase, Contact, Mail, Info } from "lucide-react";
+import { useLang } from "@/app/context/langContext";
+import { formatJalaliDate } from "@/app/lib/utils/date/formatJalaliDate";
+import {
+  Code,
+  NotebookPen,
+  Briefcase,
+  Contact,
+  Mail,
+  Info,
+} from "lucide-react";
+import { useTranslation } from "react-i18next";
 
-
-export default function SummaryCards({ projects, skills, experienceData, contactInfo, submissions, aboutData }: any) {
+export default function SummaryCards({
+  projects,
+  skills,
+  experienceData,
+  contactInfo,
+  submissions,
+  aboutData,
+}: any) {
   const totalProjects = projects?.length || 0;
-  const totalSkills = skills?.reduce((sum: number, cat: any) => sum + cat.skills.length, 0) || 0;
+  const totalSkills =
+    skills?.reduce((sum: number, cat: any) => sum + cat.skills.length, 0) || 0;
   const totalExperiences = experienceData?.experiences.length || 0;
-  const contactLastUpdated = contactInfo?.updatedAt || null;
   const submissionsCount = submissions?.length || 0;
   const aboutFeaturesCount = aboutData?.features.length || 0;
+
+  const { lang } = useLang();
+  const { t } = useTranslation("dashboard");
+
+  const contactLastUpdated =
+    contactInfo?.updatedAt &&
+    (lang === "fa"
+      ? formatJalaliDate(contactInfo.updatedAt, "short")
+      : new Date(contactInfo.updatedAt).toLocaleDateString(lang));
 
   const summaryItems = [
     {
@@ -33,9 +58,7 @@ export default function SummaryCards({ projects, skills, experienceData, contact
     },
     {
       label: "Contact Info",
-      count: contactLastUpdated
-        ? new Date(contactLastUpdated).toLocaleDateString()
-        : "Not Set",
+      count: contactLastUpdated || t("Not Set"),
       icon: <Contact className="text-primary" />,
       href: "/admin/contact-info",
     },

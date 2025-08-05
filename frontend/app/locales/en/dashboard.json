@@ -1,0 +1,26 @@
+{
+  "Projects": "Projects",
+  "Skills": "Skills",
+  "Experiences": "Experiences",
+  "Contact Info": "Contact Info",
+  "Submissions": "Submissions",
+  "About Features": "About Features",
+  "Not Set": "Not Set",
+  "Manage": "Manage",
+  "experience": { "RecentExperiences": "Recent Experiences" },
+  "submissions": {
+    "RecentContactSubmissions": "Recent Contact Submissions",
+    "Name": "Name",
+    "Email": "Email",
+    "Subject": "Subject",
+    "Date": "Date",
+    "Message": "Message.",
+    "No submissions found.": "No submissions found.",
+    "ConfirmDeletion": "Confirm Deletion",
+    "DeleteConfirmationMessage": "Are you sure you want to delete this submission? This action cannot be undone.",
+    "Cancel": "Cancel",
+    "Delete": "Delete",
+    "DeleteSuccess": "Submission deleted.",
+    "DeleteFail": "Failed to delete submission."
+  }
+}

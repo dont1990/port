@@ -44,7 +44,7 @@ export function AdminLogoutButton() {
         </Button>
       </AlertDialogTrigger>
 
-      <AlertDialogContent ref={dialogRef} className="bg-muted">
+      <AlertDialogContent ref={dialogRef}>
         <AlertDialogHeader>
           <AlertDialogTitle>{t("logout_confirm_title")}</AlertDialogTitle>
           <AlertDialogDescription>

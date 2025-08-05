@@ -21,7 +21,10 @@ export const updateContactInfo = (req: Request, res: Response) => {
     const lang = (req.query.lang as Lang) || "en";
 
     const contactInfo = JSON.parse(fs.readFileSync(filePath, "utf-8"));
-    contactInfo[lang] = contactData;
+    contactInfo[lang] = {
+      ...contactData,
+      updatedAt: new Date().toISOString(), 
+    };
     fs.writeFileSync(filePath, JSON.stringify(contactInfo, null, 2));
 
     res.status(200).json({ message: "Contact info updated" });

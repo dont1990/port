@@ -1,0 +1,26 @@
+{
+  "Projects": "پروژه‌ها",
+  "Skills": "مهارت‌ها",
+  "Experiences": "تجربه‌ها",
+  "Contact Info": "اطلاعات تماس",
+  "Submissions": "پیام‌ها",
+  "About Features": "ویژگی‌های درباره من",
+  "Not Set": "تنظیم نشده",
+  "Manage": "مدیریت",
+  "experience": { "RecentExperiences": "تجربه های اخیر" },
+  "submissions": {
+    "RecentContactSubmissions": "پیام های اخیر",
+    "Name": "نام",
+    "Email": "ایمیل",
+    "Subject": "موضوع",
+    "Date": "تاریخ",
+    "Message": "پیام",
+    "No submissions found.": "ارسالی یافت نشد.",
+    "ConfirmDeletion": "تأیید حذف",
+    "DeleteConfirmationMessage": "آیا از حذف این پیام مطمئن هستید؟ این عملیات قابل بازگشت نیست.",
+    "Cancel": "لغو",
+    "Delete": "حذف",
+    "DeleteSuccess": "پیام با موفقیت حذف شد.",
+    "DeleteFail": "حذف پیام ناموفق بود."
+  }
+}

@@ -8,6 +8,7 @@ import {
 } from "@/app/components/ui/card";
 import { Submission } from "@/app/types/submission/submission";
 import SubmissionsTable from "./table";
+import { useTranslation } from "react-i18next";
 
 type Props = {
   submissions: Submission[];
@@ -16,11 +17,13 @@ type Props = {
 export default function Submissions({ submissions }: Props) {
   const hasData = submissions && submissions.length > 0;
 
+  const { t } = useTranslation("dashboard");
+
   return (
     <section className="section-container">
       <Card>
         <CardHeader>
-          <CardTitle>Recent Contact Submissions</CardTitle>
+          <CardTitle>{t("submissions.RecentContactSubmissions")}</CardTitle>
         </CardHeader>
         <CardContent className="overflow-x-auto">
           <div className="rounded-xl border bg-white/80 dark:bg-slate-800/70">
@@ -28,7 +31,7 @@ export default function Submissions({ submissions }: Props) {
               <SubmissionsTable submissions={submissions} />
             ) : (
               <div className="text-center text-muted-foreground py-10 bg-slate-100 dark:bg-slate-800/70 rounded-xl">
-                No submissions found.
+                {t("No submissions found.")}{" "}
               </div>
             )}
           </div>
