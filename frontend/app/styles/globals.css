@@ -144,7 +144,7 @@
 }
 /* Default font for LTR (English) */
 html[dir="ltr"] {
-  font-family: "Roboto", sans-serif;
+  font-family: "Roboto", "iran-sans";
 }
 
 /* Font for RTL (Persian) */

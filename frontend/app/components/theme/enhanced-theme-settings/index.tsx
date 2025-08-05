@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef } from "react";
 import {
   Card,
   CardContent,
@@ -27,37 +27,38 @@ import {
   Sparkles,
   Shuffle,
 } from "lucide-react";
-import { useColorScheme } from "@/app/components/theme-provider";
+import { useColorScheme } from "@/app/components/theme/theme-provider";
 import { colorSchemes, type ColorScheme } from "@/app/lib/theme/color-schemes";
-import { ThemePreview } from "@/app/components/theme-preview";
+import { ThemePreview } from "@/app/components/theme/theme-preview";
 import { useClickOutside } from "@/app/hooks/useClickOutside";
+import { useTranslation } from "react-i18next";
 
 export function EnhancedThemeSettings() {
   const [isOpen, setIsOpen] = useState(false);
   const { theme, setTheme } = useTheme();
   const { colorScheme, setColorScheme } = useColorScheme();
+  const { t } = useTranslation("theme");
 
   const menuRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
-
   useClickOutside([menuRef, buttonRef], () => setIsOpen(false), isOpen);
 
   const themeOptions = [
     {
       value: "light",
-      label: "Light",
+      label: t("options.light"),
       icon: Sun,
       color: "bg-yellow-100 text-yellow-800",
     },
     {
       value: "dark",
-      label: "Dark",
+      label: t("options.dark"),
       icon: Moon,
       color: "bg-blue-100 text-blue-800",
     },
     {
       value: "system",
-      label: "System",
+      label: t("options.system"),
       icon: Monitor,
       color: "bg-gray-100 text-gray-800",
     },
@@ -94,7 +95,7 @@ export function EnhancedThemeSettings() {
           onClick={() => setIsOpen(!isOpen)}
           size="icon"
           className="rounded-full shadow-lg bg-primary hover:bg-primary/90"
-          aria-label="Enhanced theme settings"
+          aria-label={t("title")}
         >
           <motion.div
             animate={{ rotate: isOpen ? 180 : 0 }}
@@ -120,9 +121,7 @@ export function EnhancedThemeSettings() {
                 <div className="flex items-center justify-between">
                   <div className="flex items-center space-x-2">
                     <Sparkles className="h-5 w-5 text-primary" />
-                    <CardTitle className="text-lg">
-                      Theme Customization
-                    </CardTitle>
+                    <CardTitle className="text-lg">{t("title")}</CardTitle>
                   </div>
                   <motion.div
                     whileHover={{ scale: 1.1 }}
@@ -134,13 +133,11 @@ export function EnhancedThemeSettings() {
                       onClick={handleRandomScheme}
                     >
                       <Shuffle className="h-4 w-4 mr-2" />
-                      Random
+                      {t("random", "Random")}
                     </Button>
                   </motion.div>
                 </div>
-                <CardDescription>
-                  Customize your visual experience
-                </CardDescription>
+                <CardDescription>{t("description")}</CardDescription>
               </CardHeader>
               <CardContent>
                 <Tabs defaultValue="colors" className="w-full">
@@ -150,22 +147,25 @@ export function EnhancedThemeSettings() {
                       className="flex items-center space-x-2"
                     >
                       <Palette className="h-4 w-4" />
-                      <span>Colors</span>
+                      <span>{t("colors", "Colors")}</span>
                     </TabsTrigger>
                     <TabsTrigger
                       value="mode"
                       className="flex items-center space-x-2"
                     >
                       <Monitor className="h-4 w-4" />
-                      <span>Mode</span>
+                      <span>{t("mode", "Mode")}</span>
                     </TabsTrigger>
                   </TabsList>
 
                   <TabsContent value="colors" className="space-y-4 mt-4">
                     <div className="flex items-center justify-between">
-                      <h3 className="text-sm font-medium">Color Schemes</h3>
+                      <h3 className="text-sm font-medium">
+                        {t("color_schemes", "Color Schemes")}
+                      </h3>
                       <Badge variant="secondary" className="text-xs">
-                        {Object.keys(colorSchemes).length} available
+                        {Object.keys(colorSchemes).length}{" "}
+                        {t("available", "available")}
                       </Badge>
                     </div>
 
@@ -175,18 +175,17 @@ export function EnhancedThemeSettings() {
                           key={key}
                           scheme={key as ColorScheme}
                           isActive={colorScheme === key}
-                          onClick={() => {
-                            /* onClick is now handled internally by ThemePreview */
-                          }}
+                          onClick={() => {}}
                         />
                       ))}
                     </div>
 
                     <div className="pt-2 border-t">
                       <p className="text-xs text-muted-foreground">
-                        Current:{" "}
+                        {t("current", "Current")}:{" "}
                         <span className="font-medium">
-                          {colorSchemes[colorScheme as ColorScheme]?.name}
+                          {t(`schemes.${colorScheme}.name`)}
+                          قابل انتخاب{" "}
                         </span>
                       </p>
                     </div>
@@ -194,9 +193,11 @@ export function EnhancedThemeSettings() {
 
                   <TabsContent value="mode" className="space-y-4 mt-4">
                     <div className="flex items-center justify-between">
-                      <h3 className="text-sm font-medium">Display Mode</h3>
+                      <h3 className="text-sm font-medium">
+                        {t("display_mode", "Display Mode")}
+                      </h3>
                       <Badge variant="secondary" className="text-xs capitalize">
-                        {theme}
+                        {t(`options.${theme}`)}
                       </Badge>
                     </div>
 
@@ -230,7 +231,7 @@ export function EnhancedThemeSettings() {
                                     variant="secondary"
                                     className={option.color}
                                   >
-                                    Active
+                                    {t("active")}
                                   </Badge>
                                 </motion.div>
                               )}
@@ -242,7 +243,7 @@ export function EnhancedThemeSettings() {
 
                     <div className="pt-2 border-t">
                       <p className="text-xs text-muted-foreground text-center">
-                        System mode follows your device settings
+                        {t("preference_note")}
                       </p>
                     </div>
                   </TabsContent>

@@ -138,7 +138,7 @@ export function ThemeToggleExpanded() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.2 }}
         >
-          {isDark ? t("dark") : t("light")}
+          {isDark ? t("options.dark") : t("options.light")}
           {/* {isDark ? "dark" : "light"} */}
         </motion.span>
       </button>

@@ -8,5 +8,9 @@
   "skills": "مهارت‌ها",
   "projects": "پروژه‌ها",
   "experiences": "تجربه‌ها",
-  "name": "الکس جانسون"
+  "name": "الکس جانسون",
+  "adminPanel": "پنل مدیریت",
+  "managementDashboard": "داشبورد مدیریتی",
+  "adminName": "کاربر ادمین",
+  "adminEmail": "admin@example.com"
 }

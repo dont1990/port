@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { HeroData } from "@/app/types/shared/hero/heroData";
 import Typewriter from "@/app/components/type-writer";
 import { useTranslation } from "react-i18next";
+import { useLang } from "@/app/context/langContext";
 
 interface HeroIntroProps {
   hero: HeroData;
@@ -18,10 +19,14 @@ const itemVariants = {
 
 export function HeroIntro({ hero }: HeroIntroProps) {
   const { t } = useTranslation("hero");
+  const { lang } = useLang();
 
-<motion.h1 className="text-4xl md:text-6xl font-bold mb-4" variants={itemVariants}>
-  {t("intro")} <span className="text-primary">{hero.name}</span>
-</motion.h1>
+  <motion.h1
+    className="text-4xl md:text-6xl font-bold mb-4"
+    variants={itemVariants}
+  >
+    {t("intro")} <span className="text-primary">{hero.name}</span>
+  </motion.h1>;
 
   return (
     <motion.div className="mb-8" variants={itemVariants}>
@@ -33,11 +38,12 @@ export function HeroIntro({ hero }: HeroIntroProps) {
         {hero.initials}
       </motion.div>
       <motion.h1
-        className="text-4xl md:text-6xl font-bold mb-4"
+        className="text-5xl md:text-5xl lg:text-6xl font-bold mb-4"
         variants={itemVariants}
       >
         {/* Hi, I'm <span className="text-primary">{hero.name}</span> */}
         {t("intro")} <span className="text-primary">{hero.name}</span>
+        {lang === "fa" && <span> هستم </span>}
       </motion.h1>
       <motion.div
         className="text-muted-foreground mb-8"

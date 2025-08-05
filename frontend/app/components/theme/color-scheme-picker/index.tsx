@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef } from "react";
 import {
   Card,
   CardContent,
@@ -12,13 +12,15 @@ import { Button } from "@/app/components/ui/button";
 import { Badge } from "@/app/components/ui/badge";
 import { motion, AnimatePresence } from "framer-motion";
 import { Palette, Check, Sparkles } from "lucide-react";
-import { useColorScheme } from "@/app/components/theme-provider";
+import { useColorScheme } from "@/app/components/theme/theme-provider";
 import { colorSchemes, type ColorScheme } from "@/app/lib/theme/color-schemes";
 import { useClickOutside } from "@/app/hooks/useClickOutside";
+import { useTranslation } from "react-i18next";
 
 export function ColorSchemePicker() {
   const [isOpen, setIsOpen] = useState(false);
   const { colorScheme, setColorScheme } = useColorScheme();
+  const { t } = useTranslation("theme");
 
   const menuRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
@@ -27,18 +29,13 @@ export function ColorSchemePicker() {
 
   const handleSchemeChange = (scheme: ColorScheme) => {
     setColorScheme(scheme);
-    document.documentElement.style.setProperty(
-      "--primary",
-      colorSchemes[scheme].primary
-    );
+    const schemeData = colorSchemes[scheme];
+    document.documentElement.style.setProperty("--primary", schemeData.primary);
     document.documentElement.style.setProperty(
       "--primary-foreground",
-      colorSchemes[scheme].primaryForeground
+      schemeData.primaryForeground
     );
-    document.documentElement.style.setProperty(
-      "--ring",
-      colorSchemes[scheme].primary
-    );
+    document.documentElement.style.setProperty("--ring", schemeData.primary);
     document.documentElement.style.transition = "all 0.3s ease";
     setTimeout(() => {
       document.documentElement.style.transition = "";
@@ -53,7 +50,7 @@ export function ColorSchemePicker() {
           onClick={() => setIsOpen(!isOpen)}
           size="icon"
           className="rounded-full shadow-lg bg-primary hover:bg-primary/90"
-          aria-label="Color scheme picker"
+          aria-label={t("color_schemes")}
         >
           <motion.div
             animate={{ rotate: isOpen ? 180 : 0 }}
@@ -76,13 +73,13 @@ export function ColorSchemePicker() {
           >
             <Card className="shadow-xl border-2">
               <CardHeader className="pb-3">
-                <div className="flex items-center space-x-2">
+                <div className="flex items-center gap-x-2">
                   <Sparkles className="h-5 w-5 text-primary" />
-                  <CardTitle className="text-lg">Color Schemes</CardTitle>
+                  <CardTitle className="text-lg">
+                    {t("color_schemes")}
+                  </CardTitle>
                 </div>
-                <CardDescription>
-                  Choose your favorite color palette
-                </CardDescription>
+                <CardDescription>{t("color_description")}</CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
                 <div className="grid grid-cols-2 gap-3">
@@ -120,12 +117,12 @@ export function ColorSchemePicker() {
                               </motion.div>
                             )}
                           </div>
-                          <div className="text-left w-full">
+                          <div className="text-start w-full">
                             <div className="font-medium text-sm">
-                              {scheme.name}
+                              {t(`schemes.${key}.name`)}
                             </div>
-                            <div className="text-xs text-muted-foreground line-clamp-2">
-                              {scheme.description}
+                            <div className="text-xs text-muted-foreground line-clamp-2 mt-0.5">
+                              {t(`schemes.${key}.description`)}
                             </div>
                           </div>
                         </Button>
@@ -136,10 +133,12 @@ export function ColorSchemePicker() {
                 <div className="pt-2 border-t">
                   <div className="flex items-center justify-between">
                     <p className="text-xs text-muted-foreground">
-                      Current: {colorSchemes[colorScheme as ColorScheme]?.name}
+                      {t("current_scheme")}: {t(`schemes.${colorScheme}.name`)}
                     </p>
                     <Badge variant="secondary" className="text-xs">
-                      {Object.keys(colorSchemes).length} themes
+                      {t("theme_count", {
+                        count: Object.keys(colorSchemes).length,
+                      })}
                     </Badge>
                   </div>
                 </div>

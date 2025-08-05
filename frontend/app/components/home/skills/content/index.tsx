@@ -2,7 +2,7 @@
 
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import { SectionParallax } from "@/app/components/section-parallax";
+import { SectionParallax } from "@/app/components/parallax/section-parallax";
 import { SkillCategory } from "@/app/types/shared/skill/skill";
 import { SkillCard } from "./skill-card";
 import SkillsContentHeader from "./header";

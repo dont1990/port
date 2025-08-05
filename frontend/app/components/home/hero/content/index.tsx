@@ -2,7 +2,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ParallaxHero } from "@/app/components/parallax-hero";
+import { ParallaxHero } from "@/app/components/parallax/parallax-hero";
 import { HeroData } from "@/app/types/shared/hero/heroData";
 import { HeroIntro } from "./intro";
 import { HeroActions } from "./actions";

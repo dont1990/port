@@ -8,5 +8,9 @@
   "skills": "Skills",
   "projects": "Projects",
   "experiences": "Experiences",
-  "name": "Alex Johnson"
+  "name": "Alex Johnson",
+  "adminPanel": "Admin Panel",
+  "managementDashboard": "Management Dashboard",
+  "adminName": "Admin User",
+  "adminEmail": "admin@example.com"
 }

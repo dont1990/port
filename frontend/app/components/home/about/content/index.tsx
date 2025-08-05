@@ -2,7 +2,7 @@
 
 import { useRef } from "react";
 import { useInView } from "framer-motion";
-import { ParallaxContainer } from "@/app/components/section-parallax";
+import { ParallaxContainer } from "@/app/components/parallax/section-parallax";
 import { AboutData } from "@/app/types/shared/about/aboutData";
 import { AboutHeader } from "./header";
 import { AboutTextBlock } from "./text-block";
@@ -19,7 +19,11 @@ export function AboutContent({ description, skills, features }: AboutData) {
           <AboutHeader description={description} isInView={isInView} />
 
           <div className="grid md:grid-cols-2 gap-12 items-center">
-            <AboutTextBlock description={description} skills={skills} isInView={isInView} />
+            <AboutTextBlock
+              description={description}
+              skills={skills}
+              isInView={isInView}
+            />
             <AboutFeatureCards features={features} isInView={isInView} />
           </div>
         </div>

@@ -1,0 +1,13 @@
+{
+  "adminLogin": "ورود ادمین",
+  "enterPassword": "رمز عبور ادمین را وارد کنید",
+  "invalidPassword": "رمز عبور نامعتبر است",
+  "loginButton": "ورود",
+  "showPassword": "نمایش رمز عبور",
+  "hidePassword": "مخفی کردن رمز عبور",
+  "logout": "خروج",
+  "logout_confirm_title": "آیا مطمئن هستید که می‌خواهید خارج شوید؟",
+  "logout_confirm_description": "به صفحه ورود هدایت خواهید شد و باید دوباره احراز هویت کنید.",
+  "cancel": "انصراف",
+  "confirm_logout": "خروج"
+}

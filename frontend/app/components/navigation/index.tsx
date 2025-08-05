@@ -7,7 +7,7 @@ import { Button } from "@/app/components/ui/button";
 import {
   ThemeToggle,
   ThemeToggleExpanded,
-} from "@/app/components/theme-toggle";
+} from "@/app/components/theme/theme-toggle";
 import { useClickOutside } from "@/app/hooks/useClickOutside";
 import LanguageSwitcher from "../language/language-toggle";
 import { useTranslation } from "react-i18next";
