@@ -22,5 +22,10 @@
     "Delete": "Delete",
     "DeleteSuccess": "Submission deleted.",
     "DeleteFail": "Failed to delete submission."
+  },
+  "language": {
+    "SelectLanguage": "Select Language",
+    "English": "English",
+    "Persian": "Persian"
   }
 }

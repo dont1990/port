@@ -22,5 +22,10 @@
     "Delete": "حذف",
     "DeleteSuccess": "پیام با موفقیت حذف شد.",
     "DeleteFail": "حذف پیام ناموفق بود."
+  },
+  "language": {
+    "SelectLanguage": "انتخاب زبان",
+    "English": "انگلیسی",
+    "Persian": "فارسی"
   }
 }
