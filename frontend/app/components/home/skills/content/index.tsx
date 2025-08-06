@@ -6,6 +6,7 @@ import { SectionParallax } from "@/app/components/parallax/section-parallax";
 import { SkillCategory } from "@/app/types/shared/skill/skill";
 import { SkillCard } from "./skill-card";
 import SkillsContentHeader from "./header";
+import { InfiniteSkillQueue } from "./infinite-skill-queue";
 
 interface Props {
   skills: SkillCategory[];
@@ -25,6 +26,10 @@ export function SkillsContent({ skills }: Props) {
       },
     },
   };
+
+  // const allSkillNames: string[] = skills.flatMap((category) =>
+  //   category.skills.map((skill) => skill.name)
+  // );
 
   return (
     <section id="skills" className="py-20 bg-muted/30" ref={ref}>
@@ -48,6 +53,7 @@ export function SkillsContent({ skills }: Props) {
           </motion.div>
         </SectionParallax>
       </div>
+      {/* <InfiniteSkillQueue skills={allSkillNames} /> */}
     </section>
   );
 }
