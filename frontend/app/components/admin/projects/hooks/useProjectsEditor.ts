@@ -8,10 +8,13 @@ import { updateProjects } from "../actions/updateProjects";
 import { fetchProjectsClient } from "@/app/lib/fetch/fetchProjects";
 import { useLang } from "@/app/context/langContext";
 import { Lang } from "@/app/types/shared/lang/lang";
+import { useKeyPressHandler } from "@/app/hooks/useKeyPressHandler";
+import { useTranslation } from "react-i18next";
 
 export function useProjectsEditor() {
   const { lang } = useLang();
-
+  const { t } = useTranslation("dashboard");
+  
   const { data, error, isLoading, mutate } = useSWR<Project[]>(
     () => `/projects?lang=${lang}`,
     () => fetchProjectsClient(lang as Lang)
@@ -19,10 +22,17 @@ export function useProjectsEditor() {
 
   const [projects, setProjects] = useState<Project[] | null>(null);
 
-  // Sync SWR data to local state
   useEffect(() => {
     if (data) setProjects(data);
   }, [data]);
+
+  useKeyPressHandler({
+    key: "Enter",
+    callback: (e) => {
+      e.preventDefault();
+      handleSave();
+    },
+  });
 
   const handleChange = <K extends keyof Project>(
     index: number,
@@ -61,9 +71,9 @@ export function useProjectsEditor() {
     try {
       await updateProjects(projects, lang as Lang);
       mutate();
-      toast.success("Projects info updated.");
+      toast.success(t("projects.UpdateSuccess"));
     } catch (error) {
-      toast.error("Failed to update projects info.");
+      toast.error(t("projects.UpdateError"));
     }
   };
 

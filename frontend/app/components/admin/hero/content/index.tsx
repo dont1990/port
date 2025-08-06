@@ -12,9 +12,11 @@ import ResumeUploader from "./resume-uploader";
 import HeroEditorSkeleton from "../skeleton";
 import AdminSectionHeader from "../../section-header";
 import { Lang } from "@/app/types/shared/lang/lang";
-
+import { useTranslation } from "react-i18next";
 
 export default function HeroEditor() {
+  const { t } = useTranslation("dashboard");
+
   const {
     form,
     isLoading,
@@ -28,24 +30,15 @@ export default function HeroEditor() {
   const { resumeFiles, setResumeFile, handleResumeUpload, uploadProgress } =
     useResumeUploader();
 
-
   const langs: Lang[] = ["en", "fa"];
 
-  useKeyPressHandler({
-    key: "Enter",
-    callback: (e) => {
-      e.preventDefault();
-      handleSave();
-    },
-  });
-
   if (isLoading) return <HeroEditorSkeleton />;
-  if (error || !form) return <p>Failed to load hero data.</p>;
+  if (error || !form) return <p className="text-red-500">{t("hero.LoadError")}</p>;
 
   return (
     <section className="section-container">
       <Card className="max-w-3xl mx-auto">
-        <AdminSectionHeader title="Edit Hero Info" />
+        <AdminSectionHeader title={t("hero.Title")} />
         <CardContent className="space-y-8">
           <HeroForm
             form={form}

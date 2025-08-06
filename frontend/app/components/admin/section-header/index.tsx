@@ -17,7 +17,7 @@ type Props = {
 };
 
 const AdminSectionHeader = ({ title }: Props) => {
-  const { lang, setLang } = useLang();
+  const { dir,lang, setLang } = useLang();
   const { t } = useTranslation("dashboard");
 
   return (
@@ -34,7 +34,7 @@ const AdminSectionHeader = ({ title }: Props) => {
         >
           <SelectValue placeholder={t("language.SelectLanguage")} />
         </SelectTrigger>
-        <SelectContent>
+        <SelectContent dir={dir}>
           <SelectItem className="text-start" value="en">
             {t("language.English")}
           </SelectItem>

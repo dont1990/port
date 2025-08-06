@@ -6,9 +6,12 @@ import { updateSkillsData } from "../actions/updateSkills";
 import { useKeyPressHandler } from "@/app/hooks/useKeyPressHandler";
 import { fetchSkillsClient } from "@/app/lib/fetch/fetchSkills";
 import { useLang } from "@/app/context/langContext";
+import { useTranslation } from "react-i18next";
+import { Lang } from "@/app/types/shared/lang/lang";
 
 export function useSkillsEditor() {
   const { lang } = useLang();
+  const { t } = useTranslation("dashboard");
 
   const { data, error, isLoading, mutate } = useSWR<SkillCategory[]>(
     () => `/skills?lang=${lang}`,
@@ -85,11 +88,11 @@ export function useSkillsEditor() {
   const handleSave = async () => {
     if (!skillsData) return;
     try {
-      await updateSkillsData(skillsData, lang as "en" | "fa");
-      mutate(); // refetch
-      toast.success("Skills updated successfully.");
+      await updateSkillsData(skillsData, lang as Lang);
+      mutate(); 
+      toast.success(t("skills.successUpdate"));
     } catch {
-      toast.error("Failed to update skills.");
+      toast.error(t("skills.errorUpdate"));
     }
   };
 

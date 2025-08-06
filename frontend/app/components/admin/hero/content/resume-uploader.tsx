@@ -1,8 +1,12 @@
+"use client";
+
 import { Label } from "@/app/components/ui/label";
 import { Input } from "@/app/components/ui/input";
 import { Button } from "@/app/components/ui/button";
-
-type Lang = "en" | "fa";
+import { useTranslation } from "react-i18next";
+import { toast } from "react-hot-toast";
+import { Lang } from "@/app/types/shared/lang/lang";
+import { useLang } from "@/app/context/langContext";
 
 interface ResumeUploaderProps {
   langs: Lang[];
@@ -19,14 +23,25 @@ export default function ResumeUploader({
   handleResumeUpload,
   uploadProgress,
 }: ResumeUploaderProps) {
+  const { t } = useTranslation("dashboard");
+  const { dir } = useLang();
 
   return (
     <div className="pt-8 border-t space-y-6">
-      <h4 className="text-lg font-medium mb-2">Resume (English & Persian)</h4>
+      <h4 className="text-lg font-medium mb-2">{t("hero.ResumeTitle")}</h4>
 
       {langs.map((lang) => (
         <div key={lang} className="space-y-2">
-          <Label>{lang === "en" ? "English" : "Persian"} Resume</Label>
+          <Label>
+            {dir === "rtl"
+              ? `${t("hero.Resume")} ${
+                  lang === "en" ? t("hero.English") : t("hero.Persian")
+                }`
+              : `${lang === "en" ? t("hero.English") : t("hero.Persian")} ${t(
+                  "hero.Resume"
+                )}`}
+          </Label>
+
           <Input
             type="file"
             accept=".pdf"
@@ -39,14 +54,18 @@ export default function ResumeUploader({
               onClick={async () => {
                 try {
                   await handleResumeUpload(lang);
-                  // optionally: show toast success here if you want
+                  toast.success(
+                    t("hero.UploadResumeSuccess", { lang: lang.toUpperCase() })
+                  );
                 } catch {
-                  // optionally: show toast error here if you want
+                  toast.error(
+                    t("hero.UploadResumeError", { lang: lang.toUpperCase() })
+                  );
                 }
               }}
               disabled={!resumeFiles[lang]}
             >
-              Upload {lang.toUpperCase()}
+              {t("hero.Upload")} {lang.toUpperCase()}
             </Button>
 
             <a
@@ -54,11 +73,12 @@ export default function ResumeUploader({
               target="_blank"
               rel="noopener noreferrer"
             >
-              <Button variant="outline">Download {lang.toUpperCase()}</Button>
+              <Button variant="outline">
+                {t("hero.Download")} {lang.toUpperCase()}
+              </Button>
             </a>
           </div>
 
-          {/* Progress Bar */}
           {uploadProgress[lang] !== undefined && (
             <div className="w-full bg-gray-200 rounded h-2">
               <div

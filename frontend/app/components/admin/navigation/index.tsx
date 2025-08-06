@@ -118,7 +118,7 @@ export function AdminNavigation() {
               </div>
               {badge && (
                 <Badge
-                  variant={isActive ? "secondary" : "outline"}
+                  variant={isActive ? "secondary" : "destructive"}
                   className="h-5 px-1.5 text-xs"
                 >
                   {badge}
@@ -192,6 +192,7 @@ export function AdminNavigation() {
             </div>
             <div className="flex items-center gap-2">
               <LanguageSwitcher />
+              <ThemeToggle />
             </div>
           </div>
         </header>

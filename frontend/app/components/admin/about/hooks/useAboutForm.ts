@@ -7,9 +7,12 @@ import { fetchAboutDataClient } from "@/app/lib/fetch/fetchAbout";
 import { Lang } from "@/app/types/shared/lang/lang";
 import { updateAboutData } from "../actions/aboutActions";
 import { useLang } from "@/app/context/langContext";
+import { useKeyPressHandler } from "@/app/hooks/useKeyPressHandler";
+import { useTranslation } from "react-i18next";
 
 export function useAboutForm() {
   const { lang } = useLang();
+  const { t } = useTranslation("dashboard");
 
   const { data, error, isLoading, mutate } = useSWR<AboutData>(
     () => `/about?lang=${lang}`,
@@ -22,6 +25,14 @@ export function useAboutForm() {
   useEffect(() => {
     if (data) setForm(data);
   }, [data]);
+
+  useKeyPressHandler({
+    key: "Enter",
+    callback: (e) => {
+      e.preventDefault();
+      handleSave();
+    },
+  });
 
   const updateArrayItem = (
     field: keyof AboutData,
@@ -92,10 +103,10 @@ export function useAboutForm() {
     startTransition(async () => {
       try {
         await updateAboutData(form, lang as Lang);
-        toast.success("About info updated.");
+        toast.success(t("about.UpdateSuccess"));
         mutate();
       } catch {
-        toast.error("Failed to update.");
+        toast.error(t("about.UpdateError"));
       }
     });
   };

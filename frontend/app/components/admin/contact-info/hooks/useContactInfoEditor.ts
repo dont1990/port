@@ -8,9 +8,12 @@ import { fetchContactInfoClient } from "@/app/lib/fetch/admin/fetchContactInfo";
 import { Lang } from "@/app/types/shared/lang/lang";
 import { updateContactInfo } from "../actions/contactInfoActions";
 import { useLang } from "@/app/context/langContext";
+import { useKeyPressHandler } from "@/app/hooks/useKeyPressHandler";
+import { useTranslation } from "react-i18next";
 
 export function useContactInfoEditor() {
   const { lang } = useLang();
+  const { t } = useTranslation("dashboard");
 
   const { data, error, mutate, isLoading } = useSWR<ContactInfo>(
     () => (lang ? `/contact-info?lang=${lang}` : null),
@@ -23,6 +26,14 @@ export function useContactInfoEditor() {
   useEffect(() => {
     if (data) setFormData(data);
   }, [data]);
+
+  useKeyPressHandler({
+    key: "Enter",
+    callback: (e) => {
+      e.preventDefault();
+      handleSave();
+    },
+  });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -56,10 +67,10 @@ export function useContactInfoEditor() {
     startTransition(async () => {
       try {
         await updateContactInfo(formData, lang as Lang);
-        toast.success("Contact info updated.");
+        toast.success(t("contact.UpdateSuccess"));
         mutate();
       } catch (err) {
-        toast.error("Failed to update contact info.");
+        toast.error(t("contact.UpdateFail"));
       }
     });
   };

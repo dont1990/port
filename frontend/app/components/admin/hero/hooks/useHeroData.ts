@@ -6,9 +6,12 @@ import { toast } from "react-hot-toast";
 import { fetchHeroDataClient } from "@/app/lib/fetch/fetchHero";
 import { Lang } from "@/app/types/shared/lang/lang";
 import { useLang } from "@/app/context/langContext";
+import { useKeyPressHandler } from "@/app/hooks/useKeyPressHandler";
+import { useTranslation } from "react-i18next";
 
 export function useHeroData() {
   const { lang } = useLang();
+  const { t } = useTranslation("dashboard");
 
   const { data, error, isLoading, mutate } = useSWR<HeroData>(
     () => `/hero?lang=${lang}`,
@@ -21,6 +24,14 @@ export function useHeroData() {
   useEffect(() => {
     if (data) setForm({ ...data, lang } as HeroData & { lang: Lang });
   }, [data, lang]);
+
+  useKeyPressHandler({
+    key: "Enter",
+    callback: (e) => {
+      e.preventDefault();
+      handleSave();
+    },
+  });
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -39,11 +50,11 @@ export function useHeroData() {
 
     startTransition(async () => {
       try {
-        await actions.updateHeroInfo(form); // sends with lang
-        toast.success("Hero info updated.");
+        await actions.updateHeroInfo(form);
+        toast.success(t("hero.UpdateSuccess"));
         mutate();
       } catch (err) {
-        toast.error("Failed to update hero info.");
+        toast.error(t("hero.UpdateError"));
       }
     });
   };

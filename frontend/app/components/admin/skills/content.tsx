@@ -2,14 +2,11 @@
 
 import { Button } from "@/app/components/ui/button";
 import { Input } from "@/app/components/ui/input";
-import {
-  Card,
-  CardContent,
-} from "@/app/components/ui/card";
+import { Card, CardContent } from "@/app/components/ui/card";
 import SkillsEditorSkeleton from "./skeleton";
 import { useSkillsEditor } from "./hooks/useSkillsEditor";
-import { useLang } from "@/app/context/langContext";
 import AdminSectionHeader from "../section-header";
+import { useTranslation } from "react-i18next";
 
 export default function SkillsEditor() {
   const {
@@ -25,14 +22,15 @@ export default function SkillsEditor() {
     handleSave,
   } = useSkillsEditor();
 
+  const { t } = useTranslation("dashboard");
 
   if (isLoading || !skillsData) return <SkillsEditorSkeleton />;
-  if (error) return <p>Error loading skills</p>;
+  if (error) return <p>{t("skills.error")}</p>;
 
   return (
     <section className="section-container py-10">
       <Card>
-       <AdminSectionHeader title="Skills Editor" />
+        <AdminSectionHeader title={t("skills.title")} />
         <CardContent className="space-y-8">
           {skillsData.map((category, catIdx) => (
             <div key={catIdx} className="border p-4 rounded-md space-y-4">
@@ -46,7 +44,7 @@ export default function SkillsEditor() {
                   variant="destructive"
                   onClick={() => removeCategory(catIdx)}
                 >
-                  Remove Category
+                  {t("skills.removeCategory")}
                 </Button>
               </div>
 
@@ -62,7 +60,7 @@ export default function SkillsEditor() {
                         e.target.value
                       )
                     }
-                    placeholder="Skill Name"
+                    placeholder={t("skills.skillName")}
                   />
                   <Input
                     type="number"
@@ -75,7 +73,7 @@ export default function SkillsEditor() {
                         +e.target.value
                       )
                     }
-                    placeholder="Level"
+                    placeholder={t("skills.skillLevel")}
                     min={0}
                     max={100}
                   />
@@ -83,21 +81,21 @@ export default function SkillsEditor() {
                     variant="outline"
                     onClick={() => removeSkill(catIdx, skillIdx)}
                   >
-                    Remove
+                    {t("skills.removeSkill")}
                   </Button>
                 </div>
               ))}
 
               <Button variant="secondary" onClick={() => addSkill(catIdx)}>
-                + Add Skill
+                + {t("skills.addSkill")}
               </Button>
             </div>
           ))}
 
           <div className="flex gap-4">
-            <Button onClick={addCategory}>+ Add Category</Button>
+            <Button onClick={addCategory}>+ {t("skills.addCategory")}</Button>
             <Button onClick={handleSave} isLoading={isLoading}>
-              {!isLoading && "Save Changes"}
+              {!isLoading && t("skills.save")}
             </Button>
           </div>
         </CardContent>

@@ -4,6 +4,7 @@ import { Label } from "@/app/components/ui/label";
 import { Input } from "@/app/components/ui/input";
 import { Button } from "@/app/components/ui/button";
 import { HeroData } from "@/app/types/shared/hero/heroData";
+import { useTranslation } from "react-i18next";
 
 interface HeroFormProps {
   form: HeroData;
@@ -22,29 +23,32 @@ export default function HeroForm({
   onRolesChange,
   onSave,
 }: HeroFormProps) {
+
+    const { t } = useTranslation("dashboard");
+
   return (
     <div className="space-y-6">
       <div className="space-y-2">
-        <Label>Name</Label>
+        <Label>{t("hero.Name")}</Label>
         <Input name="name" value={form.name} onChange={onChange} />
       </div>
 
       <div className="space-y-2">
-        <Label>Initials</Label>
+        <Label>{t("hero.Initials")}</Label>
         <Input name="initials" value={form.initials} onChange={onChange} />
       </div>
 
       <div className="space-y-2">
-        <Label>Roles (comma-separated)</Label>
+        <Label>{t("hero.Roles")}</Label>
         <Input
           value={form.roles.join(", ")}
           onChange={onRolesChange}
-          placeholder="e.g. Developer, Designer, Freelancer"
+          placeholder={t("hero.RolesPlaceholder") || ""}
         />
       </div>
 
       <div className="space-y-2">
-        <Label>Bio</Label>
+        <Label>{t("hero.Bio")}</Label>
         <textarea
           name="bio"
           value={form.bio}
@@ -56,7 +60,7 @@ export default function HeroForm({
 
       <div className="pt-4">
         <Button onClick={onSave} className="w-full" isLoading={isPending}>
-          {!isPending && "Save Changes"}
+          {!isPending && t("hero.Save")}
         </Button>
       </div>
     </div>

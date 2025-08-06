@@ -1,15 +1,17 @@
 import { useEffect, useState } from "react";
 import useSWR from "swr";
-import { fetcher } from "@/app/lib/utils/swr/fetcher";
 import { ExperienceData } from "@/app/types/shared/experience/experience";
 import toast from "react-hot-toast";
 import { updateExperiences } from "../actions/updateExperiences";
 import { useLang } from "@/app/context/langContext";
 import { fetchExperiencesClient } from "@/app/lib/fetch/fetchExperiences";
 import { Lang } from "@/app/types/shared/lang/lang";
+import { useTranslation } from "react-i18next";
+import { useKeyPressHandler } from "@/app/hooks/useKeyPressHandler";
 
 export function useExperienceForm() {
   const { lang } = useLang();
+  const { t } = useTranslation("dashboard");
 
   const { data, error, isLoading, mutate } = useSWR<ExperienceData>(
     () => `/experience?lang=${lang}`,
@@ -21,6 +23,14 @@ export function useExperienceForm() {
   useEffect(() => {
     if (data) setFormData(data);
   }, [data, formData]);
+
+  useKeyPressHandler({
+    key: "Enter",
+    callback: (e) => {
+      e.preventDefault();
+      handleSave();
+    },
+  });
 
   const handleChange = <K extends keyof ExperienceData>(
     key: K,
@@ -59,9 +69,9 @@ export function useExperienceForm() {
     try {
       await updateExperiences(formData, lang as Lang);
       mutate();
-      toast.success("Experience data updated.");
+      toast.success(t("experience.UpdateSuccess"));
     } catch {
-      toast.error("Failed to update experience data.");
+      toast.error(t("experience.UpdateError"));
     }
   };
 

@@ -1,0 +1,11 @@
+try to use tailwind v4
+
+convert alert to toast 
+
+loading and error and not-found pages 
+
+split code 
+
+minify code before deploy
+
+functions for key's
