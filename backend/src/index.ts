@@ -8,8 +8,9 @@ import experiencesRouter from "./routes/experiences.route";
 import submissionsRouter from "./routes/submissions.route";
 
 // admin
-import contactInfoRoutes from "./routes/contactInfo.route";
 import { basicAuth } from "./utils/basicAuth";
+import contactInfoRoutes from "./routes/contactInfo.route";
+import suggestionsRoutes from "./routes/suggestions.routes";
 
 const app = express();
 const PORT = 4000;
@@ -25,6 +26,7 @@ app.use("/api/experiences", experiencesRouter);
 app.use("/api/submissions", submissionsRouter);
 
 app.use("/api/contact-info", contactInfoRoutes);
+app.use("/api/suggestions", suggestionsRoutes);
 
 // admin
 app.use("/api/admin", basicAuth);

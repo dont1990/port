@@ -23,7 +23,7 @@ export default function AdminDashboardContent({
   aboutData,
 }: AdminDashboardProps) {
   return (
-    <section className="max-w-6xl mx-auto px-6 py-12 space-y-12">
+    <section className="section-container my-10 space-y-12">
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}

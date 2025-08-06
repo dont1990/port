@@ -28,8 +28,8 @@ export default function SkillsEditor() {
   if (error) return <p>{t("skills.error")}</p>;
 
   return (
-    <section className="section-container py-10">
-      <Card>
+    <section className="section-container my-10">
+      <Card className="max-w-4xl mx-auto">
         <AdminSectionHeader title={t("skills.title")} />
         <CardContent className="space-y-8">
           {skillsData.map((category, catIdx) => (

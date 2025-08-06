@@ -14,6 +14,7 @@ import {
   Layers,
   BookOpen,
   Settings,
+  Sparkles,
 } from "lucide-react";
 import { Sheet, SheetContent, SheetTrigger } from "@/app/components/ui/sheet";
 import { Button } from "@/app/components/ui/button";
@@ -65,6 +66,12 @@ export function AdminNavigation() {
       href: "/admin/experiences",
       label: t("experiences"),
       icon: Briefcase,
+      badge: null,
+    },
+    {
+      href: "/admin/suggestions",
+      label: t("suggestions"),
+      icon: Sparkles,
       badge: null,
     },
   ];
@@ -191,8 +198,8 @@ export function AdminNavigation() {
               </div>
             </div>
             <div className="flex items-center gap-2">
-              <LanguageSwitcher />
               <ThemeToggle />
+              <LanguageSwitcher />
             </div>
           </div>
         </header>

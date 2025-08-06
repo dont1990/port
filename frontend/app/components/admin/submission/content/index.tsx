@@ -20,8 +20,8 @@ export default function Submissions({ submissions }: Props) {
   const { t } = useTranslation("dashboard");
 
   return (
-    <section className="section-container">
-      <Card>
+    <section className="section-container my-10">
+      <Card className="max-w-4xl mx-auto">
         <CardHeader>
           <CardTitle>{t("submissions.RecentContactSubmissions")}</CardTitle>
         </CardHeader>

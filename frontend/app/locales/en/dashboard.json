@@ -124,5 +124,18 @@
     "Save": "Save Changes",
     "UpdateSuccess": "Projects info updated.",
     "UpdateError": "Failed to update projects info."
+  },
+  "suggestions": {
+    "title": "Manage Suggestions",
+    "description": "Add or remove relevant tags, technologies, or keywords to improve content classification.",
+    "placeholder": "Enter new suggestion...",
+    "add": "Add",
+    "adding": "Adding...",
+    "added": "Suggestion added!",
+    "errorAdding": "Failed to add suggestion.",
+    "deleting": "Deleting...",
+    "deleted": "Suggestion deleted!",
+    "errorDeleting": "Failed to delete suggestion.",
+    "deleteItem": "Delete {{name}}"
   }
 }

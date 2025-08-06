@@ -9,6 +9,7 @@ import { useProjectsEditor } from "./hooks/useProjectsEditor";
 import AdminSectionHeader from "../section-header";
 import { useTranslation } from "react-i18next";
 import { Label } from "@/app/components/ui/label"; // import your Label component
+import ChipsInput from "../../chips-input";
 
 export default function ProjectsEditor() {
   const {
@@ -27,8 +28,8 @@ export default function ProjectsEditor() {
   if (error) return <p>{t("projects.UpdateError")}</p>;
 
   return (
-    <section className="section-container py-10">
-      <Card>
+    <section className="section-container my-10">
+      <Card className="max-w-4xl mx-auto">
         <AdminSectionHeader title={t("projects.Title")} />
         <CardContent className="space-y-8">
           {projects.map((project, idx) => {
@@ -36,7 +37,10 @@ export default function ProjectsEditor() {
             return (
               <div key={idx} className="border p-4 rounded-md space-y-6">
                 <div className="space-y-2">
-                  <Label htmlFor={`${baseId}-title`} className="block mb-1 text-gray-700 dark:text-gray-300 font-semibold">
+                  <Label
+                    htmlFor={`${baseId}-title`}
+                    className="block mb-1 text-gray-700 dark:text-gray-300 font-semibold"
+                  >
                     {t("projects.PlaceholderTitle")}
                   </Label>
                   <Input
@@ -48,19 +52,27 @@ export default function ProjectsEditor() {
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor={`${baseId}-description`} className="block mb-1 text-gray-700 dark:text-gray-300 font-semibold">
+                  <Label
+                    htmlFor={`${baseId}-description`}
+                    className="block mb-1 text-gray-700 dark:text-gray-300 font-semibold"
+                  >
                     {t("projects.PlaceholderDescription")}
                   </Label>
                   <Textarea
                     id={`${baseId}-description`}
                     value={project.description}
-                    onChange={(e) => handleChange(idx, "description", e.target.value)}
+                    onChange={(e) =>
+                      handleChange(idx, "description", e.target.value)
+                    }
                     placeholder={t("projects.PlaceholderDescription")}
                   />
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor={`${baseId}-image`} className="block mb-1 text-gray-700 dark:text-gray-300 font-semibold">
+                  <Label
+                    htmlFor={`${baseId}-image`}
+                    className="block mb-1 text-gray-700 dark:text-gray-300 font-semibold"
+                  >
                     {t("projects.PlaceholderImage")}
                   </Label>
                   <Input
@@ -72,42 +84,50 @@ export default function ProjectsEditor() {
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor={`${baseId}-liveUrl`} className="block mb-1 text-gray-700 dark:text-gray-300 font-semibold">
+                  <Label
+                    htmlFor={`${baseId}-liveUrl`}
+                    className="block mb-1 text-gray-700 dark:text-gray-300 font-semibold"
+                  >
                     {t("projects.PlaceholderLiveUrl")}
                   </Label>
                   <Input
                     id={`${baseId}-liveUrl`}
                     value={project.liveUrl}
-                    onChange={(e) => handleChange(idx, "liveUrl", e.target.value)}
+                    onChange={(e) =>
+                      handleChange(idx, "liveUrl", e.target.value)
+                    }
                     placeholder={t("projects.PlaceholderLiveUrl")}
                   />
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor={`${baseId}-githubUrl`} className="block mb-1 text-gray-700 dark:text-gray-300 font-semibold">
+                  <Label
+                    htmlFor={`${baseId}-githubUrl`}
+                    className="block mb-1 text-gray-700 dark:text-gray-300 font-semibold"
+                  >
                     {t("projects.PlaceholderGithubUrl")}
                   </Label>
                   <Input
                     id={`${baseId}-githubUrl`}
                     value={project.githubUrl}
-                    onChange={(e) => handleChange(idx, "githubUrl", e.target.value)}
+                    onChange={(e) =>
+                      handleChange(idx, "githubUrl", e.target.value)
+                    }
                     placeholder={t("projects.PlaceholderGithubUrl")}
                   />
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor={`${baseId}-technologies`} className="block mb-1 text-gray-700 dark:text-gray-300 font-semibold">
+                  <Label
+                    htmlFor={`${baseId}-technologies`}
+                    className="block mb-1 text-gray-700 dark:text-gray-300 font-semibold"
+                  >
                     {t("projects.PlaceholderTechnologies")}
                   </Label>
-                  <Input
-                    id={`${baseId}-technologies`}
-                    value={project.technologies.join(", ")}
-                    onChange={(e) =>
-                      handleChange(
-                        idx,
-                        "technologies",
-                        e.target.value.split(",").map((tech) => tech.trim())
-                      )
+                  <ChipsInput
+                    values={project.technologies}
+                    onChange={(newValues) =>
+                      handleChange(idx, "technologies", newValues)
                     }
                     placeholder={t("projects.PlaceholderTechnologies")}
                   />

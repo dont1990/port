@@ -28,8 +28,8 @@ export default function ExperienceEditor() {
   if (error) return <p>{t("experience.UpdateError")}</p>;
 
   return (
-    <section className="section-container py-10">
-      <Card>
+    <section className="section-container my-10">
+      <Card className="max-w-4xl mx-auto">
         <AdminSectionHeader title={t("experience.Title")} />
         <CardContent className="space-y-10">
           <ExperienceSection

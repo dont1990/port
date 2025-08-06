@@ -33,8 +33,8 @@ export default function AboutEditor() {
   if (error || !form) return <p>{t("about.UpdateError")}</p>;
 
   return (
-    <section className="section-container">
-      <Card className="mx-auto space-y-6">
+    <section className="section-container my-10">
+      <Card className="max-w-4xl mx-auto">
         <AdminSectionHeader title={t("hero.Title")} />
         <CardContent className="space-y-6">
           {/* Descriptions */}

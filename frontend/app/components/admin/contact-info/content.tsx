@@ -22,8 +22,8 @@ export default function ContactEditor() {
   if (error) return <p className="text-red-500">{t("contact.FailedToLoad")}</p>;
 
   return (
-    <section className="section-container">
-      <Card className="max-w-3xl mx-auto">
+    <section className="section-container my-10">
+      <Card className="max-w-4xl mx-auto">
         <AdminSectionHeader title={t("contact.EditContactInformation")} />
         <CardContent className="space-y-6">
           <div className="space-y-2">

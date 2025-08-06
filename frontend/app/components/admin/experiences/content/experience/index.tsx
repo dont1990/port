@@ -5,6 +5,7 @@ import { Textarea } from "@/app/components/ui/textarea";
 import { Button } from "@/app/components/ui/button";
 import { Label } from "@/app/components/ui/label";
 import { useTranslation } from "react-i18next";
+import ChipsInput from "@/app/components/chips-input";
 
 export default function ExperienceSection({
   data,
@@ -78,19 +79,15 @@ export default function ExperienceSection({
               <Label htmlFor={`${baseId}-technologies`}>
                 {t("experience.Technologies")}
               </Label>
-              <Input
-                id={`${baseId}-technologies`}
-                value={item.technologies.join(", ")}
-                onChange={(e) =>
-                  onChange(
-                    "experiences",
-                    idx,
-                    "technologies",
-                    e.target.value.split(",").map((t) => t.trim())
-                  )
+              <ChipsInput
+                values={item.technologies}
+                onChange={(newValues) =>
+                  onChange("experiences", idx, "technologies", newValues)
                 }
+                placeholder={t("experience.Technologies")}
               />
             </div>
+
             <Button
               variant="destructive"
               onClick={() => onRemove("experiences", idx)}

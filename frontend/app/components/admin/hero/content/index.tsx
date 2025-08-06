@@ -36,8 +36,8 @@ export default function HeroEditor() {
   if (error || !form) return <p className="text-red-500">{t("hero.LoadError")}</p>;
 
   return (
-    <section className="section-container">
-      <Card className="max-w-3xl mx-auto">
+    <section className="section-container my-10">
+      <Card className="max-w-4xl mx-auto">
         <AdminSectionHeader title={t("hero.Title")} />
         <CardContent className="space-y-8">
           <HeroForm
