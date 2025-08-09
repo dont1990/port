@@ -14,7 +14,7 @@ export function ContactCTA({ isInView }: { isInView: boolean }) {
       transition={{ duration: 0.6, delay: 1 }}
       whileHover={{ scale: 1.02 }}
     >
-      <Card>
+      <Card className="hover:shadow-lg transition-shadow">
         <CardContent className="p-6">
           <h4 className="font-semibold mb-2">{t("ctaTitle")}</h4>
           <p className="text-muted-foreground text-sm">{t("ctaDescription")}</p>

@@ -70,7 +70,7 @@ export function Navigation() {
               <motion.button
                 key={item.id}
                 onClick={() => scrollTo(item.id)}
-                className={`text-sm font-medium transition-colors hover:text-primary relative ${
+                className={`font-medium transition-colors hover:text-primary relative ${
                   activeSection === item.id
                     ? "text-primary"
                     : "text-muted-foreground"

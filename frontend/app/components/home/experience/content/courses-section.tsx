@@ -29,7 +29,7 @@ export function CoursesSection({
       </h4>
       <div className="space-y-4">
         {courses?.map((cert, index) => (
-          <Card key={index}>
+          <Card key={index} className="hover:shadow-lg transition-shadow">
             <CardContent className="p-4">
               <div className="flex justify-between items-center">
                 <div>

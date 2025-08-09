@@ -84,7 +84,7 @@ export function SkillCard({ category, index, isInView }: SkillCardProps) {
               >
                 <div className="flex justify-between items-end mb-1">
                   <span className="text-lg font-medium text-foreground">{skill.name}</span>
-                  <span className="text-base font-semibold text-primary">
+                  <span className="text-base font-semibold text-foreground">
                     {skill.level}%
                   </span>
                 </div>
