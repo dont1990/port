@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import { ParallaxHero } from "@/app/components/parallax/parallax-hero";
 import { HeroData } from "@/app/types/shared/hero/heroData";
 import { HeroIntro } from "./intro";
-import { HeroActions } from "./actions";
+import { HeroActions } from "./action-buttons";
 import { HeroSocials } from "./socials";
 import { HeroScrollArrow } from "./scroll-arrow";
 

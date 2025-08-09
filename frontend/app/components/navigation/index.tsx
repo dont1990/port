@@ -13,7 +13,6 @@ import LanguageSwitcher from "../language/language-toggle";
 import { useTranslation } from "react-i18next";
 import { useScrollFromTop } from "@/app/hooks/useScrollFromTop";
 
-
 export function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
@@ -22,8 +21,6 @@ export function Navigation() {
   const toggleButtonRef = useRef<HTMLButtonElement | null>(null);
 
   const scrollFromTop = useScrollFromTop();
-
-  console.log(scrollFromTop);
 
   useClickOutside(
     [mobileMenuRef, toggleButtonRef],
@@ -54,7 +51,7 @@ export function Navigation() {
       className={`fixed top-0 w-full backdrop-blur-md border-b z-50 bg-background/${scrollFromTop}`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
+        <div className="flex items-center h-16">
           <motion.div
             className="font-bold text-xl"
             whileHover={{ scale: 1.05 }}
@@ -64,7 +61,7 @@ export function Navigation() {
           </motion.div>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-6">
+          <div className="hidden md:flex items-center gap-6 grow ms-8">
             {navItems.map((item) => (
               <motion.button
                 key={item.id}
@@ -87,9 +84,10 @@ export function Navigation() {
                 )}
               </motion.button>
             ))}
-
-            <ThemeToggle />
-            <LanguageSwitcher />
+            <div className="flex ms-auto gap-4 items-center">
+              <ThemeToggle />
+              <LanguageSwitcher />
+            </div>
           </div>
 
           {/* Mobile Hamburger */}
