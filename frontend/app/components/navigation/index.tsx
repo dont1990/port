@@ -11,7 +11,8 @@ import {
 import { useClickOutside } from "@/app/hooks/useClickOutside";
 import LanguageSwitcher from "../language/language-toggle";
 import { useTranslation } from "react-i18next";
-// import LanguageToggle from "../language/language-toggle";
+import { useScrollFromTop } from "@/app/hooks/useScrollFromTop";
+
 
 export function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
@@ -19,6 +20,10 @@ export function Navigation() {
 
   const mobileMenuRef = useRef<HTMLDivElement | null>(null);
   const toggleButtonRef = useRef<HTMLButtonElement | null>(null);
+
+  const scrollFromTop = useScrollFromTop();
+
+  console.log(scrollFromTop);
 
   useClickOutside(
     [mobileMenuRef, toggleButtonRef],
@@ -35,14 +40,6 @@ export function Navigation() {
     { id: "contact", label: t("contact") },
   ];
 
-  // const navItems = [
-  //   { id: "home", label: "home" },
-  //   { id: "about", label: "about" },
-  //   { id: "skills", label: "skills" },
-  //   { id: "projects", label: "projects" },
-  //   { id: "contact", label: "contact" },
-  // ];
-
   const scrollTo = (id: string) => {
     const section = document.getElementById(id);
     if (section) {
@@ -53,7 +50,9 @@ export function Navigation() {
   };
 
   return (
-    <nav className="fixed top-0 w-full bg-background/80 backdrop-blur-md border-b z-50">
+    <nav
+      className={`fixed top-0 w-full backdrop-blur-md border-b z-50 bg-background/${scrollFromTop}`}
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           <motion.div

@@ -82,6 +82,9 @@ const config = {
       transitionProperty: {
         theme: "background-color, border-color, color, fill, stroke",
       },
+      boxShadow: {
+        lg: "var(--shadow-lg)",
+      },
     },
   },
   plugins: [require("tailwindcss-animate")],
