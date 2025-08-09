@@ -12,14 +12,11 @@ import { useTranslation } from "react-i18next";
 
 export function DownloadResumeButton() {
   const api = process.env.NEXT_PUBLIC_API_URL;
-  const [open, setOpen] = useState(false);
 
   const { t } = useTranslation("hero");
 
-
   return (
-    <div onMouseEnter={() => setOpen(true)} onMouseLeave={() => setOpen(false)}>
-      <Popover open={open} onOpenChange={setOpen}>
+      <Popover>
         <PopoverTrigger asChild>
           <Button size="lg" className="w-full sm:w-auto">
             <Download className="mr-2 h-4 w-4" />
@@ -45,6 +42,5 @@ export function DownloadResumeButton() {
           </a>
         </PopoverContent>
       </Popover>
-    </div>
   );
 }

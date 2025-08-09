@@ -23,20 +23,23 @@ export const LangProvider = ({ children }: { children: React.ReactNode }) => {
   const [lang, _setLang] = useState<Lang>("en");
   const router = useRouter();
 
-  useEffect(() => {
-    const stored = (localStorage.getItem("lang") as "en" | "fa") || "en";
-    updateLang(stored);
-  }, []);
+useEffect(() => {
+  const stored = (localStorage.getItem("lang") as "en" | "fa") || "en";
+  if (stored !== lang) {
+    updateLang(stored, false); 
+  }
+}, []);
 
-  const updateLang = (newLang: "en" | "fa") => {
-    localStorage.setItem("lang", newLang);
-    document.cookie = `i18next=${newLang}; path=/; max-age=31536000`;
-    document.dir = newLang === "fa" ? "rtl" : "ltr";
-    document.documentElement.setAttribute("lang", newLang);
-    i18n.changeLanguage(newLang);
-    _setLang(newLang);
-    router.refresh();
-  };
+const updateLang = (newLang: "en" | "fa", refresh = true) => {
+  localStorage.setItem("lang", newLang);
+  document.cookie = `i18next=${newLang}; path=/; max-age=31536000`;
+  document.dir = newLang === "fa" ? "rtl" : "ltr";
+  document.documentElement.setAttribute("lang", newLang);
+  i18n.changeLanguage(newLang);
+  _setLang(newLang);
+  if (refresh) router.refresh();
+};
+
 
   return (
     <LangContext.Provider
