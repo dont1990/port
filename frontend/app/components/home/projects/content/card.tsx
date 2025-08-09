@@ -67,7 +67,11 @@ export function ProjectCard({ project, index, isInView }: ProjectCardProps) {
           transition={{ duration: 0.3 }}
         >
           <Image
-            src={project.image || "/placeholder.svg"}
+            src={
+              project.image
+                ? `http://localhost:4000${project.image}`
+                : "/placeholder.svg"
+            }
             alt={project.title}
             fill
             className="object-cover transition-transform group-hover:scale-110 duration-300"

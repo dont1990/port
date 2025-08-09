@@ -10,6 +10,8 @@ import AdminSectionHeader from "../admin-section-header";
 import { useTranslation } from "react-i18next";
 import { Label } from "@/app/components/ui/label"; // import your Label component
 import ChipsInput from "../../chips-input";
+import toast from "react-hot-toast";
+import { uploadImage } from "@/app/lib/utils/upload/uploadeImage";
 
 export default function ProjectsEditor() {
   const {
@@ -75,11 +77,40 @@ export default function ProjectsEditor() {
                   >
                     {t("projects.PlaceholderImage")}
                   </Label>
-                  <Input
-                    id={`${baseId}-image`}
-                    value={project.image}
-                    onChange={(e) => handleChange(idx, "image", e.target.value)}
-                    placeholder={t("projects.PlaceholderImage")}
+
+                  {/* Image preview */}
+                  {project.image && (
+                    <img
+                      src={project.image}
+                      alt={project.title}
+                      className="max-h-40 object-contain mb-2 rounded"
+                    />
+                  )}
+
+                  <input
+                    id={`${baseId}-image-upload`}
+                    type="file"
+                    accept="image/*"
+                    onChange={async (e) => {
+                      console.log('second',e.target.files)
+                      if (e.target.files && e.target.files[0]) {
+                        try {
+                          const uploadedUrl = await uploadImage(
+                            e.target.files[0]
+                          );
+                          handleChange(idx, "image", uploadedUrl);
+                          toast.success(t("projects.ImageUploadSuccess"));
+                        } catch {
+                          toast.error(t("projects.ImageUploadError"));
+                        }
+                      }
+                    }}
+                    className="block w-full text-sm text-gray-500
+               file:mr-4 file:py-2 file:px-4
+               file:rounded file:border-0
+               file:text-sm file:font-semibold
+               file:bg-primary file:text-white
+               hover:file:bg-primary/90"
                   />
                 </div>
 
