@@ -5,7 +5,7 @@ import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { SectionParallax } from "@/app/components/parallax/section-parallax";
 import { Project } from "@/app/types/shared/project/project";
-import { ProjectCard } from "./project-card";
+import { ProjectCard } from "./card";
 import ProjectContentHeader from "./header";
 
 interface ProjectProps {

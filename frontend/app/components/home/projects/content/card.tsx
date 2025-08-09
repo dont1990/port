@@ -14,6 +14,7 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { Project } from "@/app/types/shared/project/project";
 import { useTranslation } from "react-i18next";
+import { useState } from "react";
 
 type ProjectCardProps = {
   project: Project;
@@ -22,7 +23,22 @@ type ProjectCardProps = {
 };
 
 export function ProjectCard({ project, index, isInView }: ProjectCardProps) {
-  const { t } = useTranslation('projects');
+  const { t } = useTranslation("projects");
+
+  const [tilt, setTilt] = useState({ rx: 0, ry: 0 });
+
+  function handleMove(e: React.MouseEvent<HTMLDivElement, MouseEvent>) {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const px = (e.clientX - rect.left) / rect.width;
+    const py = (e.clientY - rect.top) / rect.height;
+    const ry = (px - 0.5) * 10; // rotateY
+    const rx = (0.5 - py) * 10; // rotateX
+    setTilt({ rx, ry });
+  }
+
+  function handleLeave() {
+    setTilt({ rx: 0, ry: 0 });
+  }
 
   const cardVariants = {
     hidden: { y: 50, opacity: 0 },
@@ -35,7 +51,16 @@ export function ProjectCard({ project, index, isInView }: ProjectCardProps) {
 
   return (
     <motion.div variants={cardVariants as any}>
-      <Card className="overflow-hidden hover:shadow-lg transition-shadow group h-full">
+      <Card
+        className="overflow-hidden hover:shadow-lg transition-shadow group h-full"
+        onMouseMove={handleMove}
+        onMouseLeave={handleLeave}
+        style={{
+          transform: `perspective(1000px) rotateX(${tilt.rx}deg) rotateY(${tilt.ry}deg)`,
+          transformStyle: "preserve-3d",
+          transition: "transform 0.15s ease-out",
+        }}
+      >
         <motion.div
           className="relative h-48 overflow-hidden"
           whileHover={{ scale: 1.05 }}
@@ -113,7 +138,7 @@ export function ProjectCard({ project, index, isInView }: ProjectCardProps) {
                   whileHover={{ scale: 1.1 }}
                 >
                   <Badge variant="secondary" className="text-xs">
-                    {tech}
+                    <span className="font-medium">{tech}</span>
                   </Badge>
                 </motion.div>
               ))}

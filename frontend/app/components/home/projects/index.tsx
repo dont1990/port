@@ -5,7 +5,7 @@ import { getCurrentLang } from "@/app/lib/language/getCurrentLang";
 import { Lang } from "@/app/types/shared/lang/lang";
 
 const Projects = async () => {
-  const lang = getCurrentLang();
+  const lang = await getCurrentLang();
   const projects = await fetchProjects(lang as Lang);
 
   return <ProjectsContent projects={projects} />;

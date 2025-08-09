@@ -1,15 +1,12 @@
 "use client";
 
-import {
-  Card,
-  CardContent,
-} from "@/app/components/ui/card";
+import { Card, CardContent } from "@/app/components/ui/card";
 import { Input } from "@/app/components/ui/input";
 import { Button } from "@/app/components/ui/button";
 import { Label } from "@/app/components/ui/label";
 import AboutEditorSkeleton from "./skeleton";
 import { useAboutForm } from "./hooks/useAboutForm";
-import AdminSectionHeader from "../section-header";
+import AdminSectionHeader from "../admin-section-header";
 import { useTranslation } from "react-i18next";
 
 export default function AboutEditor() {
@@ -108,14 +105,9 @@ export default function AboutEditor() {
                 <Input
                   placeholder="Icon"
                   value={feature.icon}
-                  onChange={(e) =>
-                    updateFeatureItem(i, "icon", e.target.value)
-                  }
+                  onChange={(e) => updateFeatureItem(i, "icon", e.target.value)}
                 />
-                <Button
-                  variant="destructive"
-                  onClick={() => removeFeature(i)}
-                >
+                <Button variant="destructive" onClick={() => removeFeature(i)}>
                   {t("about.RemoveFeature")}
                 </Button>
               </div>

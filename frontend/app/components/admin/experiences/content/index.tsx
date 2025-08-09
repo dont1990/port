@@ -2,7 +2,7 @@
 
 import { Button } from "@/app/components/ui/button";
 import { Card, CardContent } from "@/app/components/ui/card";
-import AdminSectionHeader from "../../section-header";
+import AdminSectionHeader from "../../admin-section-header";
 import { useTranslation } from "react-i18next";
 import ExperienceEditorSkeleton from "../skeleton";
 import { useExperienceForm } from "../hooks/useExperienceForm";
@@ -10,7 +10,6 @@ import { useExperienceForm } from "../hooks/useExperienceForm";
 import ExperienceSection from "./experience";
 import EducationSection from "./education";
 import CourseSection from "./course";
-
 
 export default function ExperienceEditor() {
   const {

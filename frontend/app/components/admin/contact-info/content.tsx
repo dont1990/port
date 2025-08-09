@@ -2,15 +2,12 @@
 
 import { useKeyPressHandler } from "@/app/hooks/useKeyPressHandler";
 import ContactInfoSkeleton from "./skeleton";
-import {
-  Card,
-  CardContent,
-} from "@/app/components/ui/card";
+import { Card, CardContent } from "@/app/components/ui/card";
 import { Input } from "@/app/components/ui/input";
 import { Label } from "@/app/components/ui/label";
 import { Button } from "@/app/components/ui/button";
 import { useContactInfoEditor } from "./hooks/useContactInfoEditor";
-import AdminSectionHeader from "../section-header";
+import AdminSectionHeader from "../admin-section-header";
 import { useTranslation } from "react-i18next";
 
 export default function ContactEditor() {
@@ -57,7 +54,9 @@ export default function ContactEditor() {
           </div>
 
           <div className="pt-4 border-t">
-            <h4 className="text-lg font-medium mb-2">{t("contact.SocialLinks")}</h4>
+            <h4 className="text-lg font-medium mb-2">
+              {t("contact.SocialLinks")}
+            </h4>
             <div className="space-y-2">
               <Label htmlFor="github">{t("contact.GitHub")}</Label>
               <Input

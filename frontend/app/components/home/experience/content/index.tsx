@@ -3,8 +3,8 @@
 import { motion } from "framer-motion";
 import { ExperienceData } from "@/app/types/shared/experience/experience";
 import { ExperienceSection } from "./experience-section";
-import { EducationSection } from "./education-section";
-import { CoursesSection } from "./courses-section";
+import { EducationSection } from "./education";
+import { CoursesSection } from "./courses";
 import ExperienceHeader from "./header";
 
 type Props = {

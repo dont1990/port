@@ -1,16 +1,13 @@
 "use client";
 
-import {
-  Card,
-  CardContent,
-} from "@/app/components/ui/card";
+import { Card, CardContent } from "@/app/components/ui/card";
 import { useKeyPressHandler } from "@/app/hooks/useKeyPressHandler";
 import { useHeroData } from "../hooks/useHeroData";
 import { useResumeUploader } from "../hooks/useResumeUploader";
 import HeroForm from "./form";
 import ResumeUploader from "./resume-uploader";
 import HeroEditorSkeleton from "../skeleton";
-import AdminSectionHeader from "../../section-header";
+import AdminSectionHeader from "../../admin-section-header";
 import { Lang } from "@/app/types/shared/lang/lang";
 import { useTranslation } from "react-i18next";
 
@@ -33,7 +30,8 @@ export default function HeroEditor() {
   const langs: Lang[] = ["en", "fa"];
 
   if (isLoading) return <HeroEditorSkeleton />;
-  if (error || !form) return <p className="text-red-500">{t("hero.LoadError")}</p>;
+  if (error || !form)
+    return <p className="text-red-500">{t("hero.LoadError")}</p>;
 
   return (
     <section className="section-container my-10">

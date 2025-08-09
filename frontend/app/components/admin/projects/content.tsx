@@ -6,7 +6,7 @@ import { Textarea } from "@/app/components/ui/textarea";
 import { Card, CardContent } from "@/app/components/ui/card";
 import ProjectsEditorSkeleton from "./skeleton";
 import { useProjectsEditor } from "./hooks/useProjectsEditor";
-import AdminSectionHeader from "../section-header";
+import AdminSectionHeader from "../admin-section-header";
 import { useTranslation } from "react-i18next";
 import { Label } from "@/app/components/ui/label"; // import your Label component
 import ChipsInput from "../../chips-input";

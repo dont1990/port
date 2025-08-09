@@ -5,7 +5,7 @@ import { Input } from "@/app/components/ui/input";
 import { Card, CardContent } from "@/app/components/ui/card";
 import SkillsEditorSkeleton from "./skeleton";
 import { useSkillsEditor } from "./hooks/useSkillsEditor";
-import AdminSectionHeader from "../section-header";
+import AdminSectionHeader from "../admin-section-header";
 import { useTranslation } from "react-i18next";
 
 export default function SkillsEditor() {

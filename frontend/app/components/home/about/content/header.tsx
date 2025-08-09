@@ -1,5 +1,6 @@
 "use client";
 
+import SectionHeader from "@/app/components/section-header";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 
@@ -8,39 +9,42 @@ interface AboutHeaderProps {
   isInView: boolean;
 }
 
-export function AboutHeader({ description, isInView }: AboutHeaderProps) {
+export default function AboutHeader({
+  description,
+  isInView,
+}: AboutHeaderProps) {
   const { t } = useTranslation("about");
 
   return (
     <motion.div
-      className="text-center mb-16"
+      className="mb-14 text-center"
       variants={{
         hidden: { opacity: 0 },
         visible: {
           opacity: 1,
-          transition: { delayChildren: 0.3, staggerChildren: 0.2 },
+          transition: { delayChildren: 0.25, staggerChildren: 0.15 },
         },
       }}
       initial="hidden"
       animate={isInView ? "visible" : "hidden"}
     >
-      <motion.h2
-        className="text-3xl md:text-4xl font-bold mb-4"
+      <motion.div
+        className="inline-flex items-center gap-2 rounded-full border border-black/20 bg-black/5 dark:border-white/20 dark:bg-white/5 px-3 py-1 text-xs text-muted-foreground shadow-sm backdrop-blur"
         variants={{
-          hidden: { y: 50, opacity: 0 },
-          visible: {
-            y: 0,
-            opacity: 1,
-            transition: { duration: 0.6, ease: "easeOut" },
-          },
+          hidden: { y: 12, opacity: 0 },
+          visible: { y: 0, opacity: 1 },
         }}
       >
-        {t("title")}
-      </motion.h2>
+        <span className="h-1.5 w-1.5 rounded-full bg-primary shadow-[0_0_12px_2px_rgba(52,211,153,.65)] animate-ping mb-0.5" />
+        {t("openToCollaboration")}
+      </motion.div>
+
+      <SectionHeader title={t("title")} />
+
       <motion.div
-        className="text-lg text-muted-foreground max-w-2xl mx-auto space-y-4"
+        className="mx-auto mt-6 max-w-2xl space-y-4 text-base leading-relaxed text-muted-foreground md:text-lg"
         variants={{
-          hidden: { y: 50, opacity: 0 },
+          hidden: { y: 24, opacity: 0 },
           visible: {
             y: 0,
             opacity: 1,

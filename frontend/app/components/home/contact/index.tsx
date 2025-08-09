@@ -5,7 +5,7 @@ import { getCurrentLang } from "@/app/lib/language/getCurrentLang";
 import { Lang } from "@/app/types/shared/lang/lang";
 
 const Content = async () => {
-  const lang = getCurrentLang();
+  const lang = await getCurrentLang();
   const contactInfo = await fetchContactInfo(lang as Lang);
 
   return <ContactContent contactInfoData={contactInfo} />;

@@ -2,7 +2,19 @@
 import { motion } from "framer-motion";
 import { Card, CardContent } from "@/app/components/ui/card";
 import { SkillCategory } from "@/app/types/shared/skill/skill";
-import { BarChart, Code, Database, Cloud, LayoutDashboard, Settings, GitBranch, Palette, BrainCircuit, Server } from 'lucide-react';
+import {
+  BarChart,
+  Code,
+  Database,
+  Cloud,
+  LayoutDashboard,
+  Settings,
+  GitBranch,
+  Palette,
+  BrainCircuit,
+  Server,
+} from "lucide-react";
+import { useState } from "react";
 
 interface SkillCardProps {
   category: SkillCategory;
@@ -51,12 +63,37 @@ export function SkillCard({ category, index, isInView }: SkillCardProps) {
 
   const Icon = getCategoryIcon(category.title);
 
+  // Tilt state
+  const [tilt, setTilt] = useState({ rx: 0, ry: 0 });
+
+  function handleMove(e: React.MouseEvent<HTMLDivElement, MouseEvent>) {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const px = (e.clientX - rect.left) / rect.width;
+    const py = (e.clientY - rect.top) / rect.height;
+    const ry = (px - 0.5) * 10; // rotateY
+    const rx = (0.5 - py) * 10; // rotateX
+    setTilt({ rx, ry });
+  }
+
+  function handleLeave() {
+    setTilt({ rx: 0, ry: 0 });
+  }
+
   return (
     <motion.div
       variants={cardVariants as any}
       className="transform hover:-translate-y-3 transition-transform duration-300 ease-in-out"
     >
-      <Card className="h-full flex flex-col bg-card/80 backdrop-blur-sm rounded-2xl shadow-lg hover:shadow transition-all duration-300 border border-transparent hover:border-primary/50 hover:shadow-primary">
+      <Card
+        className="h-full flex flex-col bg-card/80 backdrop-blur-sm rounded-2xl shadow-lg hover:shadow transition-all duration-300 border border-transparent"
+        onMouseMove={handleMove}
+        onMouseLeave={handleLeave}
+        style={{
+          transform: `perspective(1000px) rotateX(${tilt.rx}deg) rotateY(${tilt.ry}deg)`,
+          transformStyle: "preserve-3d",
+          transition: "transform 0.15s ease-out",
+        }}
+      >
         <CardContent className="p-8 flex-1 flex flex-col">
           <motion.div
             className="flex flex-col items-center text-center mb-8"
@@ -83,7 +120,9 @@ export function SkillCard({ category, index, isInView }: SkillCardProps) {
                 }}
               >
                 <div className="flex justify-between items-end mb-1">
-                  <span className="text-lg font-medium text-foreground">{skill.name}</span>
+                  <span className="text-lg font-medium text-foreground">
+                    {skill.name}
+                  </span>
                   <span className="text-base font-semibold text-foreground">
                     {skill.level}%
                   </span>
