@@ -45,7 +45,7 @@ export function ScrollProgress() {
 
       {/* Circular Progress Indicator */}
       <motion.div
-        className="fixed bottom-8 right-8 z-50"
+        className="fixed bottom-6 right-6 z-50"
         initial={{ opacity: 0, scale: 0 }}
         animate={{
           opacity: isVisible ? 1 : 0,

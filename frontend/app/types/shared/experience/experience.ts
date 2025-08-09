@@ -13,7 +13,7 @@ export interface Education {
   description: string;
 }
 
-export interface Certification {
+export interface Course {
   name: string;
   org: string;
   year: string;
@@ -22,5 +22,5 @@ export interface Certification {
 export interface ExperienceData {
   experiences: Experience[];
   education: Education[];
-  certifications: Certification[];
+  courses: Course[];
 }

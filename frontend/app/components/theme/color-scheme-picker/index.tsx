@@ -43,7 +43,7 @@ export function ColorSchemePicker() {
   };
 
   return (
-    <div className="fixed bottom-32 right-8 z-50">
+    <div className="fixed bottom-36 right-8 z-50">
       <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
         <Button
           ref={buttonRef}

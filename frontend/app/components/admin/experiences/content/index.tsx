@@ -9,7 +9,8 @@ import { useExperienceForm } from "../hooks/useExperienceForm";
 
 import ExperienceSection from "./experience";
 import EducationSection from "./education";
-import CertificationSection from "./certification";
+import CourseSection from "./course";
+
 
 export default function ExperienceEditor() {
   const {
@@ -44,8 +45,8 @@ export default function ExperienceEditor() {
             onAdd={handleAddItem}
             onRemove={handleRemoveItem}
           />
-          <CertificationSection
-            data={formData.certifications}
+          <CourseSection
+            data={formData.courses}
             onChange={handleChange}
             onAdd={handleAddItem}
             onRemove={handleRemoveItem}

@@ -44,7 +44,7 @@ export function EducationSection({ education }: EducationSectionProps) {
                     {edu.school}
                   </CardDescription>
                 </div>
-                <Badge variant="outline">{edu.period}</Badge>
+                <Badge variant="outline" className="min-w-fit">{edu.period}</Badge>
               </div>
             </CardHeader>
             <CardContent>

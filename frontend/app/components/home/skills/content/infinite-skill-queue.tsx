@@ -46,7 +46,7 @@ export function InfiniteSkillQueue({
                 WebkitTextStroke: "1px #1A1A1A",
                 color: "transparent",
               }}
-              className="text-[60px] uppercase tracking-[0.3em] font-black"
+              className="text-4xl md:text-6xl uppercase tracking-[0.3em] font-black"
             >
               ✱{skill}✱
             </span>

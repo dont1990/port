@@ -27,9 +27,9 @@ export function SkillsContent({ skills }: Props) {
     },
   };
 
-  // const allSkillNames: string[] = skills.flatMap((category) =>
-  //   category.skills.map((skill) => skill.name)
-  // );
+  const allSkillNames: string[] = skills.flatMap((category) =>
+    category.skills.map((skill) => skill.name)
+  );
 
   return (
     <section id="skills" className="py-20 bg-muted/30" ref={ref}>
@@ -53,7 +53,7 @@ export function SkillsContent({ skills }: Props) {
           </motion.div>
         </SectionParallax>
       </div>
-      {/* <InfiniteSkillQueue skills={allSkillNames} /> */}
+      <InfiniteSkillQueue skills={allSkillNames} />
     </section>
   );
 }

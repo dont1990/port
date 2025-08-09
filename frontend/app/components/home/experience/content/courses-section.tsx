@@ -4,20 +4,16 @@ import { motion } from "framer-motion";
 import { Card, CardContent } from "@/app/components/ui/card";
 import { Badge } from "@/app/components/ui/badge";
 import { useTranslation } from "react-i18next";
+import { Course } from "@/app/types/shared/experience/experience";
 
-interface Certification {
-  name: string;
-  org: string;
-  year: string;
+
+interface CoursesSectionProps {
+  courses?: Course[];
 }
 
-interface CertificationsSectionProps {
-  certifications?: Certification[];
-}
-
-export function CertificationsSection({
-  certifications,
-}: CertificationsSectionProps) {
+export function CoursesSection({
+  courses,
+}: CoursesSectionProps) {
   const { t } = useTranslation("experience");
 
   return (
@@ -29,10 +25,10 @@ export function CertificationsSection({
       transition={{ duration: 0.6, delay: 0.8 }}
     >
       <h4 className="text-xl font-semibold mb-6">
-        {t("sections.certifications")}
+        {t("sections.courses")}
       </h4>
       <div className="space-y-4">
-        {certifications?.map((cert, index) => (
+        {courses?.map((cert, index) => (
           <Card key={index}>
             <CardContent className="p-4">
               <div className="flex justify-between items-center">

@@ -49,9 +49,9 @@
         "description": "Focused on software engineering, data structures, and web development. Graduated with honors."
       }
     ],
-    "certifications": [
+    "courses": [
       {
-        "name": "React Developer Certification",
+        "name": "React Developer Course",
         "org": "Meta",
         "year": "2023"
       },
@@ -112,7 +112,7 @@
         "description": "تمرکز بر مهندسی نرم‌افزار، ساختمان داده و توسعه وب. فارغ‌التحصیل با رتبه عالی."
       }
     ],
-    "certifications": [
+    "courses": [
       {
         "name": "مدرک توسعه‌دهنده React",
         "org": "متا",

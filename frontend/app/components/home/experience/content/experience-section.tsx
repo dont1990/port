@@ -63,7 +63,7 @@ export function ExperienceSection({ experiences }: ExperienceSectionProps) {
                       {exp.company}
                     </CardDescription>
                   </div>
-                  <Badge variant="outline">{exp.period}</Badge>
+                  <Badge variant="outline" className="min-w-fit">{exp.period}</Badge>
                 </div>
               </CardHeader>
               <CardContent>

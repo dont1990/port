@@ -36,9 +36,6 @@ const MainProvider = ({ children }: Props) => {
               {/* <ParallaxParticles /> */}
               <ThemeTransition />
               {/* <ReadingTime /> */}
-              {/* <I18nextProvider i18n={i18n}>
-            {children}
-            </I18nextProvider> */}
               {children}
               <ScrollToTop />
               <EnhancedThemeSettings />

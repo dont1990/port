@@ -39,7 +39,7 @@ export default function ExperienceEditorSkeleton() {
             ))}
           </div>
 
-          {/* Simulate Certifications */}
+          {/* Simulate Courses */}
           <div className="space-y-4">
             <Skeleton className="h-5 w-40" />
             {Array.from({ length: 2 }).map((_, i) => (

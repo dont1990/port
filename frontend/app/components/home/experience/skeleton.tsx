@@ -38,7 +38,7 @@ export default function ExperienceSkeleton() {
             </div>
           </div>
 
-          {/* Education & Certifications */}
+          {/* Education & Courses */}
           <div>
             <Skeleton className="h-6 w-32 mb-8" />
             <div className="space-y-6">
@@ -56,7 +56,7 @@ export default function ExperienceSkeleton() {
               ))}
             </div>
 
-            {/* Certifications */}
+            {/* Courses */}
             <div className="mt-12">
               <Skeleton className="h-5 w-32 mb-6" />
               <div className="space-y-4">

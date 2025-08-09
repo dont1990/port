@@ -48,7 +48,7 @@ export function HeroActions() {
           size="lg"
           className="w-full sm:w-auto bg-transparent"
         >
-          <Mail className="mr-2 h-4 w-4" />
+          <Mail className="mr-2" />
           {t("getInTouch")}
         </Button>
       </motion.div>

@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { ExperienceData } from "@/app/types/shared/experience/experience";
 import { ExperienceSection } from "./experience-section";
 import { EducationSection } from "./education-section";
-import { CertificationsSection } from "./certifications-section";
+import { CoursesSection } from "./courses-section";
 import ExperienceHeader from "./header";
 
 type Props = {
@@ -12,7 +12,7 @@ type Props = {
 };
 
 export function ExperienceContent({ data }: Props) {
-  const { experiences, education, certifications } = data;
+  const { experiences, education, courses } = data;
 
   return (
     <section id="experience" className="py-20 bg-muted/30">
@@ -23,7 +23,7 @@ export function ExperienceContent({ data }: Props) {
           <ExperienceSection experiences={experiences} />
           <div>
             <EducationSection education={education} />
-            <CertificationsSection certifications={certifications} />
+            <CoursesSection courses={courses} />
           </div>
         </div>
       </div>
