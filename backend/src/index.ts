@@ -24,6 +24,7 @@ const uploadsDir = path.join(__dirname, "./uploads");
 if (!fs.existsSync(uploadsDir)) {
   fs.mkdirSync(uploadsDir, { recursive: true });
 }
+app.use("/uploads", express.static(uploadsDir));
 
 app.use("/api/hero", heroRoutes);
 app.use("/api/about", aboutRoutes);
@@ -37,11 +38,6 @@ app.use("/api/suggestions", suggestionsRoutes);
 
 // admin
 app.use("/api/admin", basicAuth);
-
-app.use((err: any, req: any, res: any, next: any) => {
-  console.error("Express error:", err);
-  res.status(500).json({ error: "Server error", details: err.message });
-});
 
 app.listen(PORT, () => {
   console.log(`Server is running at http://localhost:${PORT}`);

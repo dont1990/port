@@ -1,7 +1,6 @@
-// app/actions/suggestions.ts
 "use server";
 
-import { revalidatePath, revalidateTag } from "next/cache";
+import { revalidateTag } from "next/cache";
 
 export async function addSuggestion(name: string) {
   if (!name.trim()) return;
@@ -9,6 +8,7 @@ export async function addSuggestion(name: string) {
   const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/suggestions`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
+    credentials: "include",
     body: JSON.stringify({ name }),
   });
 
@@ -25,6 +25,7 @@ export async function deleteSuggestion(id: string) {
     `${process.env.NEXT_PUBLIC_API_URL}/suggestions/${id}`,
     {
       method: "DELETE",
+      credentials: "include",
     }
   );
 

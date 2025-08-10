@@ -36,15 +36,15 @@ export function addSuggestion(req: Request, res: Response) {
   res.status(201).json(newItem);
 }
 
-export function updateSuggestion(req: Request, res: Response) {
-  const { id } = req.params;
-  const { name } = req.body;
-  if (!name) return res.status(400).json({ error: "Name is required" });
-  let suggestions = readSuggestions();
-  suggestions = suggestions.map((s: Suggestion) => (s.id === id ? { ...s, name } : s));
-  writeSuggestions(suggestions);
-  res.json({ success: true });
-}
+// export function updateSuggestion(req: Request, res: Response) {
+//   const { id } = req.params;
+//   const { name } = req.body;
+//   if (!name) return res.status(400).json({ error: "Name is required" });
+//   let suggestions = readSuggestions();
+//   suggestions = suggestions.map((s: Suggestion) => (s.id === id ? { ...s, name } : s));
+//   writeSuggestions(suggestions);
+//   res.json({ success: true });
+// }
 
 export function deleteSuggestion(req: Request, res: Response) {
   const { id } = req.params;

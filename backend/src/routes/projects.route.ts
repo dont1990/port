@@ -13,9 +13,6 @@ router.put("/", updateProject);
 
 // New image upload endpoint
 router.post("/upload-image", upload.single("image"), (req, res) => {
-  console.log("Upload route hit");
-  console.log("File received:", req.file);
-
   if (!req.file) {
     return res.status(400).json({ error: "No file uploaded" });
   }

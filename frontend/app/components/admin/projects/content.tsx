@@ -92,7 +92,6 @@ export default function ProjectsEditor() {
                     type="file"
                     accept="image/*"
                     onChange={async (e) => {
-                      console.log('second',e.target.files)
                       if (e.target.files && e.target.files[0]) {
                         try {
                           const uploadedUrl = await uploadImage(
