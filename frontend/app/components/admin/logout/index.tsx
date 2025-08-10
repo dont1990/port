@@ -28,7 +28,7 @@ export function AdminLogoutButton() {
   useClickOutside([dialogRef], () => setOpen(false), open);
 
   const logout = () => {
-    document.cookie = "admin-auth=; path=/admin; max-age=0";
+    document.cookie = "admin-token=; path=/admin; max-age=0";
     router.push("/auth/login");
   };
 

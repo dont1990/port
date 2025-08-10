@@ -1,51 +1,34 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
+import { jwtVerify } from "jose";
 
-const ADMIN_PASSWORD = process.env.NEXT_PUBLIC_ADMIN_PASSWORD;
+const secret = new TextEncoder().encode(process.env.JWT_SECRET!);
 
-// List of protected admin paths
-const ADMIN_PATHS = [
-  "/admin",
-  "/admin/submission",
-  "/admin/contact-info",
-  "/admin/hero",
-  "/admin/about",
-  "/admin/skills",
-  "/admin/projects",
-  "/admin/experiences",
-  "/admin/*",
-];
-
-export function middleware(request: NextRequest) {
+export async function middleware(request: NextRequest) {
+  const token = request.cookies.get("admin-token")?.value;
   const { pathname } = request.nextUrl;
 
-  // Check if the path is an admin path (you can also do startsWith for all under /admin)
-  const isAdminRoute =
-    ADMIN_PATHS.some((path) => pathname.startsWith(path)) &&
-    pathname != "/auth/login";
-
-  if (!isAdminRoute) {
-    // Not an admin path, allow
+  // Only protect /admin paths
+  if (!pathname.startsWith("/admin")) {
     return NextResponse.next();
   }
 
-  // Check for a cookie that holds the admin auth token or password
-  const authCookie = request.cookies.get("admin-auth");
-
-  if (authCookie?.value === ADMIN_PASSWORD) {
-    // Authenticated, allow access
-    return NextResponse.next();
+  if (!token) {
+    const loginUrl = new URL("/auth/login", request.url);
+    loginUrl.searchParams.set("from", pathname);
+    return NextResponse.redirect(loginUrl);
   }
 
-  // Not authenticated: redirect to a login page or show an auth required response
-
-  const loginUrl = new URL("/auth/login", request.url);
-  loginUrl.searchParams.set("from", pathname); // save where user wanted to go
-
-  return NextResponse.redirect(loginUrl);
+  try {
+    await jwtVerify(token, secret);
+    return NextResponse.next(); // token valid
+  } catch (e) {
+    const loginUrl = new URL("/auth/login", request.url);
+    loginUrl.searchParams.set("from", pathname);
+    return NextResponse.redirect(loginUrl);
+  }
 }
 
-// Specify which paths should invoke this middleware
 export const config = {
   matcher: ["/admin/:path*"],
 };

@@ -2,16 +2,15 @@ import express from "express";
 import {
   getSuggestions,
   addSuggestion,
-  // updateSuggestion,
   deleteSuggestion,
 } from "../controllers/suggestions.controller";
-import { basicAuth } from "../utils/basicAuth";
+import { requireAdminAuth } from "../middlewares/adminAuthMiddleware";
 
 const router = express.Router();
 
 router.get("/", getSuggestions);
-router.post("/", addSuggestion);
-router.delete("/:id", deleteSuggestion);
-// router.put("/:id", updateSuggestion);
+// protect these:
+router.post("/", requireAdminAuth, addSuggestion);
+router.delete("/:id", requireAdminAuth, deleteSuggestion);
 
 export default router;
