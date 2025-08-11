@@ -5,7 +5,6 @@ import {
   // updateSuggestion,
   deleteSuggestion,
 } from "../controllers/suggestions.controller";
-import { basicAuth } from "../utils/basicAuth";
 
 const router = express.Router();
 
