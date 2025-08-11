@@ -1,9 +1,3 @@
-try to use tailwind v4
-
-loading and error and not-found pages 
-
-split code 
-
 minify code before deploy
 
-functions for key's
+multilingual error messages
