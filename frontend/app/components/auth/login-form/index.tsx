@@ -75,7 +75,7 @@ const LoginForm = () => {
                     autoFocus
                     aria-label={t("enterPassword")}
                     className={cn(
-                      "h-12 bg-[color:var(--muted)/0.5] dark:bg-[color:var(--muted)/0.5] border-[color:var(--border)] dark:border-[color:var(--border)] focus:bg-[color:var(--background)] dark:focus:bg-[color:var(--background)] transition-colors duration-200",
+                      "h-12 bg-[color:var(--muted)/0.5] dark:bg-[color:var(--muted)/0.5] border-[color:var(--border)] dark:border-[color:var(--border)] focus:bg-[color:var(--background)] dark:focus:bg-[color:var(--background)] transition-colors duration-200 placeholder:ps-1",
                       dir === "rtl" ? "pr-10 pl-12" : "pl-12 pr-12",
                       error &&
                         "border-red-300 dark:border-red-500 bg-red-50/50 dark:bg-red-900/20 focus:border-red-400 dark:focus:border-red-400"
