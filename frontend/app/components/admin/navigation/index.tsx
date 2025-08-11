@@ -23,7 +23,7 @@ import { Badge } from "@/app/components/ui/badge";
 import { useTranslation } from "react-i18next";
 import LanguageSwitcher from "../../language/language-toggle";
 import { cn } from "@/app/lib/utils/cn/cn";
-import { AdminLogoutButton } from "../logout";
+import { AdminLogoutButton } from "../../auth/logout";
 import { ThemeToggle } from "../../theme/theme-toggle";
 import { useLang } from "@/app/context/langContext";
 

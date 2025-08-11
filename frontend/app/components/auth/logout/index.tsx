@@ -1,7 +1,6 @@
 "use client";
 
 import { useRef, useState } from "react";
-import { useRouter } from "next/navigation";
 import { useTranslation } from "react-i18next";
 import { Button } from "@/app/components/ui/button";
 import {
@@ -16,21 +15,17 @@ import {
   AlertDialogAction,
 } from "@/app/components/ui/alert-dialog";
 import { LogOut } from "lucide-react";
-import { useClickOutside } from "@/app/hooks/useClickOutside"; // adjust path if needed
+import { useClickOutside } from "@/app/hooks/useClickOutside";
+import { useAdminLogout } from "../hooks/useAdminLogout";
 
 export function AdminLogoutButton() {
-  const router = useRouter();
   const { t } = useTranslation("login");
-
   const [open, setOpen] = useState(false);
   const dialogRef = useRef<HTMLDivElement | null>(null);
 
   useClickOutside([dialogRef], () => setOpen(false), open);
 
-  const logout = () => {
-    document.cookie = "admin-auth=; path=/admin; max-age=0";
-    router.push("/auth/login");
-  };
+  const { logout, isLoading } = useAdminLogout();
 
   return (
     <AlertDialog open={open} onOpenChange={setOpen}>
@@ -38,6 +33,7 @@ export function AdminLogoutButton() {
         <Button
           variant="ghost"
           className="w-full justify-start gap-3 text-muted-foreground hover:text-destructive hover:bg-destructive/10 transition-colors"
+          disabled={isLoading}
         >
           <LogOut className="w-4 h-4" />
           {t("logout", "Logout")}
@@ -61,6 +57,7 @@ export function AdminLogoutButton() {
               setOpen(false);
             }}
             className="bg-destructive hover:bg-destructive/90"
+            disabled={isLoading}
           >
             {t("confirm_logout")}
           </AlertDialogAction>

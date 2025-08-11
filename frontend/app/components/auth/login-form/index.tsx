@@ -1,103 +1,144 @@
 "use client";
 
-import { useState } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from "@/app/components/ui/card";
+import { Card, CardContent } from "@/app/components/ui/card";
 import { Input } from "@/app/components/ui/input";
 import { Button } from "@/app/components/ui/button";
-import { Eye, EyeOff } from "lucide-react";
+import { Eye, EyeOff, Lock, Shield } from "lucide-react";
 import { cn } from "@/app/lib/utils/cn/cn";
-import { useLang } from "@/app/context/langContext"; // <-- import your lang hook
-import { useTranslation } from "react-i18next";
-
-
-const ADMIN_PASSWORD = process.env.NEXT_PUBLIC_ADMIN_PASSWORD;
+import { useLang } from "@/app/context/langContext";
+import { useLoginForm } from "../hooks/useAdminLogin";
 
 const LoginForm = () => {
-  const { t } = useTranslation("login");
+  const {
+    t,
+    password,
+    error,
+    showPassword,
+    isLoading,
+    handleSubmit,
+    onPasswordChange,
+    toggleShowPassword,
+  } = useLoginForm();
+
   const { dir } = useLang();
 
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
-  const [showPassword, setShowPassword] = useState(false);
-  const router = useRouter();
-  const searchParams = useSearchParams();
-  const from = searchParams.get("from") || "/admin";
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-
-    if (password === ADMIN_PASSWORD) {
-      document.cookie = `admin-auth=${password}; path=/admin; max-age=3600; Secure; SameSite=Strict`;
-      router.push(from);
-    } else {
-      setError("Invalid password");
-    }
-  };
   return (
-    <div className="min-h-screen flex items-center justify-center bg-muted p-4">
-      <Card className="max-w-md w-full">
-        <CardHeader>
-          <CardTitle className="text-center">{t("adminLogin")}</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <form onSubmit={handleSubmit} className="space-y-6 relative">
-            <div className="relative">
-              <Input
-                type={showPassword ? "text" : "password"}
-                value={password}
-                onChange={(e) => {
-                  setPassword(e.target.value);
-                  if (error) setError("");
-                }}
-                placeholder={t("enterPassword")}
-                autoFocus
-                aria-label={t("enterPassword")}
-                className={cn(
-                  "",
-                  error &&
-                    "border-none outline outline-red-600 pr-10 focus:outline-red-600 focus:border-none"
-                )}
-              />
-              <button
-                type="button"
-                onClick={() => setShowPassword(!showPassword)}
-                aria-label={
-                  showPassword ? t("hidePassword") : t("showPassword")
-                }
-                className={cn(
-                  "absolute top-1/2 -translate-y-1/2 text-muted-foreground hover:text-primary focus:outline-none",
-                  dir === "rtl" ? "left-3" : "right-3"
-                )}
+    <div
+      className="min-h-screen flex items-center justify-center bg-gradient-to-br 
+    from-[hsl(var(--background)/1)] via-[hsl(var(--secondary)/0.5)] to-[hsl(var(--primary)/0.3)] 
+    dark:from-[hsl(var(--background)/0.9)] dark:via-[hsl(var(--secondary)/0.7)] dark:to-[hsl(var(--primary)/0.5)] p-4"
+    >
+      <div className="w-full max-w-md">
+        <div className="text-center mb-8">
+          <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl shadow-lg mb-4 bg-primary">
+            <Shield className="w-8 h-8 text-[hsl(var(--primary-foreground))]" />
+          </div>
+          <h1
+            className="text-2xl font-bold mb-2"
+            style={{ color: "hsl(var(--foreground))" }}
+          >
+            {t("adminLogin")}
+          </h1>
+          <p
+            className="text-sm"
+            style={{ color: "hsl(var(--muted-foreground))" }}
+          >
+            {t("credentialsInfo")}
+          </p>
+        </div>
+
+        <Card
+          className="border-0 shadow-xl bg-[color:var(--card)/0.8] dark:bg-[color:var(--card)/0.8] backdrop-blur-sm"
+          style={{ color: "hsl(var(--card-foreground))" }}
+        >
+          <CardContent className="p-8">
+            <form onSubmit={handleSubmit} className="space-y-6">
+              <div className="space-y-2">
+                <label className="text-sm font-medium block text-muted-foreground">
+                  {t("passwordLabel")}
+                </label>
+                <div className="relative">
+                  <div
+                    className={cn(
+                      "absolute top-1/2 -translate-y-1/2",
+                      dir === "rtl" ? "right-3" : "left-3"
+                    )}
+                    style={{ color: "hsl(var(--muted-foreground))" }}
+                  >
+                    <Lock className="w-5 h-5" />
+                  </div>
+                  <Input
+                    type={showPassword ? "text" : "password"}
+                    value={password}
+                    onChange={(e) => onPasswordChange(e.target.value)}
+                    placeholder={t("enterPassword")}
+                    autoFocus
+                    aria-label={t("enterPassword")}
+                    className={cn(
+                      "h-12 bg-[color:var(--muted)/0.5] dark:bg-[color:var(--muted)/0.5] border-[color:var(--border)] dark:border-[color:var(--border)] focus:bg-[color:var(--background)] dark:focus:bg-[color:var(--background)] transition-colors duration-200",
+                      dir === "rtl" ? "pr-10 pl-12" : "pl-12 pr-12",
+                      error &&
+                        "border-red-300 dark:border-red-500 bg-red-50/50 dark:bg-red-900/20 focus:border-red-400 dark:focus:border-red-400"
+                    )}
+                  />
+                  <button
+                    type="button"
+                    onClick={toggleShowPassword}
+                    aria-label={
+                      showPassword ? t("hidePassword") : t("showPassword")
+                    }
+                    className={cn(
+                      "absolute top-1/2 -translate-y-1/2 hover:text-[color:var(--primary)] focus:outline-none transition-colors duration-200",
+                      dir === "rtl" ? "left-3" : "right-3"
+                    )}
+                    style={{ color: "hsl(var(--muted-foreground))" }}
+                  >
+                    {showPassword ? (
+                      <EyeOff className="w-5 h-5" />
+                    ) : (
+                      <Eye className="w-5 h-5" />
+                    )}
+                  </button>
+                </div>
+              </div>
+
+              {error && (
+                <div className="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg p-3">
+                  <p
+                    role="alert"
+                    className="text-sm text-red-700 dark:text-red-400 font-medium text-center"
+                  >
+                    {error}
+                  </p>
+                </div>
+              )}
+
+              <Button
+                type="submit"
+                disabled={isLoading}
+                className="w-full h-12 rounded-lg shadow-lg hover:shadow-xl transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed
+                 text-primary-foreground"
               >
-                {showPassword ? (
-                  <EyeOff className="w-5 h-5" />
+                {isLoading ? (
+                  <div className="flex items-center justify-center gap-2">
+                    <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                    {t("loginButton")}...
+                  </div>
                 ) : (
-                  <Eye className="w-5 h-5" />
+                  t("loginButton")
                 )}
-              </button>
-            </div>
+              </Button>
+            </form>
+          </CardContent>
+        </Card>
 
-            {error && (
-              <p
-                role="alert"
-                className="text-sm text-red-600 font-medium text-center"
-              >
-                {t("invalidPassword")}
-              </p>
-            )}
-
-            <Button type="submit" className="w-full">
-              {t("loginButton")}
-            </Button>
-          </form>
-        </CardContent>
-      </Card>
+        <p
+          className="text-center text-xs mt-6"
+          style={{ color: "hsl(var(--muted-foreground))" }}
+        >
+          {t("secureAccessInfo")}
+        </p>
+      </div>
     </div>
   );
 };

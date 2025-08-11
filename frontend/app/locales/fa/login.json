@@ -9,5 +9,8 @@
   "logout_confirm_title": "آیا مطمئن هستید که می‌خواهید خارج شوید؟",
   "logout_confirm_description": "به صفحه ورود هدایت خواهید شد و باید دوباره احراز هویت کنید.",
   "cancel": "انصراف",
-  "confirm_logout": "خروج"
+  "confirm_logout": "خروج",
+  "credentialsInfo": "لطفاً اطلاعات خود را برای دسترسی به پنل مدیریت وارد کنید",
+  "passwordLabel": "رمز عبور",
+  "secureAccessInfo": "دسترسی امن به مدیریت • محافظت شده با رمزگذاری"
 }
