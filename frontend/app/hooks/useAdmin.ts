@@ -14,7 +14,7 @@ export function useAdminAuth() {
   const [isAdmin, setIsAdmin] = useState(false);
 
   useEffect(() => {
-    const adminAuth = getCookie("admin-auth");
+    const adminAuth = getCookie("admin-token");
     setIsAdmin(!!adminAuth);
   }, []);
 

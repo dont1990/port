@@ -27,6 +27,11 @@ app.use(cors({
 }));
 app.use(express.json());
 
+app.use(cors({
+  origin: "http://localhost:3000", // your frontend URL
+  credentials: true, // important to allow cookies
+}));
+
 const uploadsDir = path.join(__dirname, "./uploads");
 if (!fs.existsSync(uploadsDir)) {
   fs.mkdirSync(uploadsDir, { recursive: true });

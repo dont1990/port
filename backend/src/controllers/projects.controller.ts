@@ -31,3 +31,18 @@ export const updateProject = (req: Request, res: Response) => {
     res.status(500).json({ error: "Failed to update project data." });
   }
 };
+
+
+export const uploadProjectImage = async (req: Request, res: Response) => {
+  try {
+    if (!req.file) {
+      return res.status(400).json({ error: "No file uploaded" });
+    }
+    
+    const filePath = `/uploads/${req.file.filename}`;
+    res.status(201).json({ imageUrl: filePath });
+    
+  } catch (error) {
+    res.status(500).json({ error: "Image upload failed" });
+  }
+};

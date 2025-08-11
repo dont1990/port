@@ -19,12 +19,17 @@ import {
   CardHeader,
   CardTitle,
 } from "@/app/components/ui/card";
+import { useAuth } from "@/app/context/AuthContext";
 
 export default function SuggestionsEditor({
   initialSuggestions,
 }: {
   initialSuggestions: Suggestion[];
 }) {
+  const { token } = useAuth();
+
+  console.log(token)
+
   const { t } = useTranslation("dashboard");
   const [suggestions, setSuggestions] =
     useState<Suggestion[]>(initialSuggestions);
@@ -45,7 +50,7 @@ export default function SuggestionsEditor({
   const handleAdd = () => {
     if (!newName.trim()) return;
     startTransition(async () => {
-      const promise = addSuggestion(newName).then((added) => {
+      const promise = addSuggestion(newName, token).then((added) => {
         setSuggestions((prev) => [...prev, added]);
         setNewName("");
       });
