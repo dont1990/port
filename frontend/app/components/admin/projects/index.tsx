@@ -1,9 +1,8 @@
-import React from 'react'
-import ProjectsEditor from './content';
-
+import React from "react";
+import ProjectsEditor from "./content";
 
 const AdminProjectsEditor = () => {
- return <ProjectsEditor />;
-}
+  return <ProjectsEditor />;
+};
 
-export default AdminProjectsEditor
+export default AdminProjectsEditor;

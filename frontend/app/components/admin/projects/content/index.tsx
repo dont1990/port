@@ -4,14 +4,16 @@ import { Button } from "@/app/components/ui/button";
 import { Input } from "@/app/components/ui/input";
 import { Textarea } from "@/app/components/ui/textarea";
 import { Card, CardContent } from "@/app/components/ui/card";
-import ProjectsEditorSkeleton from "./skeleton";
-import { useProjectsEditor } from "./hooks/useProjectsEditor";
-import AdminSectionHeader from "../admin-section-header";
+import ProjectsEditorSkeleton from "../skeleton";
+import { useProjectsEditor } from "../hooks/useProjectsEditor";
+import AdminSectionHeader from "../../admin-section-header";
 import { useTranslation } from "react-i18next";
 import { Label } from "@/app/components/ui/label"; // import your Label component
-import ChipsInput from "../../chips-input";
+import ChipsInput from "../../../chips-input";
 import toast from "react-hot-toast";
-import { uploadImage } from "@/app/lib/utils/upload/uploadeImage";
+import { uploadImage } from "@/app/lib/utils/upload/uploadImage";
+import Image from "next/image";
+import { ImageUpload } from "./image-upload";
 
 export default function ProjectsEditor() {
   const {
@@ -70,48 +72,15 @@ export default function ProjectsEditor() {
                   />
                 </div>
 
-                <div className="space-y-2">
-                  <Label
-                    htmlFor={`${baseId}-image`}
-                    className="block mb-1 text-gray-700 dark:text-gray-300 font-semibold"
-                  >
-                    {t("projects.PlaceholderImage")}
-                  </Label>
-
-                  {/* Image preview */}
-                  {project.image && (
-                    <img
-                      src={project.image}
-                      alt={project.title}
-                      className="max-h-40 object-contain mb-2 rounded"
-                    />
-                  )}
-
-                  <input
-                    id={`${baseId}-image-upload`}
-                    type="file"
-                    accept="image/*"
-                    onChange={async (e) => {
-                      if (e.target.files && e.target.files[0]) {
-                        try {
-                          const uploadedUrl = await uploadImage(
-                            e.target.files[0]
-                          );
-                          handleChange(idx, "image", uploadedUrl);
-                          toast.success(t("projects.ImageUploadSuccess"));
-                        } catch {
-                          toast.error(t("projects.ImageUploadError"));
-                        }
-                      }
-                    }}
-                    className="block w-full text-sm text-gray-500
-               file:mr-4 file:py-2 file:px-4
-               file:rounded file:border-0
-               file:text-sm file:font-semibold
-               file:bg-primary file:text-white
-               hover:file:bg-primary/90"
-                  />
-                </div>
+                <ImageUpload
+                  project={project}
+                  idx={idx}
+                  baseId={baseId}
+                  handleChange={handleChange}
+                  uploadImage={uploadImage}
+                  toast={toast}
+                  handleSave={handleSave} // <-- Pass it here!
+                />
 
                 <div className="space-y-2">
                   <Label

@@ -3,7 +3,7 @@
     {
       "title": "E-Commerce Dashboard",
       "description": "A comprehensive admin dashboard for managing online stores with real-time analytics, inventory management, and order processing.",
-      "image": "/placeholder.svg?height=300&width=500",
+      "image": "",
       "technologies": [
         "React",
         "Next.js",
@@ -17,7 +17,7 @@
     {
       "title": "Task Management App",
       "description": "A collaborative project management tool with drag-and-drop functionality, real-time updates, and team collaboration features.",
-      "image": "/placeholder.svg?height=300&width=500",
+      "image": "",
       "technologies": [
         "React",
         "Redux",
@@ -31,7 +31,7 @@
     {
       "title": "Weather Forecast App",
       "description": "A beautiful weather application with location-based forecasts, interactive maps, and detailed weather analytics.",
-      "image": "/placeholder.svg?height=300&width=500",
+      "image": "",
       "technologies": [
         "React",
         "TypeScript",
@@ -45,7 +45,7 @@
     {
       "title": "Portfolio Website",
       "description": "A responsive portfolio website showcasing projects and skills with smooth animations and modern design principles.",
-      "image": "/placeholder.svg?height=300&width=500",
+      "image": "",
       "technologies": [
         "Next.js",
         "Tailwind CSS",
@@ -58,7 +58,7 @@
     {
       "title": "Social Media Dashboard",
       "description": "A unified dashboard for managing multiple social media accounts with analytics, scheduling, and engagement tracking.",
-      "image": "/placeholder.svg?height=300&width=500",
+      "image": "",
       "technologies": [
         "React",
         "Next.js",
@@ -73,7 +73,7 @@
     {
       "title": "Recipe Finder App",
       "description": "A recipe discovery app with advanced search filters, meal planning, and shopping list generation features.",
-      "image": "/placeholder.svg?height=300&width=500",
+      "image": "",
       "technologies": [
         "React",
         "TypeScript",
@@ -88,7 +88,7 @@
     {
       "title": "اپلیکیشن مدیریت وظایف",
       "description": "ابزاری برای مدیریت پروژه‌های گروهی با قابلیت کشیدن و رها کردن، به‌روزرسانی لحظه‌ای و امکانات همکاری تیمی.",
-      "image": "/uploads/1754741460290-935133801.png",
+      "image": "",
       "technologies": [
         "ری‌اکت",
         "رداکس",
@@ -105,7 +105,7 @@
     {
       "title": "اپلیکیشن پیش‌بینی آب‌وهوا",
       "description": "یک برنامه جذاب آب‌وهوا با پیش‌بینی مکان‌محور، نقشه‌های تعاملی و تحلیل‌های دقیق جوی.",
-      "image": "/uploads/1754741708032-341858855.png",
+      "image": "",
       "technologies": [
         "ری‌اکت",
         "تایپ‌اسکریپت",
@@ -119,7 +119,7 @@
     {
       "title": "وبسایت نمونه کار",
       "description": "یک وبسایت واکنش‌گرا برای نمایش پروژه‌ها و مهارت‌ها با انیمیشن‌های نرم و طراحی مدرن.",
-      "image": "/placeholder.svg?height=300&width=500",
+      "image": "",
       "technologies": [
         "نکست‌جی‌اس",
         "تیلویند CSS",
@@ -132,7 +132,7 @@
     {
       "title": "داشبورد شبکه‌های اجتماعی",
       "description": "یک داشبورد یکپارچه برای مدیریت چند حساب شبکه اجتماعی با آنالیز، زمان‌بندی و پیگیری تعاملات.",
-      "image": "/placeholder.svg?height=300&width=500",
+      "image": "",
       "technologies": [
         "ری‌اکت",
         "نکست‌جی‌اس",
@@ -147,7 +147,7 @@
     {
       "title": "اپلیکیشن جستجوی دستور پخت",
       "description": "اپی برای کشف دستور پخت غذا با فیلترهای پیشرفته، برنامه‌ریزی وعده‌ها و تولید لیست خرید.",
-      "image": "/placeholder.svg?height=300&width=500",
+      "image": "",
       "technologies": [
         "ری‌اکت",
         "تایپ‌اسکریپت",
