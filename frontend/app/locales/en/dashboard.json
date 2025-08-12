@@ -93,12 +93,20 @@
     "UpdateError": "Failed to update about info.",
     "Description": "Description",
     "AddDescription": "+ Add Description",
+    "EnterDescription": "Enter description...",
     "Skills": "Skills",
     "AddSkill": "+ Add Skill",
+    "EnterSkill": "Enter skill...",
     "Features": "Features",
     "AddFeature": "+ Add Feature",
     "RemoveFeature": "− Remove Feature",
-    "Save": "Save Changes"
+    "Feature": "Feature",
+    "Title": "Title",
+    "FeatureTitlePlaceholder": "Feature title",
+    "FeatureDescriptionPlaceholder": "Feature description",
+    "IconPlaceholder": "Icon (emoji or text)",
+    "Save": "Save Changes",
+    "SavingChanges": "Saving Changes..."
   },
   "skills": {
     "title": "Skills Editor",

@@ -93,12 +93,20 @@
     "UpdateError": "بروزرسانی اطلاعات درباره انجام نشد.",
     "Description": "توضیحات",
     "AddDescription": "افزودن توضیح",
+    "EnterDescription": "توضیح را وارد کنید...",
     "Skills": "مهارت‌ها",
     "AddSkill": "افزودن مهارت",
+    "EnterSkill": "مهارت را وارد کنید...",
     "Features": "ویژگی‌ها",
     "AddFeature": "افزودن ویژگی",
     "RemoveFeature": "حذف ویژگی",
-    "Save": "ذخیره تغییرات"
+    "Feature": "ویژگی",
+    "Title": "عنوان",
+    "FeatureTitlePlaceholder": "عنوان ویژگی",
+    "FeatureDescriptionPlaceholder": "توضیح ویژگی",
+    "IconPlaceholder": "آیکون (ایموجی یا متن)",
+    "Save": "ذخیره تغییرات",
+    "SavingChanges": "در حال ذخیره‌سازی..."
   },
   "skills": {
     "title": "ویرایش مهارت‌ها",
