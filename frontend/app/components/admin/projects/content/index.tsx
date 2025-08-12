@@ -10,7 +10,6 @@ import AdminSectionHeader from "../../admin-section-header";
 import { useTranslation } from "react-i18next";
 import { Label } from "@/app/components/ui/label"; // import your Label component
 import ChipsInput from "../../../chips-input";
-import toast from "react-hot-toast";
 import { uploadImage } from "@/app/lib/utils/upload/image";
 import { ImageUpload } from "./image-upload";
 

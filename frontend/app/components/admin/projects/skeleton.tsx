@@ -4,7 +4,7 @@ import { Skeleton } from "@/app/components/ui/skeleton";
 export default function ProjectsEditorSkeleton() {
   return (
     <section className="section-container py-10">
-      <Card>
+      <Card className="max-w-4xl">
         <CardHeader>
           <CardTitle>
             <Skeleton className="h-6 w-48" />
@@ -17,7 +17,12 @@ export default function ProjectsEditorSkeleton() {
             <div key={i} className="border p-4 rounded-md space-y-4">
               <Skeleton className="h-10 w-full" /> {/* Title */}
               <Skeleton className="h-24 w-full" /> {/* Description (Textarea) */}
-              <Skeleton className="h-10 w-full" /> {/* Image */}
+
+              {/* Updated Image Upload Skeleton */}
+              <div className="relative w-full h-48 rounded-xl overflow-hidden">
+                <Skeleton className="absolute inset-0 rounded-xl" />
+              </div>
+
               <Skeleton className="h-10 w-full" /> {/* Live URL */}
               <Skeleton className="h-10 w-full" /> {/* GitHub URL */}
               <Skeleton className="h-10 w-full" /> {/* Technologies */}

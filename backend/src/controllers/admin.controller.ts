@@ -1,14 +1,25 @@
 import { Request, Response } from "express";
 import jwt from "jsonwebtoken";
+import bcrypt from "bcrypt";
 
 const ADMIN_USERNAME = process.env.ADMIN_USERNAME;
-const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD;
+const ADMIN_PASSWORD_HASH = process.env.ADMIN_PASSWORD_HASH!;
 const JWT_SECRET = process.env.JWT_SECRET!;
 
-export const loginController = (req: Request, res: Response) => {
+export const loginController = async (req: Request, res: Response) => {
   const { username, password } = req.body;
 
-  if (username === ADMIN_USERNAME && password === ADMIN_PASSWORD) {
+  if (username !== ADMIN_USERNAME) {
+    return res.status(401).json({ message: "Invalid credentials" });
+  }
+
+  try {
+    const passwordMatch = await bcrypt.compare(password, ADMIN_PASSWORD_HASH);
+
+    if (!passwordMatch) {
+      return res.status(401).json({ message: "Invalid credentials" });
+    }
+
     const token = jwt.sign({ username }, JWT_SECRET, { expiresIn: "1h" });
 
     res.cookie("token", token, {
@@ -16,13 +27,14 @@ export const loginController = (req: Request, res: Response) => {
       secure: process.env.NODE_ENV === "production",
       sameSite: "strict",
       maxAge: 60 * 60 * 1000, // 1 hour
-      path: "/", // ensure cookie is sent on all routes
+      path: "/",
     });
 
     return res.json({ success: true });
+  } catch (error) {
+    console.error("Login error:", error);
+    return res.status(500).json({ message: "Internal server error" });
   }
-
-  return res.status(401).json({ message: "Invalid credentials" });
 };
 
 export const logoutController = (req: Request, res: Response) => {
