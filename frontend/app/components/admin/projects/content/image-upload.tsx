@@ -2,11 +2,13 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
-import { Upload, X } from "lucide-react";
+import { Upload, Trash2 } from "lucide-react";
 import { Button } from "@/app/components/ui/button";
 import { cn } from "@/app/lib/utils/cn/cn";
 import { Project } from "@/app/types/shared/project/project";
 import { useTranslation } from "react-i18next";
+import toast from "react-hot-toast";
+import { deleteImage } from "@/app/lib/utils/upload/image";
 
 interface ImageUploadProps {
   project: {
@@ -21,10 +23,6 @@ interface ImageUploadProps {
     value: Project[K]
   ) => void;
   uploadImage: (file: File) => Promise<string>;
-  toast: {
-    success: (msg: string) => void;
-    error: (msg: string) => void;
-  };
   handleSave: () => Promise<void>; // <-- NEW: pass handleSave here
 }
 
@@ -34,7 +32,6 @@ export function ImageUpload({
   baseId,
   handleChange,
   uploadImage,
-  toast,
   handleSave, // <-- destructure handleSave
 }: ImageUploadProps) {
   const { t } = useTranslation("imageUploader");
@@ -84,22 +81,15 @@ export function ImageUpload({
   const removeImage = async () => {
     if (project.image && !project.image.startsWith("blob:")) {
       try {
-        const imagePath = project.image.replace("http://localhost:4000", "");
-        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/image/delete`, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ path: imagePath }),
-        });
-        if (!res.ok) throw new Error("Delete failed");
+        await deleteImage(project.image);
         toast.success(t("projects.ImageDeleteSuccess"));
       } catch {
         toast.error(t("projects.ImageDeleteError"));
       }
     }
     handleChange(idx, "image", "");
-    await handleSave(); // <-- save after removing image
+    await handleSave();
   };
-
   return (
     <div className="space-y-4">
       {/* Show image preview ONLY if image exists */}
@@ -124,7 +114,7 @@ export function ImageUpload({
               onClick={removeImage}
               disabled={isUploading}
             >
-              <X className="h-4 w-4" />
+              <Trash2 className="h-4 w-4" />
             </Button>
           </div>
           {isUploading && (
@@ -165,9 +155,15 @@ export function ImageUpload({
             </div>
 
             <div className="space-y-2">
-              <p className="text-sm font-medium">{t("projects.UploadProjectImage")}</p>
-              <p className="text-xs text-muted-foreground">{t("projects.DragDropOrClick")}</p>
-              <p className="text-xs text-muted-foreground">{t("projects.FileFormats")}</p>
+              <p className="text-sm font-medium">
+                {t("projects.UploadProjectImage")}
+              </p>
+              <p className="text-xs text-muted-foreground">
+                {t("projects.DragDropOrClick")}
+              </p>
+              <p className="text-xs text-muted-foreground">
+                {t("projects.FileFormats")}
+              </p>
             </div>
           </div>
 

@@ -10,11 +10,12 @@ import { useLang } from "@/app/context/langContext";
 import { Lang } from "@/app/types/shared/lang/lang";
 import { useKeyPressHandler } from "@/app/hooks/useKeyPressHandler";
 import { useTranslation } from "react-i18next";
+import { v4 as uuidv4 } from "uuid";
 
 export function useProjectsEditor() {
   const { lang } = useLang();
   const { t } = useTranslation("dashboard");
-  
+
   const { data, error, isLoading, mutate } = useSWR<Project[]>(
     () => `/projects?lang=${lang}`,
     () => fetchProjectsClient(lang as Lang)
@@ -49,6 +50,7 @@ export function useProjectsEditor() {
     setProjects((prev) => [
       ...(prev || []),
       {
+        id: uuidv4(),
         title: "New Project",
         description: "",
         image: "",

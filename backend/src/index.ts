@@ -10,7 +10,7 @@ import skillsRoutes from "./routes/skills.route";
 import projectsRoutes from "./routes/projects.route";
 import experiencesRoutes from "./routes/experiences.route";
 import submissionsRoutes from "./routes/submissions.route";
-import uploadImageRoutes from "./routes/uploadImage.route";
+import uploadImageRoutes from "./routes/image.route";
 
 // admin
 import contactInfoRoutes from "./routes/contactInfo.route";
@@ -40,6 +40,7 @@ app.use("/api/skills", skillsRoutes);
 app.use("/api/projects", projectsRoutes);
 app.use("/api/experiences", experiencesRoutes);
 app.use("/api/submissions", submissionsRoutes);
+
 app.use("/api/image", uploadImageRoutes);
 
 app.use("/api/contact-info", contactInfoRoutes);

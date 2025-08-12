@@ -11,8 +11,7 @@ import { useTranslation } from "react-i18next";
 import { Label } from "@/app/components/ui/label"; // import your Label component
 import ChipsInput from "../../../chips-input";
 import toast from "react-hot-toast";
-import { uploadImage } from "@/app/lib/utils/upload/uploadImage";
-import Image from "next/image";
+import { uploadImage } from "@/app/lib/utils/upload/image";
 import { ImageUpload } from "./image-upload";
 
 export default function ProjectsEditor() {
@@ -78,8 +77,7 @@ export default function ProjectsEditor() {
                   baseId={baseId}
                   handleChange={handleChange}
                   uploadImage={uploadImage}
-                  toast={toast}
-                  handleSave={handleSave} // <-- Pass it here!
+                  handleSave={handleSave}
                 />
 
                 <div className="space-y-2">

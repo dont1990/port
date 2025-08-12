@@ -7,6 +7,8 @@
     "UploadProjectImage": "بارگذاری تصویر پروژه",
     "DragDropOrClick": "کشیدن و رها کردن یا کلیک برای انتخاب",
     "FileFormats": "PNG، JPG، GIF تا 10 مگابایت",
-    "ProjectImageAlt": "تصویر پروژه"
+    "ProjectImageAlt": "تصویر پروژه",
+    "ImageDeleteSuccess": "تصویر با موفقیت حذف شد!",
+    "ImageDeleteError": "حذف تصویر ناموفق بود."
   }
 }
