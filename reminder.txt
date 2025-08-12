@@ -3,3 +3,5 @@ minify code before deploy
 multilingual error messages
 
 protected routes
+
+progress bar

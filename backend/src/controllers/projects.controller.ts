@@ -8,9 +8,6 @@ const filePath = path.join(__dirname, "../data/projects.json");
 
 const readData = () => JSON.parse(fs.readFileSync(filePath, "utf-8"));
 
-
-
-
 const writeData = (data: any) => {
   fs.writeFileSync(filePath, JSON.stringify(data, null, 2));
 };
