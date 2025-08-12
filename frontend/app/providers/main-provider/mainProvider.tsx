@@ -14,7 +14,6 @@ import { Toaster } from "react-hot-toast";
 import { I18nextProvider } from "react-i18next";
 import i18n from "@/app/lib/language/i18n";
 import { LangProvider } from "@/app/context/langContext";
-// import i18n from "@/app/lib/language/i18n";
 
 type Props = {
   children: React.ReactNode;
