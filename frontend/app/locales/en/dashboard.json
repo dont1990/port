@@ -59,12 +59,14 @@
     "GitHubURL": "GitHub URL",
     "LinkedIn": "LinkedIn",
     "LinkedInURL": "LinkedIn URL",
-    "Twitter": "Twitter",
-    "TwitterURL": "Twitter URL",
+    "Telegram": "Telegram",
+    "TelegramURL": "Telegram URL",
     "SaveChanges": "Save Changes",
     "FailedToLoad": "Failed to load contact info",
     "UpdateSuccess": "Contact info updated.",
-    "UpdateFail": "Failed to update contact info."
+    "UpdateFail": "Failed to update contact info.",
+    "ContactDetails": "Contact Details",
+    "UpdateContactInfoDescription": "Update your contact information and social links"
   },
   "hero": {
     "Title": "Edit Hero Info",

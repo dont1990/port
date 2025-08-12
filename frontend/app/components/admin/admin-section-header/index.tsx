@@ -11,17 +11,21 @@ import {
   SelectValue,
 } from "@/app/components/ui/select";
 import { useTranslation } from "react-i18next";
+import { cn } from "@/app/lib/utils/cn/cn";
 
 type Props = {
   title: string;
+  className?: string;
 };
 
-const AdminSectionHeader = ({ title }: Props) => {
-  const { dir,lang, setLang } = useLang();
+const AdminSectionHeader = ({ title, className }: Props) => {
+  const { dir, lang, setLang } = useLang();
   const { t } = useTranslation("dashboard");
 
   return (
-    <CardHeader className="flex flex-row justify-between items-center">
+    <CardHeader
+      className={cn("flex flex-row justify-between items-center", className)}
+    >
       <CardTitle>{title}</CardTitle>
       <Select
         value={lang}

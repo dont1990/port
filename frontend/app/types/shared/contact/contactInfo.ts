@@ -5,6 +5,6 @@ export interface ContactInfo {
   social: {
     github: string;
     linkedin: string;
-    twitter: string;
+    telegram: string;
   };
 }

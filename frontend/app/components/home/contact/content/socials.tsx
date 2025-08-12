@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Github, Linkedin, Twitter } from "lucide-react";
+import { Github, Linkedin,Send  } from "lucide-react";
 import { Button } from "@/app/components/ui/button";
 import { ContactInfo } from "@/app/types/shared/contact/contactInfo";
 import { useTranslation } from "react-i18next";
@@ -26,7 +26,7 @@ export function ContactSocials({
         {[
           { icon: Github, link: contactInfoData.social.github },
           { icon: Linkedin, link: contactInfoData.social.linkedin },
-          { icon: Twitter, link: contactInfoData.social.twitter },
+          { icon: Send , link: contactInfoData.social.telegram },
         ].map(({ icon: Icon, link }, index) => (
           <motion.div
             key={index}

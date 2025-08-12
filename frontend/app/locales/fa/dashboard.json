@@ -59,12 +59,14 @@
     "GitHubURL": "آدرس گیت‌هاب",
     "LinkedIn": "لینکدین",
     "LinkedInURL": "آدرس لینکدین",
-    "Twitter": "توییتر",
-    "TwitterURL": "آدرس توییتر",
+    "Telegram": "تلگرام",
+    "TelegramURL": "آدرس تلگرام",
     "SaveChanges": "ذخیره تغییرات",
     "FailedToLoad": "بارگذاری اطلاعات تماس با خطا مواجه شد",
     "UpdateSuccess": "اطلاعات تماس با موفقیت به‌روزرسانی شد.",
-    "UpdateFail": "خطا در به‌روزرسانی اطلاعات تماس."
+    "UpdateFail": "خطا در به‌روزرسانی اطلاعات تماس.",
+    "ContactDetails": "جزئیات تماس",
+    "UpdateContactInfoDescription": "اطلاعات تماس و لینک‌های شبکه‌های اجتماعی خود را به‌روز کنید"
   },
   "hero": {
     "Title": "ویرایش اطلاعات معرفی",
