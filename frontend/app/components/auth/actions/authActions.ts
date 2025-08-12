@@ -1,20 +1,21 @@
-// frontend/actions/auth.ts
 
-export async function loginAdmin(password: string) {
+export async function loginAdmin(username: string, password: string) {
   const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/auth/login`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ username: "admin", password }),
+    body: JSON.stringify({ username, password }),
     credentials: "include",
   });
 
   if (!res.ok) {
-    const errorData = await res.json();
-    throw new Error(errorData.message || "Login failed");
+    const error = new Error("Login failed");
+    (error as any).response = res;
+    throw error;
   }
 
   return res.json();
 }
+
 
 export async function logoutAdmin() {
   const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/auth/logout`, {

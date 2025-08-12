@@ -12,5 +12,12 @@
   "confirm_logout": "Logout",
   "credentialsInfo": "Enter your credentials to access the admin panel",
   "passwordLabel": "Password",
-  "secureAccessInfo": "Secure admin access • Protected by encryption"
+  "secureAccessInfo": "Secure admin access • Protected by encryption",
+  "usernameLabel": "Username",
+  "enterUsername": "Enter your username",
+  "errors": {
+    "INVALID_CREDENTIALS": "Invalid username or password.",
+    "INTERNAL_ERROR": "Internal server error, please try again later.",
+    "UNKNOWN_ERROR": "An unexpected error occurred."
+  }
 }

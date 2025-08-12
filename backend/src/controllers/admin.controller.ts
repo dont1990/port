@@ -10,14 +10,14 @@ export const loginController = async (req: Request, res: Response) => {
   const { username, password } = req.body;
 
   if (username !== ADMIN_USERNAME) {
-    return res.status(401).json({ message: "Invalid credentials" });
+    return res.status(401).json({ errorCode: "INVALID_CREDENTIALS" });
   }
 
   try {
     const passwordMatch = await bcrypt.compare(password, ADMIN_PASSWORD_HASH);
 
     if (!passwordMatch) {
-      return res.status(401).json({ message: "Invalid credentials" });
+      return res.status(401).json({ errorCode: "INVALID_CREDENTIALS" });
     }
 
     const token = jwt.sign({ username }, JWT_SECRET, { expiresIn: "1h" });
@@ -33,7 +33,7 @@ export const loginController = async (req: Request, res: Response) => {
     return res.json({ success: true });
   } catch (error) {
     console.error("Login error:", error);
-    return res.status(500).json({ message: "Internal server error" });
+    return res.status(500).json({ errorCode: "INTERNAL_ERROR" });
   }
 };
 

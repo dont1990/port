@@ -6,19 +6,21 @@ import { Button } from "@/app/components/ui/button";
 import { Eye, EyeOff, Lock, Shield } from "lucide-react";
 import { cn } from "@/app/lib/utils/cn/cn";
 import { useLang } from "@/app/context/langContext";
-import { useLoginForm } from "../hooks/useAdminLogin";
+import { useAdminLogin } from "../hooks/useAdminLogin";
 
 const LoginForm = () => {
   const {
     t,
     password,
+    username,
     error,
     showPassword,
     isLoading,
     handleSubmit,
     onPasswordChange,
     toggleShowPassword,
-  } = useLoginForm();
+    onUsernameChange,
+  } = useAdminLogin();
 
   const { dir } = useLang();
 
@@ -52,7 +54,30 @@ const LoginForm = () => {
           style={{ color: "hsl(var(--card-foreground))" }}
         >
           <CardContent className="p-8">
-            <form onSubmit={handleSubmit} className="space-y-6">
+            <form onSubmit={handleSubmit} className="space-y-3">
+              {/* Username Field */}
+              <div className="space-y-2">
+                <label
+                  htmlFor="username"
+                  className="text-sm font-medium block text-muted-foreground"
+                >
+                  {t("usernameLabel")}
+                </label>
+                <Input
+                  id="username"
+                  type="text"
+                  value={username}
+                  onChange={(e) => onUsernameChange(e.target.value)}
+                  placeholder={t("enterUsername")}
+                  autoFocus
+                  className={cn(
+                    "h-12 bg-[color:var(--muted)/0.5] dark:bg-[color:var(--muted)/0.5] border-[color:var(--border)] dark:border-[color:var(--border)] focus:bg-[color:var(--background)] dark:focus:bg-[color:var(--background)] transition-colors duration-200 placeholder:ps-1",
+                    dir === "rtl" ? "pr-10 pl-12" : "pl-12 pr-12",
+                    error &&
+                      "border-red-300 dark:border-red-500 bg-red-50/50 dark:bg-red-900/20 focus:border-red-400 dark:focus:border-red-400"
+                  )}
+                />
+              </div>
               <div className="space-y-2">
                 <label className="text-sm font-medium block text-muted-foreground">
                   {t("passwordLabel")}
@@ -117,7 +142,7 @@ const LoginForm = () => {
                 type="submit"
                 disabled={isLoading}
                 className="w-full h-12 rounded-lg shadow-lg hover:shadow-xl transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed
-                 text-primary-foreground"
+                 text-primary-foreground !mt-6"
               >
                 {isLoading ? (
                   <div className="flex items-center justify-center gap-2">
