@@ -15,6 +15,7 @@ import {
   Database,
   Globe,
   Target,
+  Briefcase,
 } from "lucide-react";
 import SkillsEditorSkeleton from "../skeleton";
 import { useSkillsEditor } from "../hooks/useSkillsEditor";
@@ -65,153 +66,159 @@ export default function SkillsEditor() {
   if (error) return <p>{t("skills.error")}</p>;
 
   return (
-    <section className="section-container my-10">
-      <div className="grid gap-6 max-w-4xl mx-auto">
-        <AdminSectionHeader title={t("skills.title")} className="p-0" />
-        {skillsData.map((category, catIdx) => {
-          const IconComponent =
-            categoryIcons[category.title as keyof typeof categoryIcons] || Star;
+   <section className="section-container my-10">
+  <Card className="overflow-hidden border-0 shadow-lg bg-gradient-to-br from-white to-gray-50/50 dark:from-slate-800 dark:to-slate-700/50 max-w-4xl mx-auto">
+    {/* Main Header */}
+    <div className="p-6 bg-gradient-to-r from-slate-100/50 to-gray-100/50 dark:from-slate-900/50 dark:to-gray-900/50 border-b border-border/50">
+      <div className="flex items-center gap-3">
+        <div className="p-2 rounded-lg bg-gradient-to-br from-slate-500/20 to-gray-500/20 dark:from-slate-400/20 dark:to-gray-400/20">
+          <Briefcase className="h-6 w-6 text-slate-600 dark:text-slate-400" />
+        </div>
+        <AdminSectionHeader title={t("skills.title")} className="p-0 w-full" />
+      </div>
+    </div>
 
-          return (
-            <Card
-              key={catIdx}
-              className="overflow-hidden border-0 shadow-lg bg-gradient-to-br from-white to-gray-50/50 dark:from-slate-800 dark:to-slate-700/50"
-            >
-              <CardHeader className="bg-gradient-to-r from-indigo-500/10 to-purple-500/10 dark:from-indigo-500/20 dark:to-purple-500/20 border-b border-indigo-100/20 dark:border-indigo-800/30">
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-3">
-                    <div className="p-2 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-lg text-white">
-                      <IconComponent className="w-5 h-5" />
-                    </div>
-                    <Input
-                      value={category.title}
-                      onChange={(e) =>
-                        handleCategoryChange(catIdx, e.target.value)
-                      }
-                      className="text-lg font-semibold border-0 bg-transparent p-0 h-auto focus-visible:ring-0 text-foreground"
-                    />
-                  </div>
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    onClick={() => removeCategory(catIdx)}
-                    className="text-red-500 dark:text-red-400 hover:text-red-700 dark:hover:text-red-300 hover:bg-red-50 dark:hover:bg-red-950"
-                  >
-                    <Trash2 className="w-4 h-4" />
-                  </Button>
+    {/* Card Content: Categories */}
+    <CardContent className="space-y-6 p-6">
+      {skillsData.map((category, catIdx) => {
+        const IconComponent =
+          categoryIcons[category.title as keyof typeof categoryIcons] || Star;
+
+        return (
+          <div
+            key={catIdx}
+            className="p-4 bg-gradient-to-br from-white to-gray-50/50 dark:from-slate-800 dark:to-slate-700/50 rounded-lg border border-gray-100 dark:border-slate-600 space-y-4"
+          >
+            {/* Sub-header for Category */}
+            <div className="flex items-center justify-between mb-4">
+              <div className="flex items-center gap-3">
+                <div className="p-2 bg-primary-gradient rounded-lg text-white">
+                  <IconComponent className="w-5 h-5" />
                 </div>
-              </CardHeader>
+                <Input
+                  value={category.title}
+                  onChange={(e) => handleCategoryChange(catIdx, e.target.value)}
+                  className="text-lg font-semibold border-0 bg-transparent p-0 h-auto focus-visible:ring-0 text-foreground"
+                />
+              </div>
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => removeCategory(catIdx)}
+                className="text-red-500 dark:text-red-400 hover:text-red-700 dark:hover:text-red-300 hover:bg-red-50 dark:hover:bg-red-950"
+              >
+                <Trash2 className="w-4 h-4" />
+              </Button>
+            </div>
 
-              <CardContent className="p-6 space-y-4">
-                {category.skills.map((skill, skillIdx) => (
-                  <div
-                    key={skillIdx}
-                    className="p-4 bg-gradient-to-r from-gray-50 to-white dark:from-slate-700 dark:to-slate-600 rounded-lg border border-gray-100 dark:border-slate-600"
-                  >
-                    <div className="flex items-center gap-4 mb-3">
+            {/* Skills */}
+            <div className="space-y-4">
+              {category.skills.map((skill, skillIdx) => (
+                <div
+                  key={skillIdx}
+                  className="p-4 bg-gradient-to-r from-gray-50 to-white dark:from-slate-900 dark:to-slate-800 rounded-lg border border-gray-100 dark:border-slate-600"
+                >
+                  <div className="flex items-center gap-4 mb-3">
+                    <Input
+                      value={skill.name}
+                      onChange={(e) =>
+                        handleSkillChange(catIdx, skillIdx, "name", e.target.value)
+                      }
+                      placeholder={t("skills.skillName")}
+                      className="flex-1 bg-background text-foreground"
+                    />
+                    <div className="flex items-center gap-2">
                       <Input
-                        value={skill.name}
+                        type="number"
+                        value={skill.level}
                         onChange={(e) =>
                           handleSkillChange(
                             catIdx,
                             skillIdx,
-                            "name",
-                            e.target.value
+                            "level",
+                            +e.target.value
                           )
                         }
-                        placeholder={t("skills.skillName")}
-                        className="flex-1 bg-background text-foreground"
+                        placeholder={t("skills.skillLevel")}
+                        min={0}
+                        max={100}
+                        className="w-20 bg-background text-foreground"
                       />
-                      <div className="flex items-center gap-2">
-                        <Input
-                          type="number"
-                          value={skill.level}
-                          onChange={(e) =>
-                            handleSkillChange(
-                              catIdx,
-                              skillIdx,
-                              "level",
-                              +e.target.value
-                            )
-                          }
-                          placeholder={t("skills.skillLevel")}
-                          min={0}
-                          max={100}
-                          className="w-20 bg-background text-foreground"
-                        />
-                        <Badge
-                          variant="secondary"
-                          className={`${getSkillLevelColor(
-                            skill.level
-                          )} text-white border-0`}
-                        >
-                          {getSkillLevelText(skill.level)}
-                        </Badge>
-                        <Button
-                          variant="ghost"
-                          size="sm"
-                          onClick={() => removeSkill(catIdx, skillIdx)}
-                          className="text-red-500 dark:text-red-400 hover:text-red-700 dark:hover:text-red-300 hover:bg-red-50 dark:hover:bg-red-950"
-                        >
-                          <X className="w-4 h-4" />
-                        </Button>
-                      </div>
+                      <Badge
+                        variant="secondary"
+                        className={`${getSkillLevelColor(skill.level)} text-white border-0`}
+                      >
+                        {getSkillLevelText(skill.level)}
+                      </Badge>
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        onClick={() => removeSkill(catIdx, skillIdx)}
+                        className="text-red-500 dark:text-red-400 hover:text-red-700 dark:hover:text-red-300 hover:bg-red-50 dark:hover:bg-red-950"
+                      >
+                        <X className="w-4 h-4" />
+                      </Button>
                     </div>
-
-                    {skill.level > 0 && (
-                      <div className="space-y-2">
-                        <div className="flex justify-between text-sm text-gray-600 dark:text-gray-300">
-                          <span>{t("skills.proficiency")}</span>
-                          <span>{skill.level}%</span>
-                        </div>
-                        <Progress value={skill.level} className="h-2" />
-                      </div>
-                    )}
                   </div>
-                ))}
 
-                <Button
-                  variant="outline"
-                  onClick={() => addSkill(catIdx)}
-                  className="w-full border-dashed border-2 border-gray-300 dark:border-gray-600 hover:border-indigo-400 dark:hover:border-indigo-500 hover:bg-indigo-50 dark:hover:bg-indigo-950 text-gray-600 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400"
-                >
-                  <Plus className="w-4 h-4 mr-2" />
-                  {t("skills.addSkill")}
-                </Button>
-              </CardContent>
-            </Card>
-          );
-        })}
-      </div>
+                  {skill.level > 0 && (
+                    <div className="space-y-2">
+                      <div className="flex justify-between text-sm text-gray-600 dark:text-gray-300">
+                        <span>{t("skills.proficiency")}</span>
+                        <span>{skill.level}%</span>
+                      </div>
+                      <Progress value={skill.level} className="h-2" />
+                    </div>
+                  )}
+                </div>
+              ))}
 
-      <div className="flex gap-4 justify-center pt-6">
-        <Button
-          onClick={addCategory}
-          variant="outline"
-          className="border-dashed border-2 border-purple-300 dark:border-purple-600 hover:border-purple-400 dark:hover:border-purple-500 hover:bg-purple-50 dark:hover:bg-purple-950 text-purple-600 dark:text-purple-400 bg-transparent"
-        >
-          <Plus className="w-4 h-4 mr-2" />
-          {t("skills.addCategory")}
-        </Button>
-
-        <Button
-          onClick={handleSave}
-          disabled={isLoading}
-          className="bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-600 hover:to-purple-700 text-white px-8"
-        >
-          {isLoading ? (
-            <div className="flex items-center gap-2">
-              <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-              {t("skills.saving")}
+              <Button
+                variant="outline"
+                onClick={() => addSkill(catIdx)}
+                className="w-full border-dashed border-2 border-gray-300 dark:border-gray-600 hover:border-primary/40 dark:hover:border-primary hover:bg-primary/20 dark:hover:bg-primary/20 text-primary dark:text-gray-300 hover:text-primary dark:hover:text-primary"
+              >
+                <Plus className="w-4 h-4 mr-2" />
+                {t("skills.addSkill")}
+              </Button>
             </div>
-          ) : (
-            <>
-              <Save className="w-4 h-4 mr-2" />
-              {t("skills.save")}
-            </>
-          )}
-        </Button>
-      </div>
-    </section>
+          </div>
+        );
+      })}
+    </CardContent>
+
+    {/* Footer Buttons */}
+    <CardContent className="flex gap-4 justify-center pt-6 border-t border-border/50">
+      <Button
+        onClick={addCategory}
+        variant="outline"
+        className="border-dashed border-2 border-primary dark:border-primary hover:border-primary dark:hover:text-primary hover:bg-primary/20 dark:hover:bg-primary/20 text-primary dark:text-primary bg-transparent hover:text-primary"
+      >
+        <Plus className="w-4 h-4 mr-2" />
+        {t("skills.addCategory")}
+      </Button>
+
+      <Button
+        variant={"gradient"}
+        onClick={handleSave}
+        disabled={isLoading}
+        className="px-8"
+      >
+        {isLoading ? (
+          <div className="flex items-center gap-2">
+            <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+            {t("skills.saving")}
+          </div>
+        ) : (
+          <>
+            <Save className="w-4 h-4 mr-2" />
+            {t("skills.save")}
+          </>
+        )}
+      </Button>
+    </CardContent>
+  </Card>
+</section>
+
   );
 }

@@ -28,6 +28,11 @@
     --ring: 214 100% 50%;
     --radius: 0.5rem;
     --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1), 0 4px 6px rgba(0, 0, 0, 0.05);
+    --primary-gradient: linear-gradient(
+      135deg,
+      hsl(214 100% 60%),
+      hsl(214 100% 40%)
+    );
   }
 
   .dark {
@@ -58,42 +63,82 @@
   [data-color-scheme="blue"] {
     --primary: 214 100% 50%;
     --ring: 214 100% 50%;
+    --primary-gradient: linear-gradient(
+      135deg,
+      hsl(214 100% 60%),
+      hsl(214 100% 40%)
+    );
   }
 
   [data-color-scheme="purple"] {
     --primary: 262 83% 58%;
     --ring: 262 83% 58%;
+    --primary-gradient: linear-gradient(
+      135deg,
+      hsl(262 83% 65%),
+      hsl(262 83% 48%)
+    );
   }
 
   [data-color-scheme="green"] {
     --primary: 142 76% 36%;
     --ring: 142 76% 36%;
+    --primary-gradient: linear-gradient(
+      135deg,
+      hsl(142 76% 46%),
+      hsl(142 76% 30%)
+    );
   }
 
   [data-color-scheme="orange"] {
     --primary: 25 95% 53%;
     --ring: 25 95% 53%;
+    --primary-gradient: linear-gradient(
+      135deg,
+      hsl(25 95% 60%),
+      hsl(25 95% 45%)
+    );
   }
 
   [data-color-scheme="pink"] {
     --primary: 330 81% 60%;
     --ring: 330 81% 60%;
+    --primary-gradient: linear-gradient(
+      135deg,
+      hsl(330 81% 68%),
+      hsl(330 81% 52%)
+    );
   }
 
   [data-color-scheme="teal"] {
     --primary: 173 80% 40%;
     --ring: 173 80% 40%;
+    --primary-gradient: linear-gradient(
+      135deg,
+      hsl(173 80% 50%),
+      hsl(173 80% 35%)
+    );
   }
 
   [data-color-scheme="indigo"] {
     --primary: 239 84% 67%;
     --ring: 239 84% 67%;
+    --primary-gradient: linear-gradient(
+      135deg,
+      hsl(239 84% 72%),
+      hsl(239 84% 58%)
+    );
   }
 
   [data-color-scheme="amber"] {
     --primary: 45 93% 47%;
     --primary-foreground: 0 0% 0%;
     --ring: 45 93% 47%;
+    --primary-gradient: linear-gradient(
+      135deg,
+      hsl(45 93% 55%),
+      hsl(45 93% 42%)
+    );
   }
 }
 
@@ -153,4 +198,8 @@ html[dir="ltr"] {
 /* Font for RTL (Persian) */
 html[dir="rtl"] {
   font-family: "iran-sans";
+}
+
+.bg-primary-gradient {
+  background-image: var(--primary-gradient);
 }

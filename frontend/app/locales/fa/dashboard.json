@@ -86,7 +86,10 @@
     "UploadResumeSuccess": "رزومه {{lang}} با موفقیت آپلود شد.",
     "UploadResumeError": "آپلود رزومه {{lang}} انجام نشد.",
     "UpdateSuccess": "اطلاعات هیرو با موفقیت بروزرسانی شد.",
-    "UpdateError": "بروزرسانی اطلاعات هیرو انجام نشد."
+    "UpdateError": "بروزرسانی اطلاعات هیرو انجام نشد.",
+    "ProfessionalDetails": "جزئیات حرفه‌ای",
+    "PersonalInfo": "اطلاعات شخصی",
+    "UploadProgress": "پیشرفت بارگذاری"
   },
   "about": {
     "UpdateSuccess": "اطلاعات درباره با موفقیت بروزرسانی شد.",

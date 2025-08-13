@@ -1,8 +1,16 @@
 "use client";
 
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from "@/app/components/ui/card";
 import { Label } from "@/app/components/ui/label";
 import { Input } from "@/app/components/ui/input";
 import { Button } from "@/app/components/ui/button";
+import { Textarea } from "@/app/components/ui/textarea";
+import { User, Briefcase, FileText, Sparkles } from "lucide-react";
 import { HeroData } from "@/app/types/shared/hero/heroData";
 import { useTranslation } from "react-i18next";
 
@@ -23,44 +31,82 @@ export default function HeroForm({
   onRolesChange,
   onSave,
 }: HeroFormProps) {
-
-    const { t } = useTranslation("dashboard");
+  const { t } = useTranslation("dashboard");
 
   return (
-    <div className="space-y-6">
-      <div className="space-y-2">
-        <Label>{t("hero.Name")}</Label>
-        <Input name="name" value={form.name} onChange={onChange} />
-      </div>
+    <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      {/* Personal Information */}
+     <Card className="bg-[hsl(var(--card))] border border-[hsl(var(--border))] shadow-lg">
+  <CardHeader>
+    <CardTitle className="flex items-center gap-2 text-[hsl(var(--foreground))]">
+      <User className="h-5 w-5 text-[hsl(var(--primary))]" />
+      {t("hero.PersonalInfo")}
+    </CardTitle>
+  </CardHeader>
+        <CardContent className="space-y-4">
+          <div>
+            <Label>{t("hero.Name")}</Label>
+            <Input
+              name="name"
+              value={form.name}
+              onChange={onChange}
+              placeholder={t("hero.NamePlaceholder") || ""}
+              className="bg-white"
+            />
+          </div>
+          <div>
+            <Label>{t("hero.Initials")}</Label>
+            <Input
+              name="initials"
+              value={form.initials}
+              onChange={onChange}
+              placeholder={t("hero.InitialsPlaceholder") || ""}
+              maxLength={3}
+              className="bg-white"
+            />
+          </div>
+        </CardContent>
+      </Card>
 
-      <div className="space-y-2">
-        <Label>{t("hero.Initials")}</Label>
-        <Input name="initials" value={form.initials} onChange={onChange} />
-      </div>
+      {/* Professional Info */}
+  <Card className="bg-[hsl(var(--card))] border border-[hsl(var(--border))] shadow-lg">
+  <CardHeader>
+    <CardTitle className="flex items-center gap-2 text-[hsl(var(--foreground))]">
+      <Briefcase className="h-5 w-5 text-[hsl(var(--primary))]" />
+      {t("hero.ProfessionalDetails")}
+    </CardTitle>
+  </CardHeader>
+        <CardContent className="space-y-4">
+          <div>
+            <Label>{t("hero.Roles")}</Label>
+            <Input
+              value={form.roles.join(", ")}
+              onChange={onRolesChange}
+              placeholder={t("hero.RolesPlaceholder") || ""}
+              className="bg-white"
+            />
+          </div>
+          <div>
+            <Label>{t("hero.Bio")}</Label>
+            <Textarea
+              name="bio"
+              value={form.bio}
+              onChange={onChange}
+              placeholder={t("hero.BioPlaceholder") || ""}
+              rows={4}
+            />
+          </div>
+        </CardContent>
+      </Card>
 
-      <div className="space-y-2">
-        <Label>{t("hero.Roles")}</Label>
-        <Input
-          value={form.roles.join(", ")}
-          onChange={onRolesChange}
-          placeholder={t("hero.RolesPlaceholder") || ""}
-        />
-      </div>
-
-      <div className="space-y-2">
-        <Label>{t("hero.Bio")}</Label>
-        <textarea
-          name="bio"
-          value={form.bio}
-          onChange={onChange}
-          className="w-full p-2 rounded-md border"
-          rows={4}
-        />
-      </div>
-
-      <div className="pt-4">
-        <Button onClick={onSave} className="w-full" isLoading={isPending}>
-          {!isPending && t("hero.Save")}
+      {/* Save */}
+      <div className="lg:col-span-2">
+        <Button
+          onClick={onSave}
+          disabled={isPending}
+          className="w-full"
+        >
+          {isPending ? t("hero.Saving") : t("hero.Save")}
         </Button>
       </div>
     </div>

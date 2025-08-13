@@ -85,6 +85,9 @@ const config = {
       boxShadow: {
         lg: "var(--shadow-lg)",
       },
+      backgroundImage: {
+        "primary-gradient": "var(--primary-gradient)",
+      },
     },
   },
   plugins: [require("tailwindcss-animate")],

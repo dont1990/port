@@ -94,7 +94,7 @@ export default function SuggestionsEditor({
               <Button
                 type="button"
                 size="sm"
-                variant="outline"
+                // variant="outline"
                 onClick={handleAdd}
                 disabled={!newName.trim() || isPending}
                 className="flex-shrink-0"

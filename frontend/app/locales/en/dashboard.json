@@ -86,7 +86,10 @@
     "UploadResumeSuccess": "{{lang}} resume uploaded successfully.",
     "UploadResumeError": "Failed to upload {{lang}} resume.",
     "UpdateSuccess": "Hero info updated successfully.",
-    "UpdateError": "Failed to update hero info."
+    "UpdateError": "Failed to update hero info.",
+    "ProfessionalDetails": "Professional Details",
+    "PersonalInfo": "Personal Information",
+    "UploadProgress": "Upload Progress"
   },
   "about": {
     "UpdateSuccess": "About info updated successfully.",
