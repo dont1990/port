@@ -26,7 +26,10 @@ const AdminSectionHeader = ({ title, className }: Props) => {
     <CardHeader
       className={cn("flex flex-row justify-between items-center", className)}
     >
-      <CardTitle>{title}</CardTitle>
+      <CardTitle className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-semibold break-words">
+        {title}
+      </CardTitle>
+
       <Select
         value={lang}
         onValueChange={(value: "en" | "fa") => setLang(value)}

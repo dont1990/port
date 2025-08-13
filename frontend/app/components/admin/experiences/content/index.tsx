@@ -64,9 +64,10 @@ export default function ExperienceEditor() {
 
           <div className="flex justify-end pt-6 border-t border-border/50">
             <Button
+            variant={'gradient'}
               onClick={handleSave}
               disabled={isLoading}
-              className="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white px-8 py-2 rounded-lg font-medium shadow-lg hover:shadow-xl transition-all duration-200"
+              className="w-full"
             >
               {isLoading ? (
                 <>

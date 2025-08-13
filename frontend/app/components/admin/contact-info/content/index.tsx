@@ -5,7 +5,7 @@ import { Card, CardContent, CardHeader } from "@/app/components/ui/card";
 import { Input } from "@/app/components/ui/input";
 import { Label } from "@/app/components/ui/label";
 import { Button } from "@/app/components/ui/button";
-import { Mail, Phone, MapPin, Github, Linkedin, Send, User, Globe } from "lucide-react";
+import { Mail, Phone, MapPin, Github, Linkedin, Send, User, Globe, Contact2 } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { useContactInfoEditor } from "../hooks/useContactInfoEditor";
 import AdminSectionHeader from "../../admin-section-header";
@@ -20,7 +20,19 @@ export default function ContactEditor() {
   return (
     <section className="section-container my-10">
       <div className="max-w-4xl mx-auto space-y-8 p-6">
-        <AdminSectionHeader title={t("contact.EditContactInformation")} className="p-0" />
+        
+        <div className="p-6 bg-gradient-to-r from-slate-100/50 to-gray-100/50 dark:from-slate-900/50 dark:to-gray-900/50 border-b border-border/50">
+          <div className="flex items-center gap-3">
+            <div className="p-2 rounded-lg bg-gradient-to-br from-slate-500/20 to-gray-500/20 dark:from-slate-400/20 dark:to-gray-400/20">
+              <Contact2 className="h-6 w-6 text-slate-600 dark:text-slate-400" />
+            </div>
+            <AdminSectionHeader
+              title={t("contact.EditContactInformation")}
+              className="p-0 w-full"
+            />
+          </div>
+        </div>
+
         <div className="text-center space-y-2">
           <p className="text-muted-foreground">{t("contact.UpdateContactInfoDescription")}</p>
         </div>

@@ -13,7 +13,7 @@ import { deleteImage } from "@/app/lib/utils/upload/image";
 interface ImageUploadProps {
   project: {
     title: string;
-    image?: string;
+    image: string;
   };
   idx: number;
   baseId: string;
@@ -95,17 +95,19 @@ export function ImageUpload({
       {/* Show image preview ONLY if image exists */}
       {project.image ? (
         <div className="relative group">
-          <div className="relative w-full h-48 rounded-xl overflow-hidden border-2 border-border bg-muted max-w-80">
+          <div className="relative w-full h-full rounded-xl overflow-hidden border-2 border-border bg-muted min-h-56">
+            {project.image.length > 0 && (
             <Image
-              src={
-                project.image.startsWith("blob:")
-                  ? project.image
-                  : `http://localhost:4000${project.image}`
-              }
-              alt={project.title || t("projects.ProjectImageAlt")}
-              fill
-              className="object-contain transition-all duration-300 group-hover:scale-105"
-            />
+                src={
+                  project.image.startsWith("blob:")
+                    ? project.image
+                    : `http://localhost:4000${project.image}` // note the "/" before ${project.image}
+                }
+                alt={project.title || t("projects.ProjectImageAlt")}
+                fill
+                className="object-fill transition-all duration-300 group-hover:scale-105"
+              />
+            )}
             <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300" />
             <Button
               variant="destructive"
