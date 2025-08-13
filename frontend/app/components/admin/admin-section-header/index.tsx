@@ -26,7 +26,7 @@ const AdminSectionHeader = ({ title, IconComponent, className }: Props) => {
   return (
     <CardHeader
       className={cn(
-        "flex flex-row justify-between items-center p-4 md:p-6 bg-gradient-to-r from-slate-100/50 to-gray-100/50 dark:from-slate-900/50 dark:to-gray-900/50 border-b border-border/50 w-full mb-6",
+        "flex flex-row justify-between items-center p-4 md:p-6 bg-gradient-to-r from-slate-100/50 to-gray-100/50 dark:from-slate-700/50 dark:to-gray-800/50 border-b border-border/50 w-full mb-6",
         className
       )}
     >
