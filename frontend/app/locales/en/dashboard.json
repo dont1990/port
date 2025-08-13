@@ -117,6 +117,12 @@
     "save": "Save Changes",
     "skillName": "Skill Name",
     "skillLevel": "Level",
+    "proficiency": "Proficiency",
+    "beginner": "Beginner",
+    "intermediate": "Intermediate",
+    "advanced": "Advanced",
+    "expert": "Expert",
+    "saving": "Saving...",
     "error": "Error loading skills",
     "successUpdate": "Skills updated successfully.",
     "errorUpdate": "Failed to update skills."
