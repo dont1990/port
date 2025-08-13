@@ -8,7 +8,7 @@ import { Skeleton } from "@/app/components/ui/skeleton";
 
 const ContactInfoSkeleton = () => {
   return (
-    <section className="section-container">
+    <section className="section-container my-10">
       <Card className="max-w-xl mx-auto">
         <CardHeader>
           <CardTitle>

@@ -14,18 +14,19 @@ import {
   Send,
   User,
   Globe,
-  Contact2,
 } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { useContactInfoEditor } from "../hooks/useContactInfoEditor";
 import AdminSectionHeader from "../../admin-section-header";
+import ContactInfoSkeleton from "../skeleton";
+
 
 export default function ContactEditor() {
   const { t } = useTranslation("dashboard");
   const { formData, error, isLoading, isPending, handleChange, handleSave } =
     useContactInfoEditor();
 
-  if (isLoading || !formData) return <p>Loading...</p>;
+  if (isLoading || !formData) return <ContactInfoSkeleton/>;
   if (error) return <p className="text-red-500">{t("contact.FailedToLoad")}</p>;
 
   return (

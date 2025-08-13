@@ -7,17 +7,12 @@ import { Plus, X } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
 import toast from "react-hot-toast";
 import { useTranslation } from "react-i18next";
-
 import { addSuggestion, deleteSuggestion } from "../actions/suggestionsActions";
 import { Suggestion } from "@/app/types/shared/suggestion/suggestion";
 import { useKeyPressHandler } from "@/app/hooks/useKeyPressHandler";
-import { Badge } from "@/app/components/ui/badge";
 import {
   Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
+  CardContent
 } from "@/app/components/ui/card";
 import AdminSectionHeader from "../../admin-section-header";
 

@@ -23,6 +23,7 @@ import {
 import { useAboutForm } from "../hooks/useAboutForm";
 import AdminSectionHeader from "../../admin-section-header";
 import { useTranslation } from "react-i18next";
+import AboutEditorSkeleton from "../skeleton";
 
 export default function AboutEditor() {
   const {
@@ -41,7 +42,7 @@ export default function AboutEditor() {
 
   const { t } = useTranslation("dashboard");
 
-  if (isLoading) return <p>Loading...</p>;
+  if (isLoading) return <AboutEditorSkeleton />;
   if (error || !form)
     return (
       <p className="text-red-600 dark:text-red-400">{t("about.UpdateError")}</p>
@@ -49,14 +50,14 @@ export default function AboutEditor() {
 
   return (
     <section className="section-container my-10">
-      <Card className="max-w-5xl mx-auto border-0 shadow-lg bg-gradient-to-br from-white to-gray-50/50 dark:from-slate-800 dark:to-slate-700/50">
+      <Card className="max-w-5xl mx-auto border-0 shadow-lg bg-gradient-to-br from-white to-gray-50/50 dark:from-slate-900 dark:to-slate-800">
         {/* Main Header */}
         <AdminSectionHeader title={t("hero.Title")} />
 
         {/* Card Content */}
         <CardContent className="space-y-8 p-4 md:p-6">
           {/* Description Sub-Card */}
-          <div className="p-4 bg-white/50 dark:bg-slate-700/60 rounded-lg border border-gray-200 dark:border-slate-600 space-y-4 shadow-sm">
+          <div className="p-4 bg-white/50 dark:bg-slate-700/40 rounded-lg border border-gray-200 dark:border-slate-600 space-y-4 shadow-sm">
             <CardTitle className="flex items-center gap-3 text-lg text-slate-800 dark:text-slate-200 mb-2">
               <div className="p-2 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-lg text-white">
                 <FileText className="w-5 h-5" />
@@ -89,7 +90,7 @@ export default function AboutEditor() {
           </div>
 
           {/* Skills Sub-Card */}
-          <div className="p-4 bg-white/50 dark:bg-slate-700/60 rounded-lg border border-gray-200 dark:border-slate-600 space-y-4 shadow-sm">
+          <div className="p-4 bg-white/50 dark:bg-slate-700/40 rounded-lg border border-gray-200 dark:border-slate-600 space-y-4 shadow-sm">
             <CardTitle className="flex items-center gap-3 text-lg text-slate-800 dark:text-slate-200 mb-2">
               <div className="p-2 bg-gradient-to-br from-green-500 to-emerald-600 rounded-lg text-white">
                 <Star className="w-5 h-5" />
@@ -120,7 +121,7 @@ export default function AboutEditor() {
           </div>
 
           {/* Features Sub-Card */}
-          <div className="p-4 bg-white/50 dark:bg-slate-700/60 rounded-lg border border-gray-200 dark:border-slate-600 space-y-4 shadow-sm">
+          <div className="p-4 bg-white/50 dark:bg-slate-700/40 rounded-lg border border-gray-200 dark:border-slate-600 space-y-4 shadow-sm">
             <CardTitle className="flex items-center gap-3 text-lg text-slate-800 dark:text-slate-200 mb-2">
               <div className="p-2 bg-gradient-to-br from-purple-500 to-violet-600 rounded-lg text-white">
                 <Lightbulb className="w-5 h-5" />
@@ -131,7 +132,7 @@ export default function AboutEditor() {
             {form.features.map((feature, i) => (
               <div
                 key={i}
-                className="p-4 border border-slate-200 rounded-lg bg-white/50 dark:bg-slate-700/60 dark:border-slate-600 space-y-3"
+                className="p-4 border border-slate-200 rounded-lg bg-white/50 dark:bg-slate-700/40 dark:border-slate-600 space-y-3"
               >
                 <Input
                   value={feature.title}

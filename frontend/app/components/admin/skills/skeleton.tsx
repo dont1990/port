@@ -1,38 +1,60 @@
 "use client";
 
+import { Card, CardContent, CardHeader } from "@/app/components/ui/card";
 import { Skeleton } from "@/app/components/ui/skeleton";
-import { Card, CardContent, CardHeader, CardTitle } from "@/app/components/ui/card";
 
 export default function SkillsEditorSkeleton() {
   return (
-    <section className="section-container py-10">
-      <Card>
+    <section className="section-container my-10">
+      <Card className="overflow-hidden border-0 shadow-lg bg-gradient-to-br from-white to-gray-50/50 dark:from-slate-800 dark:to-slate-700/50 mx-auto max-w-5xl">
+        {/* Header */}
         <CardHeader>
-          <CardTitle>
-            <Skeleton className="w-48 h-6" />
-          </CardTitle>
+          <Skeleton className="h-6 w-40" />
         </CardHeader>
-        <CardContent className="space-y-8">
-          {[...Array(2)].map((_, catIdx) => (
-            <div key={catIdx} className="border p-4 rounded-md space-y-4">
-              <Skeleton className="h-8 w-1/3" />
 
-              {[...Array(3)].map((_, skillIdx) => (
-                <div key={skillIdx} className="flex gap-4">
-                  <Skeleton className="h-8 w-1/2" />
-                  <Skeleton className="h-8 w-24" />
-                  <Skeleton className="h-8 w-20" />
+        {/* Categories */}
+        <CardContent className="space-y-6 p-4 md:p-6">
+          {[...Array(3)].map((_, catIdx) => (
+            <div
+              key={catIdx}
+              className="p-4 bg-gradient-to-br from-white to-gray-50/50 dark:from-slate-800 dark:to-slate-700/50 rounded-lg border border-gray-100 dark:border-slate-600 space-y-4"
+            >
+              {/* Category header */}
+              <div className="flex items-center justify-between mb-4">
+                <div className="flex items-center gap-3">
+                  <Skeleton className="w-8 h-8 rounded-lg" />
+                  <Skeleton className="h-6 w-32" />
                 </div>
-              ))}
+                <Skeleton className="w-8 h-8 rounded-md" />
+              </div>
 
-              <Skeleton className="h-8 w-32" />
+              {/* Skills */}
+              <div className="space-y-4">
+                {[...Array(3)].map((_, skillIdx) => (
+                  <div
+                    key={skillIdx}
+                    className="p-4 bg-gradient-to-r from-gray-50 to-white dark:from-slate-900 dark:to-slate-800 rounded-lg border border-gray-100 dark:border-slate-600 space-y-3"
+                  >
+                    <div className="flex items-center gap-4">
+                      <Skeleton className="h-10 w-full" />
+                      <Skeleton className="h-10 w-20" />
+                      <Skeleton className="h-6 w-20 rounded-full" />
+                      <Skeleton className="w-8 h-8 rounded-md" />
+                    </div>
+                    <Skeleton className="h-2 w-full" />
+                  </div>
+                ))}
+
+                <Skeleton className="h-10 w-full" />
+              </div>
             </div>
           ))}
+        </CardContent>
 
-          <div className="flex gap-4">
-            <Skeleton className="h-10 w-32" />
-            <Skeleton className="h-10 w-24" />
-          </div>
+        {/* Footer buttons */}
+        <CardContent className="flex gap-4 justify-center pt-6 border-t border-border/50">
+          <Skeleton className="h-10 w-40" />
+          <Skeleton className="h-10 w-40" />
         </CardContent>
       </Card>
     </section>

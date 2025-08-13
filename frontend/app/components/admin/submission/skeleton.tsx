@@ -1,59 +1,33 @@
 "use client";
 
-import {
-  Card,
-  CardHeader,
-  CardTitle,
-  CardContent,
-} from "@/app/components/ui/card";
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/app/components/ui/table";
-import clsx from "clsx";
+import { Card, CardContent } from "@/app/components/ui/card";
+import { Skeleton } from "@/app/components/ui/skeleton";
 
-function SkeletonCell({ className }: { className?: string }) {
+export default function SubmissionsSkeleton() {
   return (
-    <div className={clsx("h-4 rounded bg-muted animate-pulse", className)} />
-  );
-}
-
-export default function ContactSubmissionsSkeleton() {
-  const fakeRows = Array.from({ length: 5 });
-
-  return (
-    <section className="section-container">
-      <Card>
-        <CardHeader>
-          <CardTitle>Contact Submissions</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <Table>
-            <TableHeader>
-              <TableRow>
-                <TableHead>Name</TableHead>
-                <TableHead>Email</TableHead>
-                <TableHead>Subject</TableHead>
-                <TableHead>Message</TableHead>
-                <TableHead>Date</TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {fakeRows.map((_, i) => (
-                <TableRow key={i} className="animate-pulse">
-                  <TableCell><SkeletonCell className="w-24" /></TableCell>
-                  <TableCell><SkeletonCell className="w-32" /></TableCell>
-                  <TableCell><SkeletonCell className="w-20" /></TableCell>
-                  <TableCell><SkeletonCell className="w-40" /></TableCell>
-                  <TableCell><SkeletonCell className="w-28" /></TableCell>
-                </TableRow>
+    <section className="section-container my-10">
+      <Card className="max-w-5xl mx-auto">
+        <CardContent className="overflow-x-auto">
+          <div className="rounded-xl border bg-white/80 dark:bg-slate-800/70 p-4">
+            {/* Table Header Skeleton */}
+            <div className="grid grid-cols-6 gap-4 mb-3">
+              {[...Array(6)].map((_, idx) => (
+                <Skeleton key={idx} className="h-6 w-full rounded-md" />
               ))}
-            </TableBody>
-          </Table>
+            </div>
+
+            {/* Table Rows Skeleton */}
+            {[...Array(5)].map((_, rowIdx) => (
+              <div
+                key={rowIdx}
+                className="grid grid-cols-6 gap-4 mb-2 animate-pulse"
+              >
+                {[...Array(6)].map((__, colIdx) => (
+                  <Skeleton key={colIdx} className="h-5 w-full rounded-md" />
+                ))}
+              </div>
+            ))}
+          </div>
         </CardContent>
       </Card>
     </section>

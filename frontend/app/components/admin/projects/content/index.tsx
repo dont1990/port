@@ -22,6 +22,7 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { AddButton } from "@/app/components/ui/button"; // primary AddButton
 import { uploadImage } from "@/app/lib/utils/upload/image";
+import ProjectsEditorSkeleton from "../skeleton";
 
 export default function ProjectsEditor() {
   const {
@@ -52,7 +53,7 @@ export default function ProjectsEditor() {
     handleChange(projectIdx, "technologies", updated);
   };
 
-  if (!projects) return <p>{t("projects.Loading")}</p>;
+  if (!projects) return <ProjectsEditorSkeleton />;
   if (error)
     return (
       <p className="text-red-600 dark:text-red-400">
