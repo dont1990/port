@@ -26,21 +26,14 @@ export default function ExperienceEditor() {
   const { t } = useTranslation("dashboard");
 
   if (isLoading || !formData) return <ExperienceEditorSkeleton />;
-  if (error) return <p className="text-red-500">{t("experience.UpdateError")}</p>;
+  if (error)
+    return <p className="text-red-500">{t("experience.UpdateError")}</p>;
 
   return (
-    <section className="max-w-4xl mx-auto p-6 my-10">
+    <section className="max-w-5xl mx-auto my-10">
       <Card className="border-0 bg-gradient-to-br from-slate-50/50 to-gray-50/50 dark:from-slate-950/50 dark:to-gray-950/50 shadow-lg">
-        <div className="border-b border-border/50 bg-gradient-to-r from-slate-100/50 to-gray-100/50 dark:from-slate-900/50 dark:to-gray-900/50 p-6">
-          <div className="flex items-center gap-3">
-            <div className="p-2 rounded-lg bg-gradient-to-br from-slate-500/20 to-gray-500/20 dark:from-slate-400/20 dark:to-gray-400/20">
-              <Briefcase className="h-6 w-6 text-slate-600 dark:text-slate-400" />
-            </div>
-            <AdminSectionHeader title={t("experience.Title")} className="p-0 w-full" />
-          </div>
-        </div>
-
-        <CardContent className="p-8 space-y-12">
+        <AdminSectionHeader title={t("experience.Title")} />
+        <CardContent className="p-4 md:p-6 space-y-12">
           <ExperienceSection
             data={formData.experiences}
             onChange={handleChange}
@@ -64,7 +57,7 @@ export default function ExperienceEditor() {
 
           <div className="flex justify-end pt-6 border-t border-border/50">
             <Button
-            variant={'gradient'}
+              variant={"gradient"}
               onClick={handleSave}
               disabled={isLoading}
               className="w-full"

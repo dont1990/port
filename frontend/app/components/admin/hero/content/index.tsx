@@ -34,17 +34,9 @@ export default function HeroEditor() {
     return <p className="text-red-500">{t("hero.LoadError")}</p>;
 
   return (
-    <div className="max-w-6xl mx-auto p-6 space-y-8">
+    <section className="section-container !max-w-5xl mx-auto p-4 md:p-6 space-y-8 my-10">
       {/* Header Card */}
-
-      <div className="p-6 bg-gradient-to-r from-slate-100/50 to-gray-100/50 dark:from-slate-900/50 dark:to-gray-900/50 border-b border-border/50">
-        <div className="flex items-center gap-3">
-          <div className="p-2 rounded-lg bg-gradient-to-br from-slate-500/20 to-gray-500/20 dark:from-slate-400/20 dark:to-gray-400/20">
-            <HomeIcon className="h-6 w-6 text-slate-600 dark:text-slate-400" />
-          </div>
-          <AdminSectionHeader title={t("hero.Title")} className="p-0 w-full" />
-        </div>
-      </div>
+      <AdminSectionHeader title={t("hero.Title")} />
 
       {/* Hero Form */}
       <HeroForm
@@ -63,6 +55,6 @@ export default function HeroEditor() {
         handleResumeUpload={handleResumeUpload}
         uploadProgress={uploadProgress}
       />
-    </div>
+    </section>
   );
 }

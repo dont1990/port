@@ -5,36 +5,39 @@ import { Card, CardContent, CardHeader } from "@/app/components/ui/card";
 import { Input } from "@/app/components/ui/input";
 import { Label } from "@/app/components/ui/label";
 import { Button } from "@/app/components/ui/button";
-import { Mail, Phone, MapPin, Github, Linkedin, Send, User, Globe, Contact2 } from "lucide-react";
+import {
+  Mail,
+  Phone,
+  MapPin,
+  Github,
+  Linkedin,
+  Send,
+  User,
+  Globe,
+  Contact2,
+} from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { useContactInfoEditor } from "../hooks/useContactInfoEditor";
 import AdminSectionHeader from "../../admin-section-header";
 
 export default function ContactEditor() {
   const { t } = useTranslation("dashboard");
-  const { formData, error, isLoading, isPending, handleChange, handleSave } = useContactInfoEditor();
+  const { formData, error, isLoading, isPending, handleChange, handleSave } =
+    useContactInfoEditor();
 
   if (isLoading || !formData) return <p>Loading...</p>;
   if (error) return <p className="text-red-500">{t("contact.FailedToLoad")}</p>;
 
   return (
     <section className="section-container my-10">
-      <div className="max-w-4xl mx-auto space-y-8 p-6">
-        
-        <div className="p-6 bg-gradient-to-r from-slate-100/50 to-gray-100/50 dark:from-slate-900/50 dark:to-gray-900/50 border-b border-border/50">
-          <div className="flex items-center gap-3">
-            <div className="p-2 rounded-lg bg-gradient-to-br from-slate-500/20 to-gray-500/20 dark:from-slate-400/20 dark:to-gray-400/20">
-              <Contact2 className="h-6 w-6 text-slate-600 dark:text-slate-400" />
-            </div>
-            <AdminSectionHeader
-              title={t("contact.EditContactInformation")}
-              className="p-0 w-full"
-            />
-          </div>
-        </div>
-
+      <div className="max-w-5xl mx-auto space-y-8 p-6">
+        <AdminSectionHeader
+          title={t("contact.EditContactInformation")}
+        />
         <div className="text-center space-y-2">
-          <p className="text-muted-foreground">{t("contact.UpdateContactInfoDescription")}</p>
+          <p className="text-muted-foreground">
+            {t("contact.UpdateContactInfoDescription")}
+          </p>
         </div>
 
         <div className="grid gap-6 md:grid-cols-2">
@@ -45,12 +48,17 @@ export default function ContactEditor() {
                 <div className="p-2 rounded-lg bg-primary/20">
                   <User className="h-5 w-5 text-primary" />
                 </div>
-                <h2 className="text-xl font-semibold">{t("contact.ContactDetails")}</h2>
+                <h2 className="text-xl font-semibold">
+                  {t("contact.ContactDetails")}
+                </h2>
               </div>
             </CardHeader>
             <CardContent className="space-y-6">
               <div className="space-y-2">
-                <Label htmlFor="email" className="flex items-center gap-2 text-sm font-medium">
+                <Label
+                  htmlFor="email"
+                  className="flex items-center gap-2 text-sm font-medium"
+                >
                   <Mail className="h-4 w-4 text-primary" />
                   {t("contact.Email")}
                 </Label>
@@ -64,7 +72,10 @@ export default function ContactEditor() {
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="phone" className="flex items-center gap-2 text-sm font-medium">
+                <Label
+                  htmlFor="phone"
+                  className="flex items-center gap-2 text-sm font-medium"
+                >
                   <Phone className="h-4 w-4 text-primary" />
                   {t("contact.Phone")}
                 </Label>
@@ -78,7 +89,10 @@ export default function ContactEditor() {
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="location" className="flex items-center gap-2 text-sm font-medium">
+                <Label
+                  htmlFor="location"
+                  className="flex items-center gap-2 text-sm font-medium"
+                >
                   <MapPin className="h-4 w-4 text-primary" />
                   {t("contact.Location")}
                 </Label>
@@ -100,12 +114,17 @@ export default function ContactEditor() {
                 <div className="p-2 rounded-lg bg-primary/20">
                   <Globe className="h-5 w-5 text-primary" />
                 </div>
-                <h2 className="text-xl font-semibold">{t("contact.SocialLinks")}</h2>
+                <h2 className="text-xl font-semibold">
+                  {t("contact.SocialLinks")}
+                </h2>
               </div>
             </CardHeader>
             <CardContent className="space-y-6">
               <div className="space-y-2">
-                <Label htmlFor="social.github" className="flex items-center gap-2 text-sm font-medium">
+                <Label
+                  htmlFor="social.github"
+                  className="flex items-center gap-2 text-sm font-medium"
+                >
                   <Github className="h-4 w-4 text-primary" />
                   {t("contact.GitHub")}
                 </Label>
@@ -119,7 +138,10 @@ export default function ContactEditor() {
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="social.linkedin" className="flex items-center gap-2 text-sm font-medium">
+                <Label
+                  htmlFor="social.linkedin"
+                  className="flex items-center gap-2 text-sm font-medium"
+                >
                   <Linkedin className="h-4 w-4 text-primary" />
                   {t("contact.LinkedIn")}
                 </Label>
@@ -133,7 +155,10 @@ export default function ContactEditor() {
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="social.telegram" className="flex items-center gap-2 text-sm font-medium">
+                <Label
+                  htmlFor="social.telegram"
+                  className="flex items-center gap-2 text-sm font-medium"
+                >
                   <Send className="h-4 w-4 text-primary" />
                   {t("contact.Telegram")}
                 </Label>

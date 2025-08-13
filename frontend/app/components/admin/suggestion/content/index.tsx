@@ -19,6 +19,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/app/components/ui/card";
+import AdminSectionHeader from "../../admin-section-header";
 
 export default function SuggestionsEditor({
   initialSuggestions,
@@ -75,15 +76,9 @@ export default function SuggestionsEditor({
   return (
     <>
       <section className="section-container my-10">
-        <Card className="w-full max-w-4xl mx-auto">
-          <CardHeader>
-            <CardTitle>{t("suggestions.title")}</CardTitle>
-            <CardDescription>
-              {t("suggestions.description") ??
-                "Manage your suggested items here."}
-            </CardDescription>
-          </CardHeader>
-          <CardContent className="space-y-6">
+        <Card className="w-full max-w-5xl mx-auto">
+          <AdminSectionHeader title={t("suggestions.title")} />
+          <CardContent className="space-y-6 p-4 md-p-6">
             {/* Add Section */}
             <div className="relative flex w-full gap-2">
               <Input
